@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <servlet>
+    <servlet-name>AuthorizedInit</servlet-name>
+    <servlet-class>application.authorized.AuthorizedInit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AuthorizedInit</servlet-name>
+    <url-pattern>/authorized</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AuthorizedAction</servlet-name>
+    <servlet-class>application.authorized.AuthorizedAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AuthorizedAction</servlet-name>
+    <url-pattern>/authorized/login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>MenuInit</servlet-name>
+    <servlet-class>application.menu.MenuInit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MenuInit</servlet-name>
+    <url-pattern>/menu</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>MenuAction</servlet-name>
+    <servlet-class>application.menu.MenuAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MenuAction</servlet-name>
+    <url-pattern>/menu/move</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SiteAction</servlet-name>
+    <servlet-class>application.site.SiteAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SiteAction</servlet-name>
+    <url-pattern>/site/*</url-pattern>
+  </servlet-mapping>
+</web-app>
