@@ -13,8 +13,9 @@ public class AuthorizedInit extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// JSPの読み込み＆初期処理
 		ServletContext ctx = getServletContext();
-		RequestDispatcher dispatcher = ctx.getRequestDispatcher("/WEB-INF/jsp/authorized.jsp");
+		RequestDispatcher dispatcher = ctx.getRequestDispatcher(AuthorizedConstants.CONTENTS_PATH);
 		dispatcher.forward(req, resp);
 	}
 }

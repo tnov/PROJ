@@ -1,4 +1,4 @@
-package lib.filter;
+package application.filter;
 
 import java.io.IOException;
 
@@ -23,5 +23,6 @@ public class SessionFilter implements Filter {
 		} else {
 
 		}
+		filter.doFilter(request, response);
 	}
 }

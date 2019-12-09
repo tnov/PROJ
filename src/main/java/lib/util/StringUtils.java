@@ -1,11 +1,24 @@
 package lib.util;
 
+import java.util.Base64;
 import java.util.UUID;
 
 public class StringUtils {
 
 	public static void main(String[] args) {
 
+	}
+
+	public static boolean isNull(String str) {
+		if (str == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static boolean isNotNull(String str) {
+		return isEmpty(str);
 	}
 
 	public static boolean isEmpty(String str) {
@@ -26,6 +39,30 @@ public class StringUtils {
 		} else {
 			return leftTrim(rightTrim(str));
 		}
+	}
+
+	public static boolean isHalfLengthOnly(String str) {
+		// 空白以外で判定
+		String halfAlphabetNumber = "^[0-9a-zA-Z]+$";
+		String halfAlphabetNumberSymbol = "^[\\p{Alnum}|\\p{Punct}]*$";
+		if (isEmpty(str)) {
+			return true;
+		} else {
+			return str.matches(halfAlphabetNumberSymbol);
+		}
+	}
+
+	public static boolean isFullLengthOnly(String str) {
+		String halfAlphabetNumber = "^[0-9a-zA-Z]+$";
+		String halfAlphabetNumberSymbol = "^[\\p{Alnum}|\\p{Punct}]*$";
+
+		int len = str.length();
+		for (int i = 0 ; i < len ; i++) {
+			if (str.substring(i, len + 1).matches(halfAlphabetNumberSymbol)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public static String rightTrim(String str) {
@@ -73,5 +110,9 @@ public class StringUtils {
 
 	public static String getUUID() {
 		return UUID.randomUUID().toString();
+	}
+
+	public static String toBase64(String str) {
+		return Base64.getEncoder().encodeToString(str.getBytes());
 	}
 }

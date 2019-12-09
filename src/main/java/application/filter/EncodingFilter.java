@@ -1,4 +1,4 @@
-package lib.filter;
+package application.filter;
 
 import java.io.IOException;
 
@@ -17,5 +17,6 @@ public class EncodingFilter implements Filter {
 			throws IOException, ServletException {
 		request.setCharacterEncoding(ServletConstants.SERVLET_DEFAULT_ENCODING);
 		response.setCharacterEncoding(ServletConstants.SERVLET_DEFAULT_ENCODING);
+		filter.doFilter(request, response);
 	}
 }
