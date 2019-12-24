@@ -108,7 +108,7 @@ public class ConnectionManager {
 
 	public static void main(String[] args) {
 		ConnectionManager manager = ConnectionManager.getInstance();
-		manager.addConnection("empdb","jdbc:postgresql://localhost:5432/empdb", "empuser","empuser");
+		manager.addConnection("empdb","jdbc:postgresql://localhost:5432/test_db", "test_user","password");
 		manager.destroy();
 	}
 }

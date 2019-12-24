@@ -4,9 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript" src="WEB-INF/js/test.js" ></script>
-<title>Insert title here</title>
+<title>redirect</title>
 </head>
 <body>
-<h1>hello world</h1>
+<h1>redirect</h1>
 </body>
 </html>
