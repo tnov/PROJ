@@ -1,20 +1,28 @@
--- Project Name : ĞˆõDB
--- Date/Time    : 2019/12/05 3:04:16
+-- Project Name : ç¤¾å“¡DB
+-- Date/Time    : 2020/01/13 7:24:28
 -- Author       : ryzen
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
 
-/*
-  BackupToTempTable, RestoreFromTempTable‹^—–½—ß‚ª•t‰Á‚³‚ê‚Ä‚¢‚Ü‚·B
-  ‚±‚ê‚É‚æ‚èAdrop table, create table Œã‚àƒf[ƒ^‚ªc‚è‚Ü‚·B
-  ‚±‚Ì‹@”\‚Íˆê“I‚É $$TableName ‚Ì‚æ‚¤‚Èˆêƒe[ƒuƒ‹‚ğì¬‚µ‚Ü‚·B
-*/
+-- æ‰€å±ãƒã‚¹ã‚¿
+drop table if exists MST_DEPARTMENT cascade;
 
--- ‘gDƒ}ƒXƒ^
---* BackupToTempTable
+create table MST_DEPARTMENT (
+  DEPARTMENT_ID character varying not null
+  , DEPARTMENT_NAME character varying not null
+  , DELETE_FLG character default 0 not null
+  , CREATE_MODULE_ID character varying
+  , CREATE_USER_ID character varying
+  , CREATE_YMD timestamp
+  , UPDATE_MODULE_ID character varying
+  , UPDATE_USER_ID character varying
+  , UPDATE_YMD timestamp
+  , constraint MST_DEPARTMENT_PKC primary key (DEPARTMENT_ID)
+) ;
+
+-- çµ„ç¹”ãƒã‚¹ã‚¿
 drop table if exists MST_ORGANIZATION cascade;
 
---* RestoreFromTempTable
 create table MST_ORGANIZATION (
   ORGANIZATION_ID character varying not null
   , ORGANIZATION_NAME character varying not null
@@ -23,18 +31,16 @@ create table MST_ORGANIZATION (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_ORGANIZATION_PKC primary key (ORGANIZATION_ID)
 ) ;
 
--- ‹@”\ƒ}ƒXƒ^
---* BackupToTempTable
+-- æ©Ÿèƒ½ãƒã‚¹ã‚¿
 drop table if exists MST_FUNCTION cascade;
 
---* RestoreFromTempTable
 create table MST_FUNCTION (
   FUNCTION_ID character varying not null
   , FUNCTION_NAME character varying not null
@@ -44,18 +50,16 @@ create table MST_FUNCTION (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_FUNCTION_PKC primary key (FUNCTION_ID,FUNCTION_NAME)
 ) ;
 
--- ƒƒjƒ…[ƒ}ƒXƒ^
---* BackupToTempTable
+-- ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¹ã‚¿
 drop table if exists MST_MENU cascade;
 
---* RestoreFromTempTable
 create table MST_MENU (
   HIERARCHY character varying not null
   , FUNCTION_ORDER integer not null
@@ -63,18 +67,16 @@ create table MST_MENU (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_MENU_PKC primary key (HIERARCHY)
 ) ;
 
--- Œ ŒÀƒ}ƒXƒ^
---* BackupToTempTable
+-- æ¨©é™ãƒã‚¹ã‚¿
 drop table if exists MST_AUTHORIZED cascade;
 
---* RestoreFromTempTable
 create table MST_AUTHORIZED (
   AUTHORIZED_ID character varying not null
   , AUTHORIZED_NAME character varying not null
@@ -84,18 +86,16 @@ create table MST_AUTHORIZED (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_AUTHORIZED_PKC primary key (AUTHORIZED_ID,ORGANIZETION_ID)
 ) ;
 
--- ‹æ•ªƒOƒ‹[ƒvƒ}ƒXƒ^
---* BackupToTempTable
+-- åŒºåˆ†ã‚°ãƒ«ãƒ¼ãƒ—ãƒã‚¹ã‚¿
 drop table if exists MST_SECTION_GROUP cascade;
 
---* RestoreFromTempTable
 create table MST_SECTION_GROUP (
   SECTION_GROUP_ID character varying not null
   , SECTION_GROUP_NAME character varying not null
@@ -103,18 +103,16 @@ create table MST_SECTION_GROUP (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_SECTION_GROUP_PKC primary key (SECTION_GROUP_ID)
 ) ;
 
--- ‹æ•ªƒ}ƒXƒ^
---* BackupToTempTable
+-- åŒºåˆ†ãƒã‚¹ã‚¿
 drop table if exists MST_SECTION cascade;
 
---* RestoreFromTempTable
 create table MST_SECTION (
   SECTION_GROUP_ID character varying not null
   , SECTION_ID character varying not null
@@ -123,164 +121,174 @@ create table MST_SECTION (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_SECTION_PKC primary key (SECTION_GROUP_ID,SECTION_ID)
 ) ;
 
--- Ğˆõƒ}ƒXƒ^
---* BackupToTempTable
+-- ç¤¾å“¡ãƒã‚¹ã‚¿
 drop table if exists MST_EMPLOYEE cascade;
 
---* RestoreFromTempTable
 create table MST_EMPLOYEE (
   EMPLOYEE_ID character varying not null
   , EMPLOYEE_NAME character varying not null
   , BIRTH_YMD character varying not null
   , SEX character not null
-  , JOINED_YMD character varying not null
+  , ZIP_CODE character varying
+  , ADDRESS character varying
+  , JOINED_YMD character varying
+  , RETIRE_YMD character varying
   , DEPARTMENT_ID character varying
   , AUTHORIZED character default 0 not null
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_EMPLOYEE_PKC primary key (EMPLOYEE_ID)
 ) ;
 
--- ”FØƒ†[ƒU
---* BackupToTempTable
+-- èªè¨¼ãƒ¦ãƒ¼ã‚¶
 drop table if exists AUTHORIZED_USER cascade;
 
---* RestoreFromTempTable
 create table AUTHORIZED_USER (
   USER_ID character varying not null
   , USER_PASSWORD character varying not null
   , ORGANIZATION_ID character varying not null
-  , AUTHORIZED_GROUP_ID character varying not null
   , LAST_UPDATE_YMD character varying
   , LAST_UPDATE_PASS character varying
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint AUTHORIZED_USER_PKC primary key (USER_ID)
 ) ;
 
-comment on table MST_ORGANIZATION is '‘gDƒ}ƒXƒ^';
-comment on column MST_ORGANIZATION.ORGANIZATION_ID is '‘gD‚h‚c';
-comment on column MST_ORGANIZATION.ORGANIZATION_NAME is '‘gD–¼Ì';
-comment on column MST_ORGANIZATION.ORGANIZATION_COMMENT is '‘gDà–¾';
-comment on column MST_ORGANIZATION.ORGANIZATION_PARENT_ID is 'e‘gD‚h‚c';
-comment on column MST_ORGANIZATION.DELETE_FLG is 'íœƒtƒ‰ƒO:0:–¢íœA1:íœ';
-comment on column MST_ORGANIZATION.CREATE_MODULE_ID is 'ì¬ƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_ORGANIZATION.CREATE_USER_ID is 'ì¬ƒ†[ƒU‚h‚c';
-comment on column MST_ORGANIZATION.CREATE_YMD is 'ì¬”NŒ“ú';
-comment on column MST_ORGANIZATION.UPDATE_MODULE_ID is 'XVƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_ORGANIZATION.UPDATE_USER_ID is 'XVƒ†[ƒU‚h‚c';
-comment on column MST_ORGANIZATION.UPDATE_YMD is 'XV”NŒ“ú';
+comment on table MST_DEPARTMENT is 'æ‰€å±ãƒã‚¹ã‚¿';
+comment on column MST_DEPARTMENT.DEPARTMENT_ID is 'æ‰€å±ID';
+comment on column MST_DEPARTMENT.DEPARTMENT_NAME is 'æ‰€å±åç§°';
+comment on column MST_DEPARTMENT.DELETE_FLG is 'å‰Šé™¤ãƒ•ãƒ©ã‚°:0:æœªå‰Šé™¤ã€1:å‰Šé™¤';
+comment on column MST_DEPARTMENT.CREATE_MODULE_ID is 'ä½œæˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_DEPARTMENT.CREATE_USER_ID is 'ä½œæˆãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_DEPARTMENT.CREATE_YMD is 'ä½œæˆå¹´æœˆæ—¥';
+comment on column MST_DEPARTMENT.UPDATE_MODULE_ID is 'æ›´æ–°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_DEPARTMENT.UPDATE_USER_ID is 'æ›´æ–°ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_DEPARTMENT.UPDATE_YMD is 'æ›´æ–°å¹´æœˆæ—¥';
 
-comment on table MST_FUNCTION is '‹@”\ƒ}ƒXƒ^';
-comment on column MST_FUNCTION.FUNCTION_ID is '‹@”\‚h‚c';
-comment on column MST_FUNCTION.FUNCTION_NAME is '‹@”\–¼Ì';
-comment on column MST_FUNCTION.FUNCTION_PATH is '‹@”\ƒpƒX';
-comment on column MST_FUNCTION.FUNCTION_COMMENT is '‹@”\à–¾';
-comment on column MST_FUNCTION.AUTHORIZED_ID is 'Œ ŒÀ‚h‚c';
-comment on column MST_FUNCTION.DELETE_FLG is 'íœƒtƒ‰ƒO:0:–¢íœA1:íœ';
-comment on column MST_FUNCTION.CREATE_MODULE_ID is 'ì¬ƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_FUNCTION.CREATE_USER_ID is 'ì¬ƒ†[ƒU‚h‚c';
-comment on column MST_FUNCTION.CREATE_YMD is 'ì¬”NŒ“ú';
-comment on column MST_FUNCTION.UPDATE_MODULE_ID is 'XVƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_FUNCTION.UPDATE_USER_ID is 'XVƒ†[ƒU‚h‚c';
-comment on column MST_FUNCTION.UPDATE_YMD is 'XV”NŒ“ú';
+comment on table MST_ORGANIZATION is 'çµ„ç¹”ãƒã‚¹ã‚¿';
+comment on column MST_ORGANIZATION.ORGANIZATION_ID is 'çµ„ç¹”ï¼©ï¼¤';
+comment on column MST_ORGANIZATION.ORGANIZATION_NAME is 'çµ„ç¹”åç§°';
+comment on column MST_ORGANIZATION.ORGANIZATION_COMMENT is 'çµ„ç¹”èª¬æ˜';
+comment on column MST_ORGANIZATION.ORGANIZATION_PARENT_ID is 'è¦ªçµ„ç¹”ï¼©ï¼¤';
+comment on column MST_ORGANIZATION.DELETE_FLG is 'å‰Šé™¤ãƒ•ãƒ©ã‚°:0:æœªå‰Šé™¤ã€1:å‰Šé™¤';
+comment on column MST_ORGANIZATION.CREATE_MODULE_ID is 'ä½œæˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_ORGANIZATION.CREATE_USER_ID is 'ä½œæˆãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_ORGANIZATION.CREATE_YMD is 'ä½œæˆå¹´æœˆæ—¥';
+comment on column MST_ORGANIZATION.UPDATE_MODULE_ID is 'æ›´æ–°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_ORGANIZATION.UPDATE_USER_ID is 'æ›´æ–°ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_ORGANIZATION.UPDATE_YMD is 'æ›´æ–°å¹´æœˆæ—¥';
 
-comment on table MST_MENU is 'ƒƒjƒ…[ƒ}ƒXƒ^';
-comment on column MST_MENU.HIERARCHY is 'ŠK‘w';
-comment on column MST_MENU.FUNCTION_ORDER is '‡˜';
-comment on column MST_MENU.FUNCTION_ID is '‹@”\‚h‚c';
-comment on column MST_MENU.DELETE_FLG is 'íœƒtƒ‰ƒO:0:–¢íœA1:íœ';
-comment on column MST_MENU.CREATE_MODULE_ID is 'ì¬ƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_MENU.CREATE_USER_ID is 'ì¬ƒ†[ƒU‚h‚c';
-comment on column MST_MENU.CREATE_YMD is 'ì¬”NŒ“ú';
-comment on column MST_MENU.UPDATE_MODULE_ID is 'XVƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_MENU.UPDATE_USER_ID is 'XVƒ†[ƒU‚h‚c';
-comment on column MST_MENU.UPDATE_YMD is 'XV”NŒ“ú';
+comment on table MST_FUNCTION is 'æ©Ÿèƒ½ãƒã‚¹ã‚¿';
+comment on column MST_FUNCTION.FUNCTION_ID is 'æ©Ÿèƒ½ï¼©ï¼¤';
+comment on column MST_FUNCTION.FUNCTION_NAME is 'æ©Ÿèƒ½åç§°';
+comment on column MST_FUNCTION.FUNCTION_PATH is 'æ©Ÿèƒ½ãƒ‘ã‚¹';
+comment on column MST_FUNCTION.FUNCTION_COMMENT is 'æ©Ÿèƒ½èª¬æ˜';
+comment on column MST_FUNCTION.AUTHORIZED_ID is 'æ¨©é™ï¼©ï¼¤';
+comment on column MST_FUNCTION.DELETE_FLG is 'å‰Šé™¤ãƒ•ãƒ©ã‚°:0:æœªå‰Šé™¤ã€1:å‰Šé™¤';
+comment on column MST_FUNCTION.CREATE_MODULE_ID is 'ä½œæˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_FUNCTION.CREATE_USER_ID is 'ä½œæˆãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_FUNCTION.CREATE_YMD is 'ä½œæˆå¹´æœˆæ—¥';
+comment on column MST_FUNCTION.UPDATE_MODULE_ID is 'æ›´æ–°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_FUNCTION.UPDATE_USER_ID is 'æ›´æ–°ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_FUNCTION.UPDATE_YMD is 'æ›´æ–°å¹´æœˆæ—¥';
 
-comment on table MST_AUTHORIZED is 'Œ ŒÀƒ}ƒXƒ^';
-comment on column MST_AUTHORIZED.AUTHORIZED_ID is 'Œ ŒÀ‚h‚c';
-comment on column MST_AUTHORIZED.AUTHORIZED_NAME is 'Œ ŒÀ–¼Ì';
-comment on column MST_AUTHORIZED.AUTHORIZED_COMMENT is 'Œ ŒÀƒRƒƒ“ƒg';
-comment on column MST_AUTHORIZED.AUTHORIZED_LEVEL is 'Œ ŒÀƒŒƒxƒ‹:TDB';
-comment on column MST_AUTHORIZED.ORGANIZETION_ID is '‘gD‚h‚c';
-comment on column MST_AUTHORIZED.DELETE_FLG is 'íœƒtƒ‰ƒO:0:–¢íœA1:íœ';
-comment on column MST_AUTHORIZED.CREATE_MODULE_ID is 'ì¬ƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_AUTHORIZED.CREATE_USER_ID is 'ì¬ƒ†[ƒU‚h‚c';
-comment on column MST_AUTHORIZED.CREATE_YMD is 'ì¬”NŒ“ú';
-comment on column MST_AUTHORIZED.UPDATE_MODULE_ID is 'XVƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_AUTHORIZED.UPDATE_USER_ID is 'XVƒ†[ƒU‚h‚c';
-comment on column MST_AUTHORIZED.UPDATE_YMD is 'XV”NŒ“ú';
+comment on table MST_MENU is 'ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¹ã‚¿';
+comment on column MST_MENU.HIERARCHY is 'éšå±¤';
+comment on column MST_MENU.FUNCTION_ORDER is 'é †åº';
+comment on column MST_MENU.FUNCTION_ID is 'æ©Ÿèƒ½ï¼©ï¼¤';
+comment on column MST_MENU.DELETE_FLG is 'å‰Šé™¤ãƒ•ãƒ©ã‚°:0:æœªå‰Šé™¤ã€1:å‰Šé™¤';
+comment on column MST_MENU.CREATE_MODULE_ID is 'ä½œæˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_MENU.CREATE_USER_ID is 'ä½œæˆãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_MENU.CREATE_YMD is 'ä½œæˆå¹´æœˆæ—¥';
+comment on column MST_MENU.UPDATE_MODULE_ID is 'æ›´æ–°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_MENU.UPDATE_USER_ID is 'æ›´æ–°ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_MENU.UPDATE_YMD is 'æ›´æ–°å¹´æœˆæ—¥';
 
-comment on table MST_SECTION_GROUP is '‹æ•ªƒOƒ‹[ƒvƒ}ƒXƒ^:‹æ•ªƒOƒ‹[ƒvî•ñ';
-comment on column MST_SECTION_GROUP.SECTION_GROUP_ID is '‹æ•ªƒOƒ‹[ƒv‚h‚c';
-comment on column MST_SECTION_GROUP.SECTION_GROUP_NAME is '‹æ•ªƒOƒ‹[ƒv–¼Ì';
-comment on column MST_SECTION_GROUP.SECTION_GROUP_COMMENT is '‹æ•ªƒOƒ‹[ƒvƒRƒƒ“ƒg';
-comment on column MST_SECTION_GROUP.DELETE_FLG is 'íœƒtƒ‰ƒO:0:–¢íœA1:íœ';
-comment on column MST_SECTION_GROUP.CREATE_MODULE_ID is 'ì¬ƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_SECTION_GROUP.CREATE_USER_ID is 'ì¬ƒ†[ƒU‚h‚c';
-comment on column MST_SECTION_GROUP.CREATE_YMD is 'ì¬”NŒ“ú';
-comment on column MST_SECTION_GROUP.UPDATE_MODULE_ID is 'XVƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_SECTION_GROUP.UPDATE_USER_ID is 'XVƒ†[ƒU‚h‚c';
-comment on column MST_SECTION_GROUP.UPDATE_YMD is 'XV”NŒ“ú';
+comment on table MST_AUTHORIZED is 'æ¨©é™ãƒã‚¹ã‚¿';
+comment on column MST_AUTHORIZED.AUTHORIZED_ID is 'æ¨©é™ï¼©ï¼¤';
+comment on column MST_AUTHORIZED.AUTHORIZED_NAME is 'æ¨©é™åç§°';
+comment on column MST_AUTHORIZED.AUTHORIZED_COMMENT is 'æ¨©é™ã‚³ãƒ¡ãƒ³ãƒˆ';
+comment on column MST_AUTHORIZED.AUTHORIZED_LEVEL is 'æ¨©é™ãƒ¬ãƒ™ãƒ«:TDB';
+comment on column MST_AUTHORIZED.ORGANIZETION_ID is 'çµ„ç¹”ï¼©ï¼¤';
+comment on column MST_AUTHORIZED.DELETE_FLG is 'å‰Šé™¤ãƒ•ãƒ©ã‚°:0:æœªå‰Šé™¤ã€1:å‰Šé™¤';
+comment on column MST_AUTHORIZED.CREATE_MODULE_ID is 'ä½œæˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_AUTHORIZED.CREATE_USER_ID is 'ä½œæˆãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_AUTHORIZED.CREATE_YMD is 'ä½œæˆå¹´æœˆæ—¥';
+comment on column MST_AUTHORIZED.UPDATE_MODULE_ID is 'æ›´æ–°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_AUTHORIZED.UPDATE_USER_ID is 'æ›´æ–°ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_AUTHORIZED.UPDATE_YMD is 'æ›´æ–°å¹´æœˆæ—¥';
 
-comment on table MST_SECTION is '‹æ•ªƒ}ƒXƒ^:‹æ•ª’l‚Æ‹æ•ª–¼Ìî•ñ';
-comment on column MST_SECTION.SECTION_GROUP_ID is '‹æ•ªƒOƒ‹[ƒv';
-comment on column MST_SECTION.SECTION_ID is '‹æ•ª‚h‚c';
-comment on column MST_SECTION.SECTION_NAME is '‹æ•ª–¼Ì';
-comment on column MST_SECTION.SECTION_COMMENT is '‹æ•ªƒRƒƒ“ƒg';
-comment on column MST_SECTION.DELETE_FLG is 'íœƒtƒ‰ƒO:0:–¢íœA1:íœ';
-comment on column MST_SECTION.CREATE_MODULE_ID is 'ì¬ƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_SECTION.CREATE_USER_ID is 'ì¬ƒ†[ƒU‚h‚c';
-comment on column MST_SECTION.CREATE_YMD is 'ì¬”NŒ“ú';
-comment on column MST_SECTION.UPDATE_MODULE_ID is 'XVƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_SECTION.UPDATE_USER_ID is 'XVƒ†[ƒU‚h‚c';
-comment on column MST_SECTION.UPDATE_YMD is 'XV”NŒ“ú';
+comment on table MST_SECTION_GROUP is 'åŒºåˆ†ã‚°ãƒ«ãƒ¼ãƒ—ãƒã‚¹ã‚¿:åŒºåˆ†ã‚°ãƒ«ãƒ¼ãƒ—æƒ…å ±';
+comment on column MST_SECTION_GROUP.SECTION_GROUP_ID is 'åŒºåˆ†ã‚°ãƒ«ãƒ¼ãƒ—ï¼©ï¼¤';
+comment on column MST_SECTION_GROUP.SECTION_GROUP_NAME is 'åŒºåˆ†ã‚°ãƒ«ãƒ¼ãƒ—åç§°';
+comment on column MST_SECTION_GROUP.SECTION_GROUP_COMMENT is 'åŒºåˆ†ã‚°ãƒ«ãƒ¼ãƒ—ã‚³ãƒ¡ãƒ³ãƒˆ';
+comment on column MST_SECTION_GROUP.DELETE_FLG is 'å‰Šé™¤ãƒ•ãƒ©ã‚°:0:æœªå‰Šé™¤ã€1:å‰Šé™¤';
+comment on column MST_SECTION_GROUP.CREATE_MODULE_ID is 'ä½œæˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_SECTION_GROUP.CREATE_USER_ID is 'ä½œæˆãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_SECTION_GROUP.CREATE_YMD is 'ä½œæˆå¹´æœˆæ—¥';
+comment on column MST_SECTION_GROUP.UPDATE_MODULE_ID is 'æ›´æ–°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_SECTION_GROUP.UPDATE_USER_ID is 'æ›´æ–°ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_SECTION_GROUP.UPDATE_YMD is 'æ›´æ–°å¹´æœˆæ—¥';
 
-comment on table MST_EMPLOYEE is 'Ğˆõƒ}ƒXƒ^:Ğˆõî•ñ';
-comment on column MST_EMPLOYEE.EMPLOYEE_ID is 'Ğˆõ‚h‚c';
-comment on column MST_EMPLOYEE.EMPLOYEE_NAME is 'Ğˆõ–¼';
-comment on column MST_EMPLOYEE.BIRTH_YMD is '¶”NŒ“ú';
-comment on column MST_EMPLOYEE.SEX is '«•Ê';
-comment on column MST_EMPLOYEE.JOINED_YMD is '“üĞ“ú';
-comment on column MST_EMPLOYEE.DEPARTMENT_ID is 'Š‘®‚h‚c';
-comment on column MST_EMPLOYEE.AUTHORIZED is '”FØ';
-comment on column MST_EMPLOYEE.DELETE_FLG is 'íœƒtƒ‰ƒO:0:–¢íœA1:íœ';
-comment on column MST_EMPLOYEE.CREATE_MODULE_ID is 'ì¬ƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_EMPLOYEE.CREATE_USER_ID is 'ì¬ƒ†[ƒU‚h‚c';
-comment on column MST_EMPLOYEE.CREATE_YMD is 'ì¬”NŒ“ú';
-comment on column MST_EMPLOYEE.UPDATE_MODULE_ID is 'XVƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column MST_EMPLOYEE.UPDATE_USER_ID is 'XVƒ†[ƒU‚h‚c';
-comment on column MST_EMPLOYEE.UPDATE_YMD is 'XV”NŒ“ú';
+comment on table MST_SECTION is 'åŒºåˆ†ãƒã‚¹ã‚¿:åŒºåˆ†å€¤ã¨åŒºåˆ†åç§°æƒ…å ±';
+comment on column MST_SECTION.SECTION_GROUP_ID is 'åŒºåˆ†ã‚°ãƒ«ãƒ¼ãƒ—';
+comment on column MST_SECTION.SECTION_ID is 'åŒºåˆ†ï¼©ï¼¤';
+comment on column MST_SECTION.SECTION_NAME is 'åŒºåˆ†åç§°';
+comment on column MST_SECTION.SECTION_COMMENT is 'åŒºåˆ†ã‚³ãƒ¡ãƒ³ãƒˆ';
+comment on column MST_SECTION.DELETE_FLG is 'å‰Šé™¤ãƒ•ãƒ©ã‚°:0:æœªå‰Šé™¤ã€1:å‰Šé™¤';
+comment on column MST_SECTION.CREATE_MODULE_ID is 'ä½œæˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_SECTION.CREATE_USER_ID is 'ä½œæˆãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_SECTION.CREATE_YMD is 'ä½œæˆå¹´æœˆæ—¥';
+comment on column MST_SECTION.UPDATE_MODULE_ID is 'æ›´æ–°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_SECTION.UPDATE_USER_ID is 'æ›´æ–°ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_SECTION.UPDATE_YMD is 'æ›´æ–°å¹´æœˆæ—¥';
 
-comment on table AUTHORIZED_USER is '”FØƒ†[ƒU:ƒVƒXƒeƒ€”FØ—p‚Ìƒ†[ƒUî•ñ‚ğ•Û‚·‚éƒe[ƒuƒ‹';
-comment on column AUTHORIZED_USER.USER_ID is 'ƒ†[ƒU‚h‚c';
-comment on column AUTHORIZED_USER.USER_PASSWORD is 'ƒpƒXƒ[ƒh';
-comment on column AUTHORIZED_USER.ORGANIZATION_ID is '‘gD‚h‚c';
-comment on column AUTHORIZED_USER.AUTHORIZED_GROUP_ID is 'Œ ŒÀƒOƒ‹[ƒv‚h‚c';
-comment on column AUTHORIZED_USER.LAST_UPDATE_YMD is '‘O‰ñXV”NŒ“ú';
-comment on column AUTHORIZED_USER.LAST_UPDATE_PASS is '‘O‰ñXVƒpƒXƒ[ƒh';
-comment on column AUTHORIZED_USER.DELETE_FLG is 'íœƒtƒ‰ƒO:0:–¢íœA1:íœ';
-comment on column AUTHORIZED_USER.CREATE_MODULE_ID is 'ì¬ƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column AUTHORIZED_USER.CREATE_USER_ID is 'ì¬ƒ†[ƒU‚h‚c';
-comment on column AUTHORIZED_USER.CREATE_YMD is 'ì¬”NŒ“ú';
-comment on column AUTHORIZED_USER.UPDATE_MODULE_ID is 'XVƒ‚ƒWƒ…[ƒ‹‚h‚c';
-comment on column AUTHORIZED_USER.UPDATE_USER_ID is 'XVƒ†[ƒU‚h‚c';
-comment on column AUTHORIZED_USER.UPDATE_YMD is 'XV”NŒ“ú';
+comment on table MST_EMPLOYEE is 'ç¤¾å“¡ãƒã‚¹ã‚¿:ç¤¾å“¡æƒ…å ±';
+comment on column MST_EMPLOYEE.EMPLOYEE_ID is 'ç¤¾å“¡ï¼©ï¼¤';
+comment on column MST_EMPLOYEE.EMPLOYEE_NAME is 'ç¤¾å“¡æ°å';
+comment on column MST_EMPLOYEE.BIRTH_YMD is 'ç”Ÿå¹´æœˆæ—¥';
+comment on column MST_EMPLOYEE.SEX is 'æ€§åˆ¥';
+comment on column MST_EMPLOYEE.ZIP_CODE is 'éƒµä¾¿ç•ªå·';
+comment on column MST_EMPLOYEE.ADDRESS is 'ä½æ‰€';
+comment on column MST_EMPLOYEE.JOINED_YMD is 'å…¥ç¤¾æ—¥';
+comment on column MST_EMPLOYEE.RETIRE_YMD is 'é€€è·æ—¥';
+comment on column MST_EMPLOYEE.DEPARTMENT_ID is 'æ‰€å±ï¼©ï¼¤';
+comment on column MST_EMPLOYEE.AUTHORIZED is 'èªè¨¼';
+comment on column MST_EMPLOYEE.DELETE_FLG is 'å‰Šé™¤ãƒ•ãƒ©ã‚°:0:æœªå‰Šé™¤ã€1:å‰Šé™¤';
+comment on column MST_EMPLOYEE.CREATE_MODULE_ID is 'ä½œæˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_EMPLOYEE.CREATE_USER_ID is 'ä½œæˆãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_EMPLOYEE.CREATE_YMD is 'ä½œæˆå¹´æœˆæ—¥';
+comment on column MST_EMPLOYEE.UPDATE_MODULE_ID is 'æ›´æ–°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column MST_EMPLOYEE.UPDATE_USER_ID is 'æ›´æ–°ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column MST_EMPLOYEE.UPDATE_YMD is 'æ›´æ–°å¹´æœˆæ—¥';
 
+comment on table AUTHORIZED_USER is 'èªè¨¼ãƒ¦ãƒ¼ã‚¶:ã‚·ã‚¹ãƒ†ãƒ èªè¨¼ç”¨ã®ãƒ¦ãƒ¼ã‚¶æƒ…å ±ã‚’ä¿æŒã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«';
+comment on column AUTHORIZED_USER.USER_ID is 'ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column AUTHORIZED_USER.USER_PASSWORD is 'ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰';
+comment on column AUTHORIZED_USER.ORGANIZATION_ID is 'çµ„ç¹”ï¼©ï¼¤';
+comment on column AUTHORIZED_USER.LAST_UPDATE_YMD is 'å‰å›æ›´æ–°å¹´æœˆæ—¥';
+comment on column AUTHORIZED_USER.LAST_UPDATE_PASS is 'å‰å›æ›´æ–°ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰';
+comment on column AUTHORIZED_USER.DELETE_FLG is 'å‰Šé™¤ãƒ•ãƒ©ã‚°:0:æœªå‰Šé™¤ã€1:å‰Šé™¤';
+comment on column AUTHORIZED_USER.CREATE_MODULE_ID is 'ä½œæˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column AUTHORIZED_USER.CREATE_USER_ID is 'ä½œæˆãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column AUTHORIZED_USER.CREATE_YMD is 'ä½œæˆå¹´æœˆæ—¥';
+comment on column AUTHORIZED_USER.UPDATE_MODULE_ID is 'æ›´æ–°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼©ï¼¤';
+comment on column AUTHORIZED_USER.UPDATE_USER_ID is 'æ›´æ–°ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤';
+comment on column AUTHORIZED_USER.UPDATE_YMD is 'æ›´æ–°å¹´æœˆæ—¥';

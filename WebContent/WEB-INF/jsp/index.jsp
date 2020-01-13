@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="WEB-INF/js/test.js" ></script>
-<title>redirect</title>
+<meta http-equiv="refresh" content="0; URL='http://new-website.com'" />
+<title>loading</title>
 </head>
 <body>
-<h1>redirect</h1>
+<h1>loading...now</h1>
 </body>
 </html>

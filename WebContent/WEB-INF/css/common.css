@@ -1,0 +1,52 @@
+/* 画面全体のスタイル */
+body {
+	background-color: #fffacd;
+	height: 100%;
+	position: relative;
+	box-sizing: border-box;
+	min-height: 90vh;
+	margin: 0;
+	padding: 0;
+}
+/* ヘッダ部のスタイル */
+header {
+	background-color: #87ceeb;
+	width: 100%;
+	text-align: center;
+}
+/* セクション部のスタイル */
+section {
+}
+/* ナビゲーション部のスタイル */
+nav {
+}
+/* 記事部のスタイル */
+article {
+}
+/* 補足情報部のスタイル */
+aside {
+}
+/* フッタ部のスタイル */
+footer {
+	background-color: #87ceeb;
+	width: 100%;
+	text-align: right;
+	position: absolute;
+	bottom: 0px;
+}
+/* 一覧部のスタイル */
+table.list {
+	border-collapse:collapse;
+	border-spacing: 0;
+}
+table thead tr.list {
+}
+table thead tr td.list {
+	border: 1px black solid;
+}
+table tbody tr.list {
+}
+table tbody tr td.list {
+	border: 1px black solid;
+	background-color: white;
+}

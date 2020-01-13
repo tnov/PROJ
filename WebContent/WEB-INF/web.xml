@@ -3,19 +3,21 @@
   <!-- (1)フィルタプログラムを指定しています。 -->
   <filter>
       <filter-name>EncodingFilter</filter-name>
-      <filter-class>application.filter.EncodingFilter</filter-class>
+      <filter-class>lib.filter.EncodingFilter</filter-class>
   </filter>
   <filter>
       <filter-name>ContentsFilter</filter-name>
-      <filter-class>application.filter.ContentsFilter</filter-class>
+      <filter-class>lib.filter.ContentsFilter</filter-class>
+  </filter>
+  <filter>
+      <filter-name>SessionFilter</filter-name>
+      <filter-class>lib.filter.SessionFilter</filter-class>
   </filter>
   <!-- (2)フィルタ処理を適用する条件を指定します。
           /*と指定しており、すべてのアクセスにフィルタ処理が適用されます。-->
   <filter-mapping>
       <filter-name>EncodingFilter</filter-name>
-      <url-pattern>*.htm</url-pattern>
-      <url-pattern>*.html</url-pattern>
-      <url-pattern>*.jsp</url-pattern>
+      <url-pattern>*</url-pattern>
   </filter-mapping>
   <filter-mapping>
       <filter-name>ContentsFilter</filter-name>
@@ -25,29 +27,37 @@
       <url-pattern>*.gif</url-pattern>
       <url-pattern>*.htm</url-pattern>
       <url-pattern>*.html</url-pattern>
+      <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
+  <!-- (3)サーバ起動時の初期処理を適用する条件を指定します。-->
+  <!--
   <listener>
     <listener-class>InitializationListener</listener-class>
   </listener>
+  -->
+  <!-- (4)アプリケーション処理を適用する条件を指定します。
+          各urlとクラスをマッピングし、対応した処理を適用します。-->
+  <!-- ログイン -->
   <servlet>
-    <servlet-name>AuthorizedInit</servlet-name>
-    <servlet-class>application.authorized.AuthorizedInit</servlet-class>
+    <servlet-name>LoginInit</servlet-name>
+    <servlet-class>lib.common.login.action.LoginInit</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AuthorizedInit</servlet-name>
-    <url-pattern>/authorized</url-pattern>
+    <servlet-name>LoginInit</servlet-name>
+    <url-pattern>/login</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>AuthorizedLogin</servlet-name>
-    <servlet-class>application.authorized.AuthorizedLogin</servlet-class>
+    <servlet-name>LoginCheck</servlet-name>
+    <servlet-class>lib.common.login.action.LoginCheck</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AuthorizedLogin</servlet-name>
-    <url-pattern>/authorized/login</url-pattern>
+    <servlet-name>LoginCheck</servlet-name>
+    <url-pattern>/login/check</url-pattern>
   </servlet-mapping>
+  <!-- メニュー -->
   <servlet>
     <servlet-name>MenuInit</servlet-name>
-    <servlet-class>application.menu.MenuInit</servlet-class>
+    <servlet-class>lib.common.menu.action.MenuInit</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MenuInit</servlet-name>
@@ -55,10 +65,53 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>MenuAction</servlet-name>
-    <servlet-class>application.menu.MenuAction</servlet-class>
+    <servlet-class>lib.common.menu.action.MenuAction</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MenuAction</servlet-name>
     <url-pattern>/menu/move</url-pattern>
   </servlet-mapping>
+  <!-- 社員一覧 -->
+  <servlet>
+    <servlet-name>Emp0001LstInit</servlet-name>
+    <servlet-class>application.emp0001.list.action.Emp0001LstInit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Emp0001LstInit</servlet-name>
+    <url-pattern>/Emp0001Lst/init</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Emp0001LstMove</servlet-name>
+    <servlet-class>application.emp0001.list.action.Emp0001LstMove</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Emp0001LstMove</servlet-name>
+    <url-pattern>/Emp0001Lst/move</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Emp0001LstSearch</servlet-name>
+    <servlet-class>application.emp0001.list.action.Emp0001LstSearch</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Emp0001LstSearch</servlet-name>
+    <url-pattern>/Emp0001Lst/search</url-pattern>
+  </servlet-mapping>
+  <!-- 社員詳細 -->
+  <servlet>
+    <servlet-name>Emp0001DtlInit</servlet-name>
+    <servlet-class>application.emp0001.detail.action.Emp0001DtlInit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Emp0001DtlInit</servlet-name>
+    <url-pattern>/Emp0001Dtl/init</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Emp0001DtlSave</servlet-name>
+    <servlet-class>application.emp0001.detail.action.Emp0001DtlSave</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Emp0001DtlSave</servlet-name>
+    <url-pattern>/Emp0001Dtl/save</url-pattern>
+  </servlet-mapping>
+
 </web-app>
