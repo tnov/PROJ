@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/common.css" %>">
-<!-- <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/application/emp00001/emp0001dtl.css" %>"> -->
+<!-- <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/application/emp0001/emp0001dtl.css" %>"> -->
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/common.js" %>" ></script>
-<!-- <script type="text/javascript" src="<%= request.getContextPath() + "/js/application/emp00001/emp0001dtl.js" %>" ></script> -->
+<script type="text/javascript" src="<%= request.getContextPath() + "/js/application/emp0001/emp0001dtl.js" %>" ></script>
 <title>社員詳細</title>
 </head>
 <body>
@@ -52,8 +52,8 @@ if (infos != null) {
 <div><label>性別</label><input type="text" name="sex" value="<%= request.getAttribute("sex") %>" placeholder=""  required /></div>
 <div><label>入社日</label><input type="text" name="joinedYmd" value="<%= request.getAttribute("joinedYmd") %>" placeholder=""  required /></div>
 <div><label>退職日</label><input type="text" name="retiredYmd" value="<%= request.getAttribute("retiredYmd") %>" placeholder=""  required /></div>
-<div><input type="button" onclick="doPost(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/save" %>')" value="保存"/></div>
-<div><input type="button" onclick="" value="戻る"/></div>
+<div><input type="button" onclick="doPost(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Dtl/save" %>')" value="保存"/></div>
+<div><input type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/init" %>');" value="戻る"/></div>
 <input type="hidden" name="paramEmployeeId" value="<%= request.getAttribute("paramEmployeeId") %>" placeholder=""  required />
 </section>
 </form>

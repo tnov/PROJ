@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import application.CheckUtil;
 import application.CommonConstants;
 import application.emp0001.Emp0001Constants;
 import application.emp0001.Emp0001DataBean;
@@ -34,7 +33,7 @@ public class Emp0001DtlInit extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// JSPの読み込み＆初期処理
 		Emp0001DtlForm form = new Emp0001DtlForm();
-		form.setEmployeeId(req.getParameter("paramEmployeeId"));
+		form.setParamEmployeeId(req.getParameter("paramEmployeeId"));
 		// 検索処理
 		Emp0001DataBean result = search(form);
 		form.setEmployeeId(result.getEmployeeId());
@@ -62,13 +61,9 @@ public class Emp0001DtlInit extends HttpServlet {
 		    InitialContext initialContext = new InitialContext();
 		    DataSource dataSource = (DataSource)initialContext.lookup(CommonConstants.JNDI_JDBC_EMPDB);
 		    // QUERY作成
-		    boolean where = false;
 		    StringBuilder query = new StringBuilder();
 		    query.append(Emp0001Constants.SQL_SELECT);
-		    if (CheckUtil.isNotEmpty(form.getParamEmployeeId())) {
-		    	query.append(where?" AND employee_id = ?":" WHERE employee_id = ?");
-		    	where = true;
-		    }
+	    	query.append(" WHERE employee_id = ?");
 		    query.append(Emp0001Constants.SQL_ORDER);
 		    // コネクションの取得
 		    // SQL実行
@@ -76,10 +71,8 @@ public class Emp0001DtlInit extends HttpServlet {
 				PreparedStatement statement = connection.prepareStatement(query.toString())
 					) {
 				int i = 1;
-				if (CheckUtil.isNotEmpty(form.getParamEmployeeId())) {
-					// パラメータ指定(社員ＩＤ)
-					statement.setString(i++, form.getParamEmployeeId());
-				}
+				// パラメータ指定(社員ＩＤ)
+				statement.setString(i++, form.getParamEmployeeId());
 				// ログイン情報を検索
 				if (!statement.execute()) {
 					// データなし

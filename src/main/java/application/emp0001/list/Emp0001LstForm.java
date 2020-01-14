@@ -2,9 +2,10 @@ package application.emp0001.list;
 
 import java.util.List;
 
+import application.CommonForm;
 import application.emp0001.Emp0001DataBean;
 
-public class Emp0001LstForm {
+public class Emp0001LstForm extends CommonForm {
 	private String employeeId = null;
 	private String employeeName = null;
 	private String sex = null;

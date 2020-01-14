@@ -14,10 +14,10 @@ public class Emp0001LstMove extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// リクエストの取得
 		// 画面パスを取得
-		String menuMovePath = req.getParameter("menuMovePath");
+		String movePath = req.getParameter("movePath");
 		// 画面遷移
 		ServletContext ctx = getServletContext();
-		RequestDispatcher dispatcher = ctx.getRequestDispatcher(menuMovePath);
+		RequestDispatcher dispatcher = ctx.getRequestDispatcher(movePath);
 		dispatcher.forward(req, resp);
 	}
 }

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/common.css" %>">
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/common.js" %>" ></script>
-<script type="text/javascript" src="<%= request.getContextPath() + "/js/menu.js" %>" ></script>
+<script type="text/javascript" src="<%= request.getContextPath() + "/js/lib/menu.js" %>" ></script>
 <title>メニュー</title>
 </head>
 <body>

@@ -1,6 +1,8 @@
 package application.emp0001.detail;
 
-public class Emp0001DtlForm {
+import application.CommonForm;
+
+public class Emp0001DtlForm extends CommonForm {
 	private String paramEmployeeId = null;
 	private String employeeId = null;
 	private String employeeName = null;
