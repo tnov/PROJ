@@ -74,6 +74,10 @@ public class Emp0001LstSearch extends HttpServlet {
 		    	where = true;
 		    }
 		    query.append(Emp0001Constants.SQL_ORDER);
+		    if (CheckUtil.isNotEmpty(form.getLineSize())) {
+		    	query.insert(0, "select * from (");
+		    	query.append(") between ? AND ?");
+		    }
 		    // コネクションの取得
 		    // SQL実行
 			try (Connection connection = dataSource.getConnection();
@@ -88,6 +92,11 @@ public class Emp0001LstSearch extends HttpServlet {
 					// パラメータ指定(社員名)
 					statement.setString(i++, form.getEmployeeName());
 				}
+			    if (CheckUtil.isNotEmpty(form.getLineSize())) {
+					// パラメータ指定(開始行、末尾行)
+					statement.setInt(i++, (Integer.parseInt(form.getCurrentPage())-1) * Integer.parseInt(form.getLineSize()));
+					statement.setInt(i++, (Integer.parseInt(form.getCurrentPage())) * Integer.parseInt(form.getLineSize())-1);
+			    }
 				// ログイン情報を検索
 				if (!statement.execute()) {
 					// データなし

@@ -1,5 +1,5 @@
 -- Project Name : 社員DB
--- Date/Time    : 2020/01/13 7:24:28
+-- Date/Time    : 2020/01/25 22:51:25
 -- Author       : ryzen
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -13,10 +13,10 @@ create table MST_DEPARTMENT (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD timestamp
+  , CREATE_YMD character varying
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD timestamp
+  , UPDATE_YMD character varying
   , constraint MST_DEPARTMENT_PKC primary key (DEPARTMENT_ID)
 ) ;
 
@@ -31,10 +31,10 @@ create table MST_ORGANIZATION (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD timestamp
+  , CREATE_YMD character varying
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD timestamp
+  , UPDATE_YMD character varying
   , constraint MST_ORGANIZATION_PKC primary key (ORGANIZATION_ID)
 ) ;
 
@@ -50,10 +50,10 @@ create table MST_FUNCTION (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD timestamp
+  , CREATE_YMD character varying
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD timestamp
+  , UPDATE_YMD character varying
   , constraint MST_FUNCTION_PKC primary key (FUNCTION_ID,FUNCTION_NAME)
 ) ;
 
@@ -67,10 +67,10 @@ create table MST_MENU (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD timestamp
+  , CREATE_YMD character varying
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD timestamp
+  , UPDATE_YMD character varying
   , constraint MST_MENU_PKC primary key (HIERARCHY)
 ) ;
 
@@ -86,10 +86,10 @@ create table MST_AUTHORIZED (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD timestamp
+  , CREATE_YMD character varying
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD timestamp
+  , UPDATE_YMD character varying
   , constraint MST_AUTHORIZED_PKC primary key (AUTHORIZED_ID,ORGANIZETION_ID)
 ) ;
 
@@ -103,10 +103,10 @@ create table MST_SECTION_GROUP (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD timestamp
+  , CREATE_YMD character varying
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD timestamp
+  , UPDATE_YMD character varying
   , constraint MST_SECTION_GROUP_PKC primary key (SECTION_GROUP_ID)
 ) ;
 
@@ -121,10 +121,10 @@ create table MST_SECTION (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD timestamp
+  , CREATE_YMD character varying
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD timestamp
+  , UPDATE_YMD character varying
   , constraint MST_SECTION_PKC primary key (SECTION_GROUP_ID,SECTION_ID)
 ) ;
 
@@ -145,10 +145,10 @@ create table MST_EMPLOYEE (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD timestamp
+  , CREATE_YMD character varying
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD timestamp
+  , UPDATE_YMD character varying
   , constraint MST_EMPLOYEE_PKC primary key (EMPLOYEE_ID)
 ) ;
 
@@ -164,10 +164,10 @@ create table AUTHORIZED_USER (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD timestamp
+  , CREATE_YMD character varying
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD timestamp
+  , UPDATE_YMD character varying
   , constraint AUTHORIZED_USER_PKC primary key (USER_ID)
 ) ;
 

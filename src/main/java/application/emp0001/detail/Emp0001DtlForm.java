@@ -3,13 +3,20 @@ package application.emp0001.detail;
 import application.CommonForm;
 
 public class Emp0001DtlForm extends CommonForm {
+
+	private String mode = null;
+
 	private String paramEmployeeId = null;
 	private String employeeId = null;
 	private String employeeName = null;
+	private String birthYmd = null;
 	private String sex = null;
+	private String zipCode = null;
+	private String address = null;
 	private String joinedYmd = null;
-	private String retiredYmd = null;
+	private String retireYmd = null;
 	private String departmentId = null;
+	private String authorized = null;
 
 	public String getParamEmployeeId() {
 		return paramEmployeeId;
@@ -47,10 +54,41 @@ public class Emp0001DtlForm extends CommonForm {
 	public void setDepartmentId(String departmentId) {
 		this.departmentId = departmentId;
 	}
-	public String getRetiredYmd() {
-		return retiredYmd;
+
+	public String getMode() {
+		return mode;
 	}
-	public void setRetiredYmd(String retiredYmd) {
-		this.retiredYmd = retiredYmd;
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
+	public String getBirthYmd() {
+		return birthYmd;
+	}
+	public void setBirthYmd(String birthYmd) {
+		this.birthYmd = birthYmd;
+	}
+	public String getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getRetireYmd() {
+		return retireYmd;
+	}
+	public void setRetireYmd(String retireYmd) {
+		this.retireYmd = retireYmd;
+	}
+	public String getAuthorized() {
+		return authorized;
+	}
+	public void setAuthorized(String authorized) {
+		this.authorized = authorized;
 	}
 }

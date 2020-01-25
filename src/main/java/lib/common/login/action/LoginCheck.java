@@ -52,6 +52,8 @@ public class LoginCheck extends HttpServlet {
 			session.setAttribute("host", req.getRemoteHost());
 			// TODO トークンはユーザＩＤとタイムスタンプ、キー値(UID)から生成
 			// キー値はログイン時に生成し、セッションで保持
+			session.setAttribute("userId", "");
+			// キー値はログイン時に生成し、セッションで保持
 			session.setAttribute("token", "");
 			// メニュー遷移
 			ServletContext ctx = getServletContext();

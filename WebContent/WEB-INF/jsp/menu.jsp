@@ -14,7 +14,7 @@
 <body>
 <header></header>
 <form id="mainForm" method="post" action="<%= request.getContextPath() + "/menu/move" %>">
-<h1>メニュー</h1>
+<header><h1>メニュー</h1></header>
 <div class="menuItem">
 <%
 ArrayList<MenuBean> list = (ArrayList<MenuBean>)request.getAttribute("list");
