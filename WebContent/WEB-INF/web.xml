@@ -81,12 +81,12 @@
     <url-pattern>/Emp0001Lst/init</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Emp0001LstMove</servlet-name>
-    <servlet-class>application.emp0001.list.action.Emp0001LstMove</servlet-class>
+    <servlet-name>Emp0001LstCsvDownload</servlet-name>
+    <servlet-class>application.emp0001.list.action.Emp0001LstCsvDownload</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Emp0001LstMove</servlet-name>
-    <url-pattern>/Emp0001Lst/move</url-pattern>
+    <servlet-name>Emp0001LstCsvDownload</servlet-name>
+    <url-pattern>/Emp0001Lst/csv</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Emp0001LstSearch</servlet-name>

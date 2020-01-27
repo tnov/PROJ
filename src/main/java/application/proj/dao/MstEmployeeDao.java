@@ -138,7 +138,7 @@ public class MstEmployeeDao {
 		    	// update_ymd
 				statement.setString(i++, entity.getUpdateYmd());
 				// SQL実行
-				return statement.execute();
+				result = statement.executeUpdate() == 1 ? true : false;
 			} catch (SQLException e) {
 				throw e;
 			}
@@ -204,7 +204,7 @@ public class MstEmployeeDao {
 		    	// employee_id
 				statement.setString(i++, key.getEmployeeId());
 				// SQL実行
-				return statement.execute();
+				result = statement.executeUpdate() == 1 ? true : false;
 			} catch (SQLException e) {
 				throw e;
 			}

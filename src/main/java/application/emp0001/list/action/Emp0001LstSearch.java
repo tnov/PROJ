@@ -37,17 +37,17 @@ public class Emp0001LstSearch extends HttpServlet {
 		form.setJoinedYmd(req.getParameter("joinedYmd"));
 		form.setRetiredYmd(req.getParameter("retiredYmd"));
 		form.setDepartmentId(req.getParameter("departmentId"));
+
+		form.setMovePath(req.getParameter("movePath"));
+		form.setCurrentPage(req.getParameter("currentPage"));
+		form.setLineLimit(req.getParameter("lineLimit"));
+		form.setLineSize(req.getParameter("lineSize"));
+		form.setCurrentPage("1");
 		// チェック処理
 		// 検索処理
 		List<Emp0001DataBean> resultList = search(form);
 		form.setResultList(resultList);
-		req.setAttribute("employeeId", form.getEmployeeId());
-		req.setAttribute("employeeName", form.getEmployeeName());
-		req.setAttribute("sex", form.getSex());
-		req.setAttribute("joinedYmd", form.getJoinedYmd());
-		req.setAttribute("retiredYmd", form.getRetiredYmd());
-		req.setAttribute("departmentId", form.getDepartmentId());
-		req.setAttribute("list", form.getResultList());
+		req.setAttribute("form", form);
 		// 画面遷移
 		ServletContext ctx = getServletContext();
 		RequestDispatcher dispatcher = ctx.getRequestDispatcher(Emp0001LstConstants.CONTENTS_PATH);
@@ -76,7 +76,7 @@ public class Emp0001LstSearch extends HttpServlet {
 		    query.append(Emp0001Constants.SQL_ORDER);
 		    if (CheckUtil.isNotEmpty(form.getLineSize())) {
 		    	query.insert(0, "select * from (");
-		    	query.append(") between ? AND ?");
+		    	query.append(") AS LIST LIMIT ? OFFSET ?");
 		    }
 		    // コネクションの取得
 		    // SQL実行
@@ -94,8 +94,8 @@ public class Emp0001LstSearch extends HttpServlet {
 				}
 			    if (CheckUtil.isNotEmpty(form.getLineSize())) {
 					// パラメータ指定(開始行、末尾行)
-					statement.setInt(i++, (Integer.parseInt(form.getCurrentPage())-1) * Integer.parseInt(form.getLineSize()));
 					statement.setInt(i++, (Integer.parseInt(form.getCurrentPage())) * Integer.parseInt(form.getLineSize())-1);
+					statement.setInt(i++, (Integer.parseInt(form.getCurrentPage())-1) * Integer.parseInt(form.getLineSize()));
 			    }
 				// ログイン情報を検索
 				if (!statement.execute()) {

@@ -105,6 +105,7 @@ public class Emp0001DtlInit extends HttpServlet {
 			result.setZipCode(entity.getZipCode());
 			result.setAddress(entity.getAddress());
 			result.setJoinedYmd(entity.getJoinedYmd());
+			result.setRetireYmd(entity.getRetireYmd());
 			result.setDepartmentId(entity.getDepartmentId());
 			result.setAuthorized(entity.getAuthorized());
 		}

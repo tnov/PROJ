@@ -112,7 +112,7 @@ public class Emp0001DtlSave extends HttpServlet {
 			data.setRetireYmd(form.getRetireYmd());
 			data.setAuthorized(form.getAuthorized());
 			data.setDepartmentId(form.getDepartmentId());
-			dao.insert(data);
+			result = dao.insert(data);
 		} else if (Emp0001DtlConstants.MODE_UPDATE.equals(form.getMode())) {
 			MstEmployee key = new MstEmployee();
 			key.setEmployeeId(form.getParamEmployeeId());
@@ -128,9 +128,9 @@ public class Emp0001DtlSave extends HttpServlet {
 			data.setAddress(form.getAddress());
 			data.setJoinedYmd(form.getJoinedYmd());
 			data.setRetireYmd(form.getRetireYmd());
-			data.setAuthorized(form.getAuthorized());
 			data.setDepartmentId(form.getDepartmentId());
-			dao.update(data, key);
+			data.setAuthorized(form.getAuthorized());
+			result = dao.update(data, key);
 		}
 		return result;
 	}

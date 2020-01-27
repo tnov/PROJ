@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import application.emp0001.list.Emp0001LstConstants;
+import application.emp0001.list.Emp0001LstForm;
 
 public class Emp0001LstInit extends HttpServlet {
 
@@ -21,11 +22,18 @@ public class Emp0001LstInit extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// JSPの読み込み＆初期処理
-		req.setAttribute("employeeId", "");
-		req.setAttribute("employeeName", "");
-		req.setAttribute("sex", "");
-		req.setAttribute("joinedYmd", "");
-		req.setAttribute("retiredYmd", "");
+		Emp0001LstForm form = new Emp0001LstForm();
+		form.setEmployeeId("");
+		form.setEmployeeName("");
+		form.setSex("");
+		form.setJoinedYmd("");
+		form.setRetiredYmd("");
+		form.setDepartmentId("");
+
+		form.setCurrentPage("0");
+		form.setLineLimit("1000");
+		form.setLineSize("5");
+		req.setAttribute("form", form);
 		ServletContext ctx = getServletContext();
 		RequestDispatcher dispatcher = ctx.getRequestDispatcher(Emp0001LstConstants.CONTENTS_PATH);
 		dispatcher.forward(req, resp);
