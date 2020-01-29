@@ -10,6 +10,9 @@ public class CommonForm {
 	// 現在のページ数
 	private String currentPage = null;
 
+	// 全体ページ数
+	private String pageSize = null;
+
 	// 全体取得上限
 	private String lineLimit = null;
 
@@ -43,5 +46,13 @@ public class CommonForm {
 
 	public void setLineLimit(String lineLimit) {
 		this.lineLimit = lineLimit;
+	}
+
+	public String getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
 	}
 }

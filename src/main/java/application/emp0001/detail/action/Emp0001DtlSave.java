@@ -50,18 +50,7 @@ public class Emp0001DtlSave extends HttpServlet {
 			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, Emp0001DtlConstants.MESSAGE_ERROR_MST_EMPLOYEE_NOT_SAVE,form);
 			return;
 		}
-		req.setAttribute("paramEmployeeId", form.getParamEmployeeId());
-		req.setAttribute("employeeId", form.getEmployeeId());
-		req.setAttribute("employeeName", form.getEmployeeName());
-		req.setAttribute("birthYmd", form.getBirthYmd());
-		req.setAttribute("sex", form.getSex());
-		req.setAttribute("zipCode", form.getZipCode());
-		req.setAttribute("address", form.getAddress());
-		req.setAttribute("joinedYmd", form.getJoinedYmd());
-		req.setAttribute("retireYmd", form.getRetireYmd());
-		req.setAttribute("departmentId", form.getDepartmentId());
-		req.setAttribute("authorized", form.getAuthorized());
-		req.setAttribute("mode", form.getMode());
+		req.setAttribute("form", form);
 		// 画面遷移
 		ServletContext ctx = getServletContext();
 		RequestDispatcher dispatcher = ctx.getRequestDispatcher(Emp0001DtlConstants.CONTENTS_PATH);
@@ -146,18 +135,7 @@ public class Emp0001DtlSave extends HttpServlet {
 
 	private void setMessage(HttpServletRequest req, HttpServletResponse resp, String type, String message, Emp0001DtlForm form) throws ServletException, IOException {
 		// 画面項目セット
-		req.setAttribute("paramEmployeeId", form.getParamEmployeeId());
-		req.setAttribute("employeeId", form.getEmployeeId());
-		req.setAttribute("employeeName", form.getEmployeeName());
-		req.setAttribute("birthYmd", form.getBirthYmd());
-		req.setAttribute("sex", form.getSex());
-		req.setAttribute("zipCode", form.getZipCode());
-		req.setAttribute("address", form.getAddress());
-		req.setAttribute("joinedYmd", form.getJoinedYmd());
-		req.setAttribute("retireYmd", form.getRetireYmd());
-		req.setAttribute("departmentId", form.getDepartmentId());
-		req.setAttribute("authorized", form.getAuthorized());
-		req.setAttribute("mode", form.getMode());
+		req.setAttribute("form", form);
 		// メッセージの設定
 		List<String> messages = (List<String>)req.getAttribute(type);
 		if (messages == null) {

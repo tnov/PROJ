@@ -50,3 +50,8 @@ table tbody tr td.list {
 	border: 1px black solid;
 	background-color: white;
 }
+table tfoot tr.list {
+}
+table tfoot tr td.list {
+	border: 1px black solid;
+}

@@ -57,7 +57,7 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 <div><label>性別</label><input type="text" name="sex" value="<%= form.getSex() %>" placeholder=""  required /></div>
 <div><label>入社日</label><input type="text" name="joinedYmd" value="<%= form.getJoinedYmd() %>" placeholder=""  required /></div>
 <div><label>退職日</label><input type="text" name="retiredYmd" value="<%= form.getRetiredYmd() %>" placeholder=""  required /></div>
-<div><input type="button" onclick="doPost(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>')" value="検索"/></div>
+<div><input type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','1')" value="検索"/></div>
 </section>
 <section>
 <div>
@@ -106,6 +106,27 @@ Emp0001DataBean bean = list.get(i);
 }
 %>
 </tbody>
+<tfoot>
+<tr>
+<td colspan="4">
+<% if ("0".equals(form.getCurrentPage()) || "1".equals(form.getCurrentPage())) { %>
+<label>先頭</label>
+<label>前頁</label>
+<% } else { %>
+<input type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','1')" value="先頭"/>
+<input type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','<%= Integer.parseInt(form.getCurrentPage()) - 1 %>')" value="前頁"/>
+<% } %>
+<label><%= form.getCurrentPage() %></label>/<label><%= form.getPageSize() %></label>
+<% if ("0".equals(form.getCurrentPage()) || form.getPageSize().equals(form.getCurrentPage())) { %>
+<label>次頁</label>
+<label>末尾</label>
+<% } else { %>
+<input type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','<%= Integer.parseInt(form.getCurrentPage()) + 1 %>')" value="次頁"/>
+<input type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','<%= form.getPageSize() %>')" value="末尾"/>
+<% } %>
+</td>
+</tr>
+</tfoot>
 </table>
 </div>
 <input type="hidden" name="paramEmployeeId" value="" />
@@ -114,6 +135,7 @@ Emp0001DataBean bean = list.get(i);
 <input type="hidden" name="lineSize" value="<%= form.getLineSize() %>" />
 <input type="hidden" name="currentPage" value="<%= form.getCurrentPage() %>" />
 <input type="hidden" name="lineLimit" value="<%= form.getLineLimit() %>" />
+<input type="hidden" name="pageSize" value="<%= form.getPageSize() %>" />
 </section>
 <section>
 <div><input type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Dtl/init" %>');" value="新規"/></div>

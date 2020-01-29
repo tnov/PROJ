@@ -33,18 +33,7 @@ public class Emp0001DtlInit extends HttpServlet {
 		} else {
 			form = updateEmployee(paramEmployeeId);
 		}
-		req.setAttribute("paramEmployeeId", form.getParamEmployeeId());
-		req.setAttribute("employeeId", form.getEmployeeId());
-		req.setAttribute("employeeName", form.getEmployeeName());
-		req.setAttribute("birthYmd", form.getBirthYmd());
-		req.setAttribute("sex", form.getSex());
-		req.setAttribute("zipCode", form.getZipCode());
-		req.setAttribute("address", form.getAddress());
-		req.setAttribute("joinedYmd", form.getJoinedYmd());
-		req.setAttribute("retireYmd", form.getRetireYmd());
-		req.setAttribute("departmentId", form.getDepartmentId());
-		req.setAttribute("authorized", form.getAuthorized());
-		req.setAttribute("mode", form.getMode());
+		req.setAttribute("form", form);
 		// JSPの読み込み
 		ServletContext ctx = getServletContext();
 		RequestDispatcher dispatcher = ctx.getRequestDispatcher(Emp0001DtlConstants.CONTENTS_PATH);

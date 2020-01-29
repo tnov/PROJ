@@ -4,6 +4,8 @@ import application.CommonForm;
 
 public class Emp0001DtlForm extends CommonForm {
 
+	private String backMode = null;
+
 	private String mode = null;
 
 	private String paramEmployeeId = null;
@@ -90,5 +92,11 @@ public class Emp0001DtlForm extends CommonForm {
 	}
 	public void setAuthorized(String authorized) {
 		this.authorized = authorized;
+	}
+	public String getBackMode() {
+		return backMode;
+	}
+	public void setBackMode(String backMode) {
+		this.backMode = backMode;
 	}
 }
