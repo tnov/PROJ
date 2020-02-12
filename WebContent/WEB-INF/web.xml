@@ -113,5 +113,21 @@
     <servlet-name>Emp0001DtlSave</servlet-name>
     <url-pattern>/Emp0001Dtl/save</url-pattern>
   </servlet-mapping>
-
+  <!-- 社員アップロード -->
+  <servlet>
+    <servlet-name>Emp0001UplInit</servlet-name>
+    <servlet-class>application.emp0001.upload.action.Emp0001UplInit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Emp0001UplInit</servlet-name>
+    <url-pattern>/Emp0001Upl/init</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Emp0001UplCsvUpload</servlet-name>
+    <servlet-class>application.emp0001.upload.action.Emp0001UplCsvUpload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Emp0001UplCsvUpload</servlet-name>
+    <url-pattern>/Emp0001Upl/upload</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -94,6 +94,7 @@ public class MenuInit extends HttpServlet {
 						// 画面URL
 						bean.setMenuPath(resultSet.getString(4));
 						menuInfoList.add(bean);
+						i++;
 					}
 				}
 			} catch (SQLException e) {
