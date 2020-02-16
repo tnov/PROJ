@@ -14,7 +14,9 @@
 <title>社員一覧</title>
 </head>
 <body>
-<header><h1>社員一覧</h1></header>
+<jsp:include page="../../header.jsp">
+    <jsp:param name="title" value="社員一覧" />
+</jsp:include>
 <section>
 <%
 List<String> errors = (List<String>)request.getAttribute("errorMessages");

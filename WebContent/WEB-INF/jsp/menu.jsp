@@ -16,7 +16,8 @@
 <form id="mainForm" method="post" action="<%= request.getContextPath() + "/menu/move" %>">
 <jsp:include page="header.jsp">
     <jsp:param name="title" value="メニュー" />
-</jsp:include><div class="menuItem">
+</jsp:include>
+<div class="menuItem">
 <%
 ArrayList<MenuBean> list = (ArrayList<MenuBean>)request.getAttribute("list");
 if (list != null) {

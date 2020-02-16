@@ -13,8 +13,9 @@
 <title>社員ＣＳＶアップロード</title>
 </head>
 <body>
-<header><h1>社員ＣＳＶアップロード</h1></header>
-<section>
+<jsp:include page="../../header.jsp">
+    <jsp:param name="title" value="社員ＣＳＶアップロード" />
+</jsp:include><section>
 <%
 List<String> errors = (List<String>)request.getAttribute("errorMessages");
 if (errors != null) {

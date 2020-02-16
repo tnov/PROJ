@@ -11,9 +11,9 @@
 <header>
 <div class="headerGroup">
 	<div class="headerUser">
-	<% if (request.getParameter("userId") != null) {
+	<% if ((String)request.getSession().getAttribute("userId") != null) {
 	%>
-		<%=request.getParameter("userId")%>
+		<%=(String)request.getSession().getAttribute("userId")%>
 	<% }
 	%>
 
