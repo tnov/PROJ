@@ -6,12 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/common.css" %>">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/login.css" %>">
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/common.js" %>" ></script>
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/login.js" %>" ></script>
 <title>ログイン</title>
 </head>
 <body>
-<header><h1>ログイン</h1></header>
+<jsp:include page="header.jsp">
+    <jsp:param name="title" value="ログイン" />
+</jsp:include>
 <section>
 <%
 ArrayList<String> errors = (ArrayList<String>)request.getAttribute("errorMessages");
@@ -46,8 +49,11 @@ if (infos != null) {
 </section>
 <form method="post" action="<%= request.getContextPath() + "/login/check" %>">
 <section>
+<br>
 <div><label>ユーザＩＤ</label><input type="text" name="userId" value="<%= request.getAttribute("userId") %>" placeholder="ユーザＩＤを入力" required /></div>
+<br>
 <div><label>パスワード</label><input type="password" name="password" value="" placeholder="パスワードを入力"  required /></div>
+<br>
 <div><input type="submit" value="ログイン"/></div>
 </section>
 </form>

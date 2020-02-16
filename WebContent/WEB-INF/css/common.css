@@ -10,13 +10,42 @@ body {
 }
 /* ヘッダ部のスタイル */
 header {
-	background-color: #87ceeb;
+	background-color: #0000ff;
 	width: 100%;
-	text-align: center;
 }
+/* ヘッダ部グループ */
+.headerGroup {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+/* ヘッダ部画面名称 */
+.headerTitle {
+	color: #ffffff;
+	font-size: 18pt;
+	font-weight:bold;
+ }
+/* ヘッダ部日付 */
+.headerDate {
+	color: #ffffff;
+	font-size: 15pt;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+ }
+ /* ヘッダ部ユーザ */
+.headerUser {
+	color: #ffffff;
+	font-size: 15pt;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+ }
+
 /* セクション部のスタイル */
 section {
 }
+
 /* ナビゲーション部のスタイル */
 nav {
 }
@@ -28,7 +57,7 @@ aside {
 }
 /* フッタ部のスタイル */
 footer {
-	background-color: #87ceeb;
+	background-color: #0000ff;
 	width: 100%;
 	text-align: right;
 	position: absolute;
