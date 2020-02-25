@@ -57,6 +57,5 @@ if (infos != null) {
 <div><input type="submit" value="ログイン"/></div>
 </section>
 </form>
-<footer>copy write ...</footer>
 </body>
 </html>

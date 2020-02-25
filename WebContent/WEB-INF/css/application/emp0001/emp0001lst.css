@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+.inputtable {
+	position : relative;
+	top: 30px;
+	left: 450px;
+}
+
+.label {
+	width: 150px;
+	height: 30px;
+}
+
+.buttonGroup {
+    display: inline-block;
+    position : relative;
+	top: 50px;
+	left: 450px;
+}
+.inButton {
+	margin :5px ;
+}
+
+.detail {
+	position : relative;
+	top: 80px;
+	left: 450px;
+	width: 450px;
+
+}
+
+table thead {
+	color: #000000;
+	background: #6cb6ff;
+}
+

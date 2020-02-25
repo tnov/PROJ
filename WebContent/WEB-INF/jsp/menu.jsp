@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/common.css" %>">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/menu.css" %>">
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/common.js" %>" ></script>
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/lib/menu.js" %>" ></script>
 <title>メニュー</title>

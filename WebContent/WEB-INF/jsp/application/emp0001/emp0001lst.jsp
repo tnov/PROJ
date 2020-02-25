@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/common.css" %>">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/application/emp0001/emp0001lst.css" %>">
+
 <!-- <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/application/emp00001/emp0001lst.css" %>"> -->
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/common.js" %>" ></script>
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/application/emp0001/emp0001lst.js" %>" ></script>
@@ -54,16 +56,59 @@ if (infos != null) {
 <%
 Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 %>
-<div><label>社員ＩＤ</label><input type="text" name="employeeId" value="<%= form.getEmployeeId() %>" placeholder="" required /></div>
-<div><label>社員氏名</label><input type="text" name="employeeName" value="<%= form.getEmployeeName() %>" placeholder=""  required /></div>
-<div><label>性別</label><input type="text" name="sex" value="<%= form.getSex() %>" placeholder=""  required /></div>
-<div><label>入社日</label><input type="text" name="joinedYmd" value="<%= form.getJoinedYmd() %>" placeholder=""  required /></div>
-<div><label>退職日</label><input type="text" name="retiredYmd" value="<%= form.getRetiredYmd() %>" placeholder=""  required /></div>
-<div><input type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','1')" value="検索"/></div>
+<table class="inputtable">
+	<tr>
+		<td class="label">
+			<label>社員ＩＤ</label>
+		</td>
+		<td>
+			<input type="text" name="employeeId" value="<%= form.getEmployeeId() %>" placeholder="" required />
+		</td>
+	</tr>
+	<tr>
+		<td class="label">
+			<label>社員氏名</label>
+		</td>
+		<td>
+			<input type="text" name="employeeName" value="<%= form.getEmployeeName() %>" placeholder=""  required />
+		</td>
+	</tr>
+	<tr>
+		<td class="label">
+			<label>性別</label>
+		</td>
+		<td>
+			<input type="text" name="sex" value="<%= form.getSex() %>" placeholder=""  required />
+		</td>
+	</tr>
+	<tr>
+		<td class="label">
+			<label>入社日</label>
+		</td>
+		<td>
+			<input type="text" name="joinedYmd" value="<%= form.getJoinedYmd() %>" placeholder=""  required />
+		</td>
+	</tr>
+	<tr>
+		<td class="label">
+			<label>退職日</label>
+		</td>
+		<td>
+			<input type="text" name="retiredYmd" value="<%= form.getRetiredYmd() %>" placeholder=""  required />
+		</td>
+	</tr>
+</table>
+
+<div class="buttonGroup">
+	<input class="inButton" type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','1')" value="検索"/>
+	<input class="inButton" type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Dtl/init" %>');" value="社員登録"/>
+	<input class="inButton" type="button" onclick="doPost(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/csv" %>')" value="ＣＳＶ出力"/>
+	<input class="inButton" type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/menu" %>');" value="戻る"/>
+</div>
 </section>
 <section>
 <div>
-<table class="list">
+<table class="detail">
 <thead>
 <tr>
 <td class="list">
@@ -76,7 +121,10 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 	<label>性別</Label>
 </td>
 <td class="list">
-	<label>入社日</Label>
+	<label>入社年月日</Label>
+</td>
+<td class="list">
+	<label>CSV出力</Label>
 </td>
 </tr>
 </thead>
@@ -102,6 +150,11 @@ Emp0001DataBean bean = list.get(i);
 <td class="list">
 	<label><%= bean.getJoinedYmd() %></label>
 </td>
+<td class="list">
+	<input type="checkbox" name="checklist" value=<%= i %>> <!-- 作成中 -->
+</td>
+
+
 </tr>
 <%
 	}
@@ -138,11 +191,6 @@ Emp0001DataBean bean = list.get(i);
 <input type="hidden" name="currentPage" value="<%= form.getCurrentPage() %>" />
 <input type="hidden" name="lineLimit" value="<%= form.getLineLimit() %>" />
 <input type="hidden" name="pageSize" value="<%= form.getPageSize() %>" />
-</section>
-<section>
-<div><input type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Dtl/init" %>');" value="新規"/></div>
-<div><input type="button" onclick="doPost(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/csv" %>')" value="ＣＳＶ"/></div>
-<div><input type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/menu" %>');" value="戻る"/></div>
 </section>
 </form>
 <footer></footer>
