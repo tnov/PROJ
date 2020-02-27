@@ -1,5 +1,6 @@
 package application.emp0001.list;
 
+import java.util.HashMap;
 import java.util.List;
 
 import application.CommonForm;
@@ -8,10 +9,12 @@ import application.emp0001.Emp0001DataBean;
 public class Emp0001LstForm extends CommonForm {
 	private String employeeId = null;
 	private String employeeName = null;
-	private String sex = null;
+	private String[] sex = null;
 	private String joinedYmd = null;
 	private String retiredYmd = null;
 	private String departmentId = null;
+	private HashMap<String, String> departmentMap = new HashMap<String, String>();
+
 	private List<Emp0001DataBean> resultList = null;
 
 	public String getEmployeeId() {
@@ -26,10 +29,10 @@ public class Emp0001LstForm extends CommonForm {
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
 	}
-	public String getSex() {
+	public String[] getSex() {
 		return sex;
 	}
-	public void setSex(String sex) {
+	public void setSex(String[] sex) {
 		this.sex = sex;
 	}
 	public String getJoinedYmd() {
@@ -55,5 +58,11 @@ public class Emp0001LstForm extends CommonForm {
 	}
 	public void setRetiredYmd(String retiredYmd) {
 		this.retiredYmd = retiredYmd;
+	}
+	public HashMap<String, String> getDepartmentMap() {
+		return departmentMap;
+	}
+	public void setDepartmentMap(HashMap<String, String> departmentMap) {
+		this.departmentMap = departmentMap;
 	}
 }

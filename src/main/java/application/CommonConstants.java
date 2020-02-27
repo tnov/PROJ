@@ -10,4 +10,9 @@ public class CommonConstants {
 	public static final String LINE_SIZE_DEFAULT = "20";
 
 	public static final String LINE_LIMIT_DEFAULT = "1000";
+
+	public static final String SEX_MALE = "0";
+	public static final String SEX_MALE_NAME = "男";
+	public static final String SEX_FEMALE = "1";
+	public static final String SEX_FEMALE_NAME = "女";
 }

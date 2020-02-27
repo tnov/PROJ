@@ -6,13 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/common.css" %>">
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/login.css" %>">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/lib/login.css" %>">
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/common.js" %>" ></script>
-<script type="text/javascript" src="<%= request.getContextPath() + "/js/login.js" %>" ></script>
+<script type="text/javascript" src="<%= request.getContextPath() + "/js/lib/login.js" %>" ></script>
 <title>ログイン</title>
 </head>
 <body>
-<jsp:include page="header.jsp">
+<jsp:include page="../..//jsp/header.jsp">
     <jsp:param name="title" value="ログイン" />
 </jsp:include>
 <section>
@@ -57,5 +57,6 @@ if (infos != null) {
 <div><input type="submit" value="ログイン"/></div>
 </section>
 </form>
+<footer>copy write ...</footer>
 </body>
 </html>

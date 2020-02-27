@@ -1,4 +1,4 @@
-package lib.common.login.action;
+package lib.common.password.action;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.naming.InitialContext;
@@ -17,64 +16,95 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import application.CommonConstants;
-import application.DateUtil;
 import lib.common.Constants;
-import lib.common.login.LoginConstants;
+import lib.common.password.PasswordConstants;
 import lib.util.StringUtils;
 
-public class LoginCheck extends HttpServlet {
+public class PasswordChange extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// リクエストの取得
 		String userId = req.getParameter("userId");
 		String password = req.getParameter("password");
+		String newPassword = req.getParameter("newPassword");
+		String confirmPassword = req.getParameter("confirmPassword");
 		// バリデーション
-		// ユーザＩＤ・パスワード未入力ＮＧ
+		// パスワード形式チェック
 		if (StringUtils.isEmpty(userId)) {
-			// バリデーションエラー
-			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, LoginConstants.MESSAGE_ERROR_USER_ID_NOT_INPUT);
+			// ユーザＩＤを入力してください。
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, PasswordConstants.MESSAGE_ERROR_USER_ID_NOT_INPUT);
 			return;
 		}
 		if (StringUtils.isEmpty(password)) {
-			// バリデーションエラー
-			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, LoginConstants.MESSAGE_ERROR_PASSWORD_NOT_INPUT);
+			// パスワードを入力してください。
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, PasswordConstants.MESSAGE_ERROR_PASSWORD_NOT_INPUT);
+			return;
+		}
+		if (StringUtils.isHalfLengthOnly(newPassword)) {
+			// 新パスワードは半角文字を入力してください。
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, PasswordConstants.MESSAGE_ERROR_NEW_PASSWORD_INPUT_HALF_CHARACTERS);
+			return;
+		}
+		if (StringUtils.length(newPassword) < 8) {
+			// 新パスワードは8桁以上で入力してください。
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, PasswordConstants.MESSAGE_ERROR_NEW_PASSWORD_INPUT_SHORT_CHARACTERS);
+			return;
+		}
+		if (StringUtils.length(newPassword) > 20) {
+			// 新パスワードは20桁以内で入力してください。
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, PasswordConstants.MESSAGE_ERROR_NEW_PASSWORD_INPUT_LARGE_CHARACTERS);
+			return;
+		}
+		if (StringUtils.isHalfLengthOnly(confirmPassword)) {
+			// 新パスワード確認用は半角文字を入力してください。
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, PasswordConstants.MESSAGE_ERROR_CONFIRM_PASSWORD_INPUT_HALF_CHARACTERS);
+			return;
+		}
+		if (StringUtils.length(confirmPassword) < 8) {
+			// 新パスワード確認用は8桁以上で入力してください。
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, PasswordConstants.MESSAGE_ERROR_CONRIRM_PASSWORD_INPUT_SHORT_CHARACTERS);
+			return;
+		}
+		if (StringUtils.length(confirmPassword) > 20) {
+			// 新パスワード確認用は20桁以内で入力してください。
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, PasswordConstants.MESSAGE_ERROR_CONRIRM_PASSWORD_INPUT_LARGE_CHARACTERS);
+			return;
+		}
+		if (newPassword.contentEquals(confirmPassword)) {
+			// 新パスワードと新パスワード確認用が一致しません。
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, PasswordConstants.MESSAGE_ERROR_NEW_PASSWORD_NO_MATCH);
+			return;
+		}
+		if (newPassword.contentEquals(password)) {
+			// 新パスワードが前回パスワードと一致しています。
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, PasswordConstants.MESSAGE_ERROR_NEW_PASSWORD_DUPLICATE);
 			return;
 		}
 		// 認証チェック
 		if (isLogin(userId,password)) {
 			// 認証チェック：ＯＫ
-			// セッションへ認証結果保持
-			HttpSession session = req.getSession(true);
-			session.setAttribute("ip", req.getRemoteAddr());
-			session.setAttribute("host", req.getRemoteHost());
-			// TODO トークンはユーザＩＤとタイムスタンプ、キー値(UID)から生成
-			// キー値はログイン時に生成し、セッションで保持
-			session.setAttribute("userId", userId);
-			// キー値はログイン時に生成し、セッションで保持
-			session.setAttribute("token", "");
-			// 前回ログインから所定機関経過した場合、パスワード変更へ
-			if (isInvalid(userId)) {
-				// パスワード変更へ
-				ServletContext ctx = getServletContext();
-				RequestDispatcher dispatcher = ctx.getRequestDispatcher(LoginConstants.DISPATCH_PASSWORD);
-				dispatcher.forward(req, resp);
-				return;
-			}
-			// メニュー遷移
-			ServletContext ctx = getServletContext();
-			RequestDispatcher dispatcher = ctx.getRequestDispatcher(LoginConstants.DISPATCH_PATH);
-			dispatcher.forward(req, resp);
+			// パスワードの変更
+			changePassword(userId,password,newPassword);
 		} else {
 			// 認証チェック：ＮＧ（エラーメッセージ）
-			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, LoginConstants.MESSAGE_ERROR_AUTHORIZED_FAILD);
+			// ユーザＩＤまたは、パスワードが正しくありません。
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, PasswordConstants.MESSAGE_ERROR_AUTHORIZED_FAILD);
+			return;
 		}
 	}
 
+	private void setForward(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// メニュー遷移
+		ServletContext ctx = getServletContext();
+		RequestDispatcher dispatcher = ctx.getRequestDispatcher(PasswordConstants.DISPATCH_PATH);
+		dispatcher.forward(req, resp);
+	}
+
+	// メッセージ出力(TOOD 共通化)
 	private void setMessage(HttpServletRequest req, HttpServletResponse resp, String type, String message) throws ServletException, IOException {
 		// 画面項目セット
 		req.setAttribute("userId", req.getParameter("userId"));
@@ -86,12 +116,10 @@ public class LoginCheck extends HttpServlet {
 		messages.add(message);
 		req.setAttribute(type, messages);
 		// メニュー遷移
-		ServletContext ctx = getServletContext();
-		RequestDispatcher dispatcher = ctx.getRequestDispatcher(LoginConstants.CONTENTS_PATH);
-		dispatcher.forward(req, resp);
+		setForward(req, resp);
 	}
 
-	// 認証チェック
+	// 認証チェック(TOOD 共通化)
 	private boolean isLogin(String userId,String password) {
 		boolean result = false;
 		try {
@@ -130,8 +158,8 @@ public class LoginCheck extends HttpServlet {
 		return result;
 	}
 
-	// 有効期間チェック
-	private boolean isInvalid(String userId) {
+	// パスワードの変更
+	private boolean changePassword(String userId,String password,String newPassword) {
 		boolean result = false;
 		try {
 			// JNDIからDBデータソース取得
@@ -140,10 +168,12 @@ public class LoginCheck extends HttpServlet {
 		    // コネクションの取得
 		    // SQL実行
 			try (Connection connection = dataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement("select last_update_ymd from authorized_user where user_id = ?")
+				PreparedStatement statement = connection.prepareStatement("select count(*) from authorized_user where user_id = ? and user_password = ?")
 					) {
 				// パラメータ指定(ユーザID)
 				statement.setString(1, userId);
+				// パラメータ指定(パスワード)
+				statement.setString(2, password);
 				// ログイン情報を検索
 				if (!statement.execute()) {
 					return false;
@@ -152,12 +182,8 @@ public class LoginCheck extends HttpServlet {
 					while (resultSet.next()) {
 						// 件数が1件の場合 true：正常
 						// 件数が1件以外の場合 false：異常
-						String lastUpdateYmd = resultSet.getString(1);
-						if (DateUtil.getInterval(DateUtil.getCurrentTimestamp(DateUtil.DATE_FORMAT_YYYYMMDD)  ,DateUtil.formatString(DateUtil.add(DateUtil.toTimestamp(lastUpdateYmd, DateUtil.DATE_FORMAT_YYYYMMDD), Calendar.YEAR, LoginConstants.VALID_INTERVAL), DateUtil.DATE_FORMAT_YYYYMMDD) , DateUtil.DATE_FORMAT_YYYYMMDD) < 0) {
-							return false;
-						} else {
-							return true;
-						}
+						int count = resultSet.getInt(1);
+						result = count == 1 ? true : false;
 					}
 				}
 			} catch (SQLException e) {

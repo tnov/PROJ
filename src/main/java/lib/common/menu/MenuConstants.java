@@ -3,7 +3,7 @@ package lib.common.menu;
 public class MenuConstants {
 	public static final String INIT_PATH = "/menu";
 	public static final String ACTION = "/menu";
-	public static final String CONTENTS_PATH = "/WEB-INF/jsp/menu.jsp";
+	public static final String CONTENTS_PATH = "/WEB-INF/jsp/lib/menu.jsp";
 	public static final String DISPATCH_PATH = "/menu";
 
 	public static final String FORM_MENU_NO = "menuNo";

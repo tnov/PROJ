@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -20,6 +22,7 @@ import javax.sql.DataSource;
 
 import application.CommonConstants;
 import lib.common.Constants;
+import lib.common.menu.HierarchyBean;
 import lib.common.menu.MenuBean;
 import lib.common.menu.MenuConstants;
 
@@ -35,7 +38,7 @@ public class MenuInit extends HttpServlet {
 		// JSPの読み込み＆初期処理
 		String userId = (String)req.getSession().getAttribute("userId");
 		// メニュー情報取得
-		List<MenuBean> menuInfoList =  getMenuInfoList(userId);
+		List<HierarchyBean> menuInfoList =  getMenuInfoList(userId);
 		if (menuInfoList != null) {
 			req.setAttribute("list", menuInfoList);
 			// 画面遷移
@@ -65,8 +68,8 @@ public class MenuInit extends HttpServlet {
 	}
 
 	// メニュー情報取得
-	private List<MenuBean> getMenuInfoList(String userId) {
-		List<MenuBean> menuInfoList = new ArrayList<>();
+	private List<HierarchyBean> getMenuInfoList(String userId) {
+		List<HierarchyBean> menuInfoList = new ArrayList<>();
 		try {
 			// JNDIからDBデータソース取得
 		    InitialContext initialContext = new InitialContext();
@@ -74,27 +77,36 @@ public class MenuInit extends HttpServlet {
 		    // コネクションの取得
 		    // SQL実行
 			try (Connection connection = dataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement("select mst_menu.hierarchy, mst_function.function_id, mst_function.function_name, mst_function.function_path from mst_menu left join mst_function on mst_menu.function_id = mst_function.function_id and mst_function.delete_flg = '0' where mst_menu.delete_flg = '0' order by mst_menu.hierarchy, mst_menu.function_order")
+				PreparedStatement statement = connection.prepareStatement("select mst_menu.hierarchy_id, mst_hierarchy.hierarchy_name, mst_menu.function_id, mst_function.function_name, mst_function.function_path from mst_hierarchy left join mst_menu on mst_hierarchy.hierarchy_id = mst_menu.hierarchy_id left join mst_function on mst_menu.function_id = mst_function.function_id and mst_function.delete_flg = '0' where mst_hierarchy.delete_flg = '0' and  mst_menu.delete_flg = '0' and  mst_function.delete_flg = '0' order by mst_hierarchy.hierarchy_order , mst_menu.function_order , mst_hierarchy.hierarchy_id , mst_menu.function_id")
 					) {
-				// TODO パラメータ指定(ユーザID)
 				// メニュー情報を検索
 				if (!statement.execute()) {
 					return null;
 				} else {
 					ResultSet resultSet = statement.getResultSet();
-					int i = 1;
+					Set<String> keyset = new HashSet<String>();
 					while (resultSet.next()) {
-						MenuBean bean = new MenuBean();
-						// 画面番号
-						bean.setMenuNo(String.valueOf(i));
-						// 画面ID
-						bean.setMenuId(resultSet.getString(2));
-						// 画面名称
-						bean.setMenuName(resultSet.getString(3));
+						HierarchyBean hierarchyBean = null;
+						String hierarchyId = resultSet.getString(1);
+						String hierarchyName = resultSet.getString(2);
+						if (!keyset.contains(hierarchyId)) {
+							// 新規追加
+							keyset.add(hierarchyId);
+							hierarchyBean = new HierarchyBean();
+							hierarchyBean.setHierarchyId(hierarchyId);
+							hierarchyBean.setHierarchyName(hierarchyName);
+							hierarchyBean.setMenuList(new ArrayList<MenuBean>());
+							menuInfoList.add(hierarchyBean);
+						}
+						hierarchyBean = menuInfoList.get(menuInfoList.size()-1);
+						MenuBean menuBean = new MenuBean();
+						// 画面ＩＤ
+						menuBean.setMenuId(resultSet.getString(3));
+						// 画面名
+						menuBean.setMenuName(resultSet.getString(4));
 						// 画面URL
-						bean.setMenuPath(resultSet.getString(4));
-						menuInfoList.add(bean);
-						i++;
+						menuBean.setMenuPath(resultSet.getString(5));
+						hierarchyBean.getMenuList().add(menuBean);
 					}
 				}
 			} catch (SQLException e) {

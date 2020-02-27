@@ -1,16 +1,9 @@
 package lib.common.menu;
 
 public class MenuBean {
-	private String menuNo;
 	private String menuId;
 	private String menuName;
 	private String menuPath;
-	public String getMenuNo() {
-		return menuNo;
-	}
-	public void setMenuNo(String menuNo) {
-		this.menuNo = menuNo;
-	}
 	public String getMenuId() {
 		return menuId;
 	}
@@ -29,5 +22,4 @@ public class MenuBean {
 	public void setMenuPath(String menuPath) {
 		this.menuPath = menuPath;
 	}
-
 }

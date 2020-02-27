@@ -33,13 +33,13 @@
 		</tr>
 		<tr>
 			<th>論理エンティティ名</th>
-			<td>メニューマスタ&nbsp;</td>
+			<td>階層マスタ&nbsp;</td>
 			<th>タグ&nbsp;</th>
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
 			<th>物理エンティティ名</th>
-			<td>MST_MENU&nbsp;</td>
+			<td>HIERARCHY_MST[&nbsp;</td>
 			<th>&nbsp;</th>
 			<td>&nbsp;</td>
 		</tr>
@@ -81,17 +81,17 @@
 		</tr>
 		<tr>
 			<td style="text-align:right;">2</td>
-			<td>機能ＩＤ</td>
-			<td>FUNCTION_ID</td>
+			<td>階層名</td>
+			<td>HIERARCHY_NAME</td>
 			<td>@VARCHAR</td>
-			<td>Yes (PK)</td>
+			<td>Yes</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">3</td>
-			<td>機能順序</td>
-			<td>FUNCTION_ID_ORDER</td>
+			<td>階層順序</td>
+			<td>HIERARCHY_ORDER</td>
 			<td>@INT</td>
 			<td>Yes</td>
 			<td>0</td>
@@ -199,13 +199,6 @@
 			<th>参照先</th>
 			<th>参照先カラムリスト</th>
 		</tr>
-		<tr>
-			<td style="text-align:right;">1</td>
-			<td></td>
-			<td>HIERARCHY_ID</td>
-			<td>HIERARCHY_MST[</td>
-			<td>HIERARCHY_ID</td>
-		</tr>
 	</table>
 
 <br>
@@ -229,9 +222,9 @@
 		<tr>
 			<td style="text-align:right;">1</td>
 			<td></td>
-			<td>FUNCTION_ID</td>
-			<td>MST_FUNCTION</td>
-			<td>FUNCTION_ID</td>
+			<td>HIERARCHY_ID</td>
+			<td>MST_MENU</td>
+			<td>HIERARCHY_ID</td>
 		</tr>
 	</table>
 

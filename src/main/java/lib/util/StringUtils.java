@@ -41,6 +41,14 @@ public class StringUtils {
 		}
 	}
 
+	public static int length(String str) {
+		if (str == null) {
+			return 0;
+		} else {
+			return str.length();
+		}
+	}
+
 	public static boolean isHalfLengthOnly(String str) {
 		// 空白以外で判定
 		String halfAlphabetNumber = "^[0-9a-zA-Z]+$";

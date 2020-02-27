@@ -5,7 +5,7 @@ import java.util.List;
 import lib.common.BaseForm;
 
 public class MenuForm extends BaseForm {
-	private List<MenuBean> list;
+	private List<HierarchyBean> hierarchyList;
 	private String menuMovePath;
 	public String getMenuMovePath() {
 		return menuMovePath;
@@ -13,10 +13,10 @@ public class MenuForm extends BaseForm {
 	public void setMenuMovePath(String menuMovePath) {
 		this.menuMovePath = menuMovePath;
 	}
-	public List<MenuBean> getList() {
-		return list;
+	public List<HierarchyBean> getHierarchyList() {
+		return hierarchyList;
 	}
-	public void setList(List<MenuBean> list) {
-		this.list = list;
+	public void setHierarchyList(List<HierarchyBean> hierarchyList) {
+		this.hierarchyList = hierarchyList;
 	}
 }

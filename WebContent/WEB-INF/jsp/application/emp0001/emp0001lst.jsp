@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List"%>
+<%@ page import="java.util.HashMap"%>
+<%@ page import="java.util.Map"%>
 <%@ page import="application.emp0001.list.Emp0001LstForm"%>
 <%@ page import="application.emp0001.Emp0001DataBean"%>
 <% request.setCharacterEncoding("UTF8"); %>
@@ -78,25 +80,35 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 			<label>性別</label>
 		</td>
 		<td>
-			<input type="text" name="sex" value="<%= form.getSex() %>" placeholder=""  required />
+		    <input type="checkbox" name="sex" value="1" <% if(form.getSex() == null || form.getSex().length == 2 || "1".equals(form.getSex()[0])){ %> checked="checked" <% } %>>男性
+		    <input type="checkbox" name="sex" value="2" <% if(form.getSex() == null || form.getSex().length == 2 || "2".equals(form.getSex()[0])){ %> checked="checked" <% } %>>女性
 		</td>
 	</tr>
 	<tr>
 		<td class="label">
-			<label>入社日</label>
+			<label>所属部署</label>
+		</td>
+		<td>
+			<select name="department">
+				<%
+		        for (Map.Entry<String, String> department : form.getDepartmentMap().entrySet()) {
+		        %>
+					<option value=<%= department.getKey()%> > <%= department.getValue()%> </option>
+				<%
+		        }
+		         %>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="label">
+			<label>入社年月日</label>
 		</td>
 		<td>
 			<input type="text" name="joinedYmd" value="<%= form.getJoinedYmd() %>" placeholder=""  required />
 		</td>
 	</tr>
-	<tr>
-		<td class="label">
-			<label>退職日</label>
-		</td>
-		<td>
-			<input type="text" name="retiredYmd" value="<%= form.getRetiredYmd() %>" placeholder=""  required />
-		</td>
-	</tr>
+
 </table>
 
 <div class="buttonGroup">
@@ -151,7 +163,7 @@ Emp0001DataBean bean = list.get(i);
 	<label><%= bean.getJoinedYmd() %></label>
 </td>
 <td class="list">
-	<input type="checkbox" name="checklist" value=<%= i %>> <!-- 作成中 -->
+	<input type="checkbox" name="checklist" value=<%= bean.getEmployeeId() %>> <!-- 作成中 -->
 </td>
 
 

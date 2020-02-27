@@ -33,13 +33,13 @@
 		</tr>
 		<tr>
 			<th>論理エンティティ名</th>
-			<td>メニューマスタ&nbsp;</td>
+			<td>部署マスタ&nbsp;</td>
 			<th>タグ&nbsp;</th>
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
 			<th>物理エンティティ名</th>
-			<td>MST_MENU&nbsp;</td>
+			<td>MST_DEPARTMENT&nbsp;</td>
 			<th>&nbsp;</th>
 			<td>&nbsp;</td>
 		</tr>
@@ -72,8 +72,8 @@
 		</tr>
 		<tr>
 			<td style="text-align:right;">1</td>
-			<td>階層ID</td>
-			<td>HIERARCHY_ID</td>
+			<td>部署ID</td>
+			<td>DEPARTMENT_ID</td>
 			<td>@VARCHAR</td>
 			<td>Yes (PK)</td>
 			<td></td>
@@ -81,24 +81,15 @@
 		</tr>
 		<tr>
 			<td style="text-align:right;">2</td>
-			<td>機能ＩＤ</td>
-			<td>FUNCTION_ID</td>
+			<td>所属名称</td>
+			<td>DEPARTMENT_NAME</td>
 			<td>@VARCHAR</td>
-			<td>Yes (PK)</td>
+			<td>Yes</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">3</td>
-			<td>機能順序</td>
-			<td>FUNCTION_ID_ORDER</td>
-			<td>@INT</td>
-			<td>Yes</td>
-			<td>0</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td style="text-align:right;">4</td>
 			<td>削除フラグ</td>
 			<td>DELETE_FLG</td>
 			<td>@CHAR</td>
@@ -107,7 +98,7 @@
 			<td>0:未削除、1:削除</td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">5</td>
+			<td style="text-align:right;">4</td>
 			<td>作成モジュールＩＤ</td>
 			<td>CREATE_MODULE_ID</td>
 			<td>@VARCHAR</td>
@@ -116,7 +107,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">6</td>
+			<td style="text-align:right;">5</td>
 			<td>作成ユーザＩＤ</td>
 			<td>CREATE_USER_ID</td>
 			<td>@VARCHAR</td>
@@ -125,7 +116,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">7</td>
+			<td style="text-align:right;">6</td>
 			<td>作成年月日</td>
 			<td>CREATE_YMD</td>
 			<td>@VARCHAR</td>
@@ -134,7 +125,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">8</td>
+			<td style="text-align:right;">7</td>
 			<td>更新モジュールＩＤ</td>
 			<td>UPDATE_MODULE_ID</td>
 			<td>@VARCHAR</td>
@@ -143,7 +134,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">9</td>
+			<td style="text-align:right;">8</td>
 			<td>更新ユーザＩＤ</td>
 			<td>UPDATE_USER_ID</td>
 			<td>@VARCHAR</td>
@@ -152,7 +143,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">10</td>
+			<td style="text-align:right;">9</td>
 			<td>更新年月日</td>
 			<td>UPDATE_YMD</td>
 			<td>@VARCHAR</td>
@@ -199,13 +190,6 @@
 			<th>参照先</th>
 			<th>参照先カラムリスト</th>
 		</tr>
-		<tr>
-			<td style="text-align:right;">1</td>
-			<td></td>
-			<td>HIERARCHY_ID</td>
-			<td>HIERARCHY_MST[</td>
-			<td>HIERARCHY_ID</td>
-		</tr>
 	</table>
 
 <br>
@@ -229,9 +213,9 @@
 		<tr>
 			<td style="text-align:right;">1</td>
 			<td></td>
-			<td>FUNCTION_ID</td>
-			<td>MST_FUNCTION</td>
-			<td>FUNCTION_ID</td>
+			<td>DEPARTMENT_ID</td>
+			<td>MST_EMPLOYEE</td>
+			<td>DEPARTMENT_ID</td>
 		</tr>
 	</table>
 

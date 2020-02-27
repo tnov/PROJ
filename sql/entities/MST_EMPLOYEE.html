@@ -23,7 +23,7 @@
 			<th>サブシステム名</th>
 			<td>&nbsp;</td>
 			<th>作成日</th>
-			<td>2019/12/05&nbsp;</td>
+			<td>2020/02/24&nbsp;</td>
 		</tr>
 		<tr>
 			<th>スキーマ名</th>
@@ -74,7 +74,7 @@
 			<td style="text-align:right;">1</td>
 			<td>社員ＩＤ</td>
 			<td>EMPLOYEE_ID</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>Yes (PK)</td>
 			<td></td>
 			<td></td>
@@ -83,115 +83,151 @@
 			<td style="text-align:right;">2</td>
 			<td>社員氏名</td>
 			<td>EMPLOYEE_NAME</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>Yes</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">3</td>
-			<td>生年月日</td>
-			<td>BIRTH_YMD</td>
-			<td>character&#32;varying</td>
+			<td>性別</td>
+			<td>SEX</td>
+			<td>@CHAR</td>
 			<td>Yes</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">4</td>
-			<td>性別</td>
-			<td>SEX</td>
-			<td>character</td>
+			<td>生年月日</td>
+			<td>BIRTH_YMD</td>
+			<td>@VARCHAR</td>
 			<td>Yes</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">5</td>
-			<td>入社日</td>
-			<td>JOINED_YMD</td>
-			<td>character&#32;varying</td>
-			<td>Yes</td>
+			<td>郵便番号</td>
+			<td>ZIP_CODE</td>
+			<td>@VARCHAR</td>
+			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">6</td>
-			<td>所属ＩＤ</td>
-			<td>DEPARTMENT_ID</td>
-			<td>character&#32;varying</td>
+			<td>住所</td>
+			<td>ADDRESS</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">7</td>
-			<td>認証</td>
-			<td>AUTHORIZED</td>
-			<td>character</td>
-			<td>Yes</td>
-			<td>0</td>
+			<td>電話番号</td>
+			<td>TEL</td>
+			<td>@VARCHAR</td>
+			<td>&nbsp;</td>
+			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">8</td>
-			<td>削除フラグ</td>
-			<td>DELETE_FLG</td>
-			<td>character</td>
-			<td>Yes</td>
-			<td>0</td>
-			<td>0:未削除、1:削除</td>
+			<td>入社日</td>
+			<td>JOINED_YMD</td>
+			<td>@VARCHAR</td>
+			<td>&nbsp;</td>
+			<td></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">9</td>
-			<td>作成モジュールＩＤ</td>
-			<td>CREATE_MODULE_ID</td>
-			<td>character&#32;varying</td>
+			<td>退職日</td>
+			<td>RETIRE_YMD</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">10</td>
-			<td>作成ユーザＩＤ</td>
-			<td>CREATE_USER_ID</td>
-			<td>character&#32;varying</td>
+			<td>部署ＩＤ</td>
+			<td>DEPARTMENT_ID</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">11</td>
-			<td>作成年月日</td>
-			<td>CREATE_YMD</td>
-			<td>character&#32;varying</td>
-			<td>&nbsp;</td>
-			<td></td>
+			<td>認証</td>
+			<td>AUTHORIZED</td>
+			<td>@CHAR</td>
+			<td>Yes</td>
+			<td>0</td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">12</td>
-			<td>更新モジュールＩＤ</td>
-			<td>UPDATE_MODULE_ID</td>
-			<td>character&#32;varying</td>
-			<td>&nbsp;</td>
-			<td></td>
-			<td></td>
+			<td>削除フラグ</td>
+			<td>DELETE_FLG</td>
+			<td>@CHAR</td>
+			<td>Yes</td>
+			<td>0</td>
+			<td>0:未削除、1:削除</td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">13</td>
-			<td>更新ユーザＩＤ</td>
-			<td>UPDATE_USER_ID</td>
-			<td>character&#32;varying</td>
+			<td>作成モジュールＩＤ</td>
+			<td>CREATE_MODULE_ID</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">14</td>
+			<td>作成ユーザＩＤ</td>
+			<td>CREATE_USER_ID</td>
+			<td>@VARCHAR</td>
+			<td>&nbsp;</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">15</td>
+			<td>作成年月日</td>
+			<td>CREATE_YMD</td>
+			<td>@VARCHAR</td>
+			<td>&nbsp;</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">16</td>
+			<td>更新モジュールＩＤ</td>
+			<td>UPDATE_MODULE_ID</td>
+			<td>@VARCHAR</td>
+			<td>&nbsp;</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">17</td>
+			<td>更新ユーザＩＤ</td>
+			<td>UPDATE_USER_ID</td>
+			<td>@VARCHAR</td>
+			<td>&nbsp;</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">18</td>
 			<td>更新年月日</td>
 			<td>UPDATE_YMD</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
@@ -234,6 +270,13 @@
 			<th>カラムリスト</th>
 			<th>参照先</th>
 			<th>参照先カラムリスト</th>
+		</tr>
+		<tr>
+			<td style="text-align:right;">1</td>
+			<td></td>
+			<td>DEPARTMENT_ID</td>
+			<td>MST_DEPARTMENT</td>
+			<td>DEPARTMENT_ID</td>
 		</tr>
 	</table>
 

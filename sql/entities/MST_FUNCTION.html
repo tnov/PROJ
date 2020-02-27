@@ -23,7 +23,7 @@
 			<th>サブシステム名</th>
 			<td>&nbsp;</td>
 			<th>作成日</th>
-			<td>2019/12/05&nbsp;</td>
+			<td>2020/02/24&nbsp;</td>
 		</tr>
 		<tr>
 			<th>スキーマ名</th>
@@ -74,7 +74,7 @@
 			<td style="text-align:right;">1</td>
 			<td>機能ＩＤ</td>
 			<td>FUNCTION_ID</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>Yes (PK)</td>
 			<td></td>
 			<td></td>
@@ -83,7 +83,7 @@
 			<td style="text-align:right;">2</td>
 			<td>機能名称</td>
 			<td>FUNCTION_NAME</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>Yes (PK)</td>
 			<td></td>
 			<td></td>
@@ -92,7 +92,7 @@
 			<td style="text-align:right;">3</td>
 			<td>機能パス</td>
 			<td>FUNCTION_PATH</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>Yes</td>
 			<td></td>
 			<td></td>
@@ -101,7 +101,7 @@
 			<td style="text-align:right;">4</td>
 			<td>機能説明</td>
 			<td>FUNCTION_COMMENT</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
@@ -110,7 +110,7 @@
 			<td style="text-align:right;">5</td>
 			<td>権限ＩＤ</td>
 			<td>AUTHORIZED_ID</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
@@ -119,7 +119,7 @@
 			<td style="text-align:right;">6</td>
 			<td>削除フラグ</td>
 			<td>DELETE_FLG</td>
-			<td>character</td>
+			<td>@CHAR</td>
 			<td>Yes</td>
 			<td>0</td>
 			<td>0:未削除、1:削除</td>
@@ -128,7 +128,7 @@
 			<td style="text-align:right;">7</td>
 			<td>作成モジュールＩＤ</td>
 			<td>CREATE_MODULE_ID</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
@@ -137,7 +137,7 @@
 			<td style="text-align:right;">8</td>
 			<td>作成ユーザＩＤ</td>
 			<td>CREATE_USER_ID</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
@@ -146,7 +146,7 @@
 			<td style="text-align:right;">9</td>
 			<td>作成年月日</td>
 			<td>CREATE_YMD</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
@@ -155,7 +155,7 @@
 			<td style="text-align:right;">10</td>
 			<td>更新モジュールＩＤ</td>
 			<td>UPDATE_MODULE_ID</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
@@ -164,7 +164,7 @@
 			<td style="text-align:right;">11</td>
 			<td>更新ユーザＩＤ</td>
 			<td>UPDATE_USER_ID</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
@@ -173,7 +173,7 @@
 			<td style="text-align:right;">12</td>
 			<td>更新年月日</td>
 			<td>UPDATE_YMD</td>
-			<td>character&#32;varying</td>
+			<td>@VARCHAR</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
@@ -243,13 +243,6 @@
 			<th>カラムリスト</th>
 			<th>参照元</th>
 			<th>参照元カラムリスト</th>
-		</tr>
-		<tr>
-			<td style="text-align:right;">1</td>
-			<td></td>
-			<td>AUTHORIZED_ID</td>
-			<td>MST_AUTHORIZED</td>
-			<td>AUTHORIZED_ID</td>
 		</tr>
 	</table>
 

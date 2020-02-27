@@ -5,10 +5,8 @@ import lib.deprecated.database.entity.CommonEntity;
 public class MstAuthorizedUser extends CommonEntity {
 	private String userId = null;
 	private String userPassword = null;
-	private String organizationId = null;
-	private String authorizedGroupId = null;
 	private String lastUpdateYmd = null;
-	private String lastUpdatePass = null;
+	private String lastUpdatePassword = null;
 	public String getUserId() {
 		return userId;
 	}
@@ -21,28 +19,16 @@ public class MstAuthorizedUser extends CommonEntity {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-	public String getOrganizationId() {
-		return organizationId;
-	}
-	public void setOrganizationId(String organizationId) {
-		this.organizationId = organizationId;
-	}
-	public String getAuthorizedGroupId() {
-		return authorizedGroupId;
-	}
-	public void setAuthorizedGroupId(String authorizedGroupId) {
-		this.authorizedGroupId = authorizedGroupId;
-	}
 	public String getLastUpdateYmd() {
 		return lastUpdateYmd;
 	}
 	public void setLastUpdateYmd(String lastUpdateYmd) {
 		this.lastUpdateYmd = lastUpdateYmd;
 	}
-	public String getLastUpdatePass() {
-		return lastUpdatePass;
+	public String getLastUpdatePassword() {
+		return lastUpdatePassword;
 	}
-	public void setLastUpdatePass(String lastUpdatePass) {
-		this.lastUpdatePass = lastUpdatePass;
+	public void setLastUpdatePassword(String lastUpdatePassword) {
+		this.lastUpdatePassword = lastUpdatePassword;
 	}
 }

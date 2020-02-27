@@ -42,17 +42,17 @@ public class Emp0001LstSearch extends HttpServlet {
 			form = new Emp0001LstForm();
 			form.setEmployeeId(req.getParameter("employeeId"));
 			form.setEmployeeName(req.getParameter("employeeName"));
-			form.setSex(req.getParameter("sex"));
+			form.setSex(req.getParameterValues("sex"));
 			form.setJoinedYmd(req.getParameter("joinedYmd"));
 			form.setRetiredYmd(req.getParameter("retiredYmd"));
 			form.setDepartmentId(req.getParameter("departmentId"));
+
 
 			form.setMovePath(req.getParameter("movePath"));
 			form.setCurrentPage(req.getParameter("currentPage"));
 			form.setLineLimit(req.getParameter("lineLimit"));
 			form.setLineSize(req.getParameter("lineSize"));
 			form.setPageSize(req.getParameter("pageSize"));
-
 		}
 		// チェック処理
 		// 検索処理
@@ -91,6 +91,8 @@ public class Emp0001LstSearch extends HttpServlet {
 		    	query.append(where?" AND employee_name = ?":" WHERE employee_name = ?");
 		    	where = true;
 		    }
+
+
 		    query.append(Emp0001Constants.SQL_ORDER);
 		    query.append(") AS ROWSIZE");
 		    // コネクションの取得
@@ -146,6 +148,18 @@ public class Emp0001LstSearch extends HttpServlet {
 		    	query.append(where?" AND employee_name = ?":" WHERE employee_name = ?");
 		    	where = true;
 		    }
+		    if (form.getSex() != null) {
+			    if(form.getSex().length == 1) {
+			    	query.append(where?" AND sex = ?":" WHERE sex = ?");
+			    	where = true;
+			    }else if(form.getSex().length == 0) {
+			    	query.append(where?" AND 1=2 ":" WHERE 1=2 ");
+			    	where = true;
+			    }
+		    }
+
+
+
 		    query.append(Emp0001Constants.SQL_ORDER);
 		    if (CheckUtil.isNotEmpty(form.getLineSize())) {
 		    	query.insert(0, "select * from (");
@@ -165,6 +179,13 @@ public class Emp0001LstSearch extends HttpServlet {
 					// パラメータ指定(社員名)
 					statement.setString(i++, form.getEmployeeName());
 				}
+			    if (form.getSex() != null) {
+				    if(form.getSex().length == 1) {
+						// パラメータ指定(性別)
+						statement.setString(i++, form.getSex()[0]);
+				    }
+			    }
+
 			    if (CheckUtil.isNotEmpty(form.getLineSize())) {
 					// パラメータ指定(開始行、末尾行)
 					statement.setInt(i++, Integer.parseInt(form.getLineSize()));

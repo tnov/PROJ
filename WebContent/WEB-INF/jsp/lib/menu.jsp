@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
+<%@ page import="lib.common.menu.HierarchyBean"%>
 <%@ page import="lib.common.menu.MenuBean"%>
 <% request.setCharacterEncoding("UTF8"); %>
 <!DOCTYPE html>
@@ -7,7 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/common.css" %>">
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/menu.css" %>">
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/common.js" %>" ></script>
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/lib/menu.js" %>" ></script>
 <title>メニュー</title>
@@ -15,24 +15,32 @@
 <body>
 <header></header>
 <form id="mainForm" method="post" action="<%= request.getContextPath() + "/menu/move" %>">
-<jsp:include page="header.jsp">
+<jsp:include page="../..//jsp/header.jsp">
     <jsp:param name="title" value="メニュー" />
 </jsp:include>
 <div class="menuItem">
 <%
-ArrayList<MenuBean> list = (ArrayList<MenuBean>)request.getAttribute("list");
-if (list != null) {
-	for (int i = 0 ; i < list.size() ; i++) {
+List<HierarchyBean> hierarchyList = (List<HierarchyBean>)request.getAttribute("list");
+if (hierarchyList != null) {
+	for (int i = 0 ; i < hierarchyList.size() ; i++) {
+		HierarchyBean hierarchyBean = hierarchyList.get(i);
 %>
+	<label><%= hierarchyBean.getHierarchyName() %></label>
 <%
-MenuBean bean = list.get(i);
+		List<MenuBean> menuList = hierarchyBean.getMenuList();
+		if (menuList != null) {
+			for (int j = 0 ; j < menuList.size() ; j++) {
+				MenuBean menuBean = menuList.get(j);
 %>
-	<div style="" class="link" onclick="move(document.getElementById('mainForm'),'<%= bean.getMenuPath() %>');">
-	<label><%= bean.getMenuNo() %></label>
-	<label><%= bean.getMenuId() %></label>
-	<label><%= bean.getMenuName() %></label>
-	<input type="hidden" name="menuPath" value="<%= request.getContextPath() + bean.getMenuPath() %>"/>
-</div>
+	<div style="" class="link" onclick="move(document.getElementById('mainForm'),'<%= menuBean.getMenuPath() %>');">
+	<label><%= menuBean.getMenuId() %></label>
+	<label><%= menuBean.getMenuName() %></label>
+	<input type="hidden" name="menuPath" value="<%= request.getContextPath() + menuBean.getMenuPath() %>"/>
+	</div>
+<%
+			}
+		}
+%>
 <%
 	}
 }
