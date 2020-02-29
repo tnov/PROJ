@@ -63,7 +63,7 @@ public class MenuInit extends HttpServlet {
 		req.setAttribute(type, messages);
 		// メニュー遷移
 		ServletContext ctx = getServletContext();
-		RequestDispatcher dispatcher = ctx.getRequestDispatcher(MenuConstants.INIT_PATH);
+		RequestDispatcher dispatcher = ctx.getRequestDispatcher(MenuConstants.CONTENTS_PATH);
 		dispatcher.forward(req, resp);
 	}
 
