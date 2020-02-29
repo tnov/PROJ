@@ -1,32 +1,12 @@
 @charset "utf-8";
 
-.inputtable {
-	position : relative;
-	top: 30px;
-	left: 450px;
-}
-
 .label {
 	width: 150px;
 	height: 30px;
 }
 
-.buttonGroup {
-    display: inline-block;
-    position : relative;
-	top: 50px;
-	left: 450px;
-}
-.inButton {
-	margin :5px ;
-}
-
-.detail {
-	position : relative;
-	top: 80px;
-	left: 450px;
-	width: 450px;
-
+table  {
+	margin:0 auto
 }
 
 table thead {
@@ -34,3 +14,14 @@ table thead {
 	background: #6cb6ff;
 }
 
+.inButton {
+	margin-right :5px ;
+}
+
+.detail {
+	margin:0 auto
+}
+
+.joinedYmd {
+	width: 80px;
+}

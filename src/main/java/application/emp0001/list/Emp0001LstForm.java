@@ -10,7 +10,8 @@ public class Emp0001LstForm extends CommonForm {
 	private String employeeId = null;
 	private String employeeName = null;
 	private String[] sex = null;
-	private String joinedYmd = null;
+	private String joinedYmdFrom = null;
+	private String joinedYmdTo = null;
 	private String retiredYmd = null;
 	private String departmentId = null;
 	private HashMap<String, String> departmentMap = new HashMap<String, String>();
@@ -35,11 +36,17 @@ public class Emp0001LstForm extends CommonForm {
 	public void setSex(String[] sex) {
 		this.sex = sex;
 	}
-	public String getJoinedYmd() {
-		return joinedYmd;
+	public String getJoinedYmdFrom() {
+		return joinedYmdFrom;
 	}
-	public void setJoinedYmd(String joinedYmd) {
-		this.joinedYmd = joinedYmd;
+	public void setJoinedYmdFrom(String joinedYmdFrom) {
+		this.joinedYmdFrom = joinedYmdFrom;
+	}
+	public String getJoinedYmdTo() {
+		return joinedYmdTo;
+	}
+	public void setJoinedYmdTo(String joinedYmdTo) {
+		this.joinedYmdTo = joinedYmdTo;
 	}
 	public String getDepartmentId() {
 		return departmentId;

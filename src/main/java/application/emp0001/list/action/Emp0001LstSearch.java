@@ -21,6 +21,7 @@ import javax.sql.DataSource;
 
 import application.CheckUtil;
 import application.CommonConstants;
+import application.CommonUtil;
 import application.emp0001.Emp0001Constants;
 import application.emp0001.Emp0001DataBean;
 import application.emp0001.list.Emp0001LstConstants;
@@ -43,11 +44,11 @@ public class Emp0001LstSearch extends HttpServlet {
 			form.setEmployeeId(req.getParameter("employeeId"));
 			form.setEmployeeName(req.getParameter("employeeName"));
 			form.setSex(req.getParameterValues("sex"));
-			form.setJoinedYmd(req.getParameter("joinedYmd"));
+			form.setJoinedYmdFrom(req.getParameter("joinedYmdFrom"));
+			form.setJoinedYmdTo(req.getParameter("joinedYmdTo"));
 			form.setRetiredYmd(req.getParameter("retiredYmd"));
 			form.setDepartmentId(req.getParameter("departmentId"));
-
-
+			form.setDepartmentMap(CommonUtil.getDepartment());
 			form.setMovePath(req.getParameter("movePath"));
 			form.setCurrentPage(req.getParameter("currentPage"));
 			form.setLineLimit(req.getParameter("lineLimit"));
@@ -76,27 +77,54 @@ public class Emp0001LstSearch extends HttpServlet {
 		int rowcount = 0;
 		try {
 			// JNDIからDBデータソース取得
-		    InitialContext initialContext = new InitialContext();
-		    DataSource dataSource = (DataSource)initialContext.lookup(CommonConstants.JNDI_JDBC_EMPDB);
-		    // QUERY作成
-		    boolean where = false;
-		    StringBuilder query = new StringBuilder();
-		    query.append("SELECT COUNT(*) FROM (");
-		    query.append(Emp0001Constants.SQL_SELECT);
-		    if (CheckUtil.isNotEmpty(form.getEmployeeId())) {
-		    	query.append(where?" AND employee_id = ?":" WHERE employee_id = ?");
-		    	where = true;
-		    }
-		    if (CheckUtil.isNotEmpty(form.getEmployeeName())) {
-		    	query.append(where?" AND employee_name = ?":" WHERE employee_name = ?");
-		    	where = true;
-		    }
+			InitialContext initialContext = new InitialContext();
+			DataSource dataSource = (DataSource)initialContext.lookup(CommonConstants.JNDI_JDBC_EMPDB);
+			// QUERY作成
+			boolean where = false;
+			StringBuilder query = new StringBuilder();
+			query.append("SELECT COUNT(*) FROM (");
+			query.append(Emp0001Constants.SQL_SELECT);
 
+			// SQL条件：社員ID
+			if (CheckUtil.isNotEmpty(form.getEmployeeId())) {
+				query.append(where?" AND employee_id = ?":" WHERE employee_id = ?");
+				where = true;
+			}
+			// SQL条件：社員名
+			if (CheckUtil.isNotEmpty(form.getEmployeeName())) {
+				query.append(where?" AND employee_name = ?":" WHERE employee_name = ?");
+				where = true;
+			}
+			// SQL条件：性別
+			if (form.getSex() != null) {
+				if(form.getSex().length == 1) {
+					query.append(where?" AND sex = ?":" WHERE sex = ?");
+					where = true;
+				}else if(form.getSex().length == 0) {
+					query.append(where?" AND 1=2 ":" WHERE 1=2 ");
+					where = true;
+				}
+			}
+			// SQL条件：部署名
+			if (CheckUtil.isNotEmpty(form.getDepartmentId())) {
+				query.append(where?" AND department_id = ?":" WHERE department_id = ?");
+				where = true;
+			}
+			// SQL条件：入社年月日From
+			if (CheckUtil.isNotEmpty(form.getJoinedYmdFrom())) {
+				query.append(where?" AND joined_ymd >= ?":" WHERE joined_ymd >= ?");
+				where = true;
+			}
+			// SQL条件：入社年月日To
+			if (CheckUtil.isNotEmpty(form.getJoinedYmdTo())) {
+				query.append(where?" AND joined_ymd <= ?":" WHERE joined_ymd <= ?");
+				where = true;
+			}
 
-		    query.append(Emp0001Constants.SQL_ORDER);
-		    query.append(") AS ROWSIZE");
-		    // コネクションの取得
-		    // SQL実行
+			query.append(Emp0001Constants.SQL_ORDER);
+			query.append(") AS ROWSIZE");
+			// コネクションの取得
+			// SQL実行
 			try (Connection connection = dataSource.getConnection();
 				PreparedStatement statement = connection.prepareStatement(query.toString())
 					) {
@@ -109,6 +137,25 @@ public class Emp0001LstSearch extends HttpServlet {
 					// パラメータ指定(社員名)
 					statement.setString(i++, form.getEmployeeName());
 				}
+				if (form.getSex() != null) {
+					if(form.getSex().length == 1) {
+						// パラメータ指定(性別)
+						statement.setString(i++, form.getSex()[0]);
+					}
+				}
+				if (CheckUtil.isNotEmpty(form.getDepartmentId())) {
+					// パラメータ指定(部署名)
+					statement.setString(i++, form.getDepartmentId());
+				}
+				if (CheckUtil.isNotEmpty(form.getJoinedYmdFrom())) {
+					// パラメータ指定(入社年月日From)
+					statement.setString(i++, form.getJoinedYmdFrom());
+				}
+				if (CheckUtil.isNotEmpty(form.getJoinedYmdTo())) {
+					// パラメータ指定(入社年月日To)
+					statement.setString(i++, form.getJoinedYmdTo());
+				}
+
 				// ログイン情報を検索
 				if (!statement.execute()) {
 					// データなし
@@ -134,39 +181,56 @@ public class Emp0001LstSearch extends HttpServlet {
 		List<Emp0001DataBean> resultList = null;
 		try {
 			// JNDIからDBデータソース取得
-		    InitialContext initialContext = new InitialContext();
-		    DataSource dataSource = (DataSource)initialContext.lookup(CommonConstants.JNDI_JDBC_EMPDB);
-		    // QUERY作成
-		    boolean where = false;
-		    StringBuilder query = new StringBuilder();
-		    query.append(Emp0001Constants.SQL_SELECT);
-		    if (CheckUtil.isNotEmpty(form.getEmployeeId())) {
-		    	query.append(where?" AND employee_id = ?":" WHERE employee_id = ?");
-		    	where = true;
-		    }
-		    if (CheckUtil.isNotEmpty(form.getEmployeeName())) {
-		    	query.append(where?" AND employee_name = ?":" WHERE employee_name = ?");
-		    	where = true;
-		    }
-		    if (form.getSex() != null) {
-			    if(form.getSex().length == 1) {
-			    	query.append(where?" AND sex = ?":" WHERE sex = ?");
-			    	where = true;
-			    }else if(form.getSex().length == 0) {
-			    	query.append(where?" AND 1=2 ":" WHERE 1=2 ");
-			    	where = true;
-			    }
-		    }
+			InitialContext initialContext = new InitialContext();
+			DataSource dataSource = (DataSource)initialContext.lookup(CommonConstants.JNDI_JDBC_EMPDB);
+			// QUERY作成
+			boolean where = false;
+			StringBuilder query = new StringBuilder();
+			query.append(Emp0001Constants.SQL_SELECT);
 
+			// SQL条件：社員ID
+			if (CheckUtil.isNotEmpty(form.getEmployeeId())) {
+				query.append(where?" AND employee_id = ?":" WHERE employee_id = ?");
+				where = true;
+			}
+			// SQL条件：社員名
+			if (CheckUtil.isNotEmpty(form.getEmployeeName())) {
+				query.append(where?" AND employee_name = ?":" WHERE employee_name = ?");
+				where = true;
+			}
+			// SQL条件：性別
+			if (form.getSex() != null) {
+				if(form.getSex().length == 1) {
+					query.append(where?" AND sex = ?":" WHERE sex = ?");
+					where = true;
+				}else if(form.getSex().length == 0) {
+					query.append(where?" AND 1=2 ":" WHERE 1=2 ");
+					where = true;
+				}
+			}
+			// SQL条件：部署名
+			if (CheckUtil.isNotEmpty(form.getDepartmentId())) {
+				query.append(where?" AND department_id = ?":" WHERE department_id = ?");
+				where = true;
+			}
+			// SQL条件：入社年月日From
+			if (CheckUtil.isNotEmpty(form.getJoinedYmdFrom())) {
+				query.append(where?" AND joined_ymd >= ?":" WHERE joined_ymd >= ?");
+				where = true;
+			}
+			// SQL条件：入社年月日To
+			if (CheckUtil.isNotEmpty(form.getJoinedYmdTo())) {
+				query.append(where?" AND joined_ymd <= ?":" WHERE joined_ymd <= ?");
+				where = true;
+			}
 
-
-		    query.append(Emp0001Constants.SQL_ORDER);
-		    if (CheckUtil.isNotEmpty(form.getLineSize())) {
-		    	query.insert(0, "select * from (");
-		    	query.append(") AS LIST LIMIT ? OFFSET ?");
-		    }
-		    // コネクションの取得
-		    // SQL実行
+			query.append(Emp0001Constants.SQL_ORDER);
+			if (CheckUtil.isNotEmpty(form.getLineSize())) {
+				query.insert(0, "select * from (");
+				query.append(") AS LIST LIMIT ? OFFSET ?");
+			}
+			// コネクションの取得
+			// SQL実行
 			try (Connection connection = dataSource.getConnection();
 				PreparedStatement statement = connection.prepareStatement(query.toString())
 					) {
@@ -179,18 +243,29 @@ public class Emp0001LstSearch extends HttpServlet {
 					// パラメータ指定(社員名)
 					statement.setString(i++, form.getEmployeeName());
 				}
-			    if (form.getSex() != null) {
-				    if(form.getSex().length == 1) {
+				if (form.getSex() != null) {
+					if(form.getSex().length == 1) {
 						// パラメータ指定(性別)
 						statement.setString(i++, form.getSex()[0]);
-				    }
-			    }
-
-			    if (CheckUtil.isNotEmpty(form.getLineSize())) {
+					}
+				}
+				if (CheckUtil.isNotEmpty(form.getDepartmentId())) {
+					// パラメータ指定(部署名)
+					statement.setString(i++, form.getDepartmentId());
+				}
+				if (CheckUtil.isNotEmpty(form.getJoinedYmdFrom())) {
+					// パラメータ指定(入社年月日From)
+					statement.setString(i++, form.getJoinedYmdFrom());
+				}
+				if (CheckUtil.isNotEmpty(form.getJoinedYmdTo())) {
+					// パラメータ指定(入社年月日To)
+					statement.setString(i++, form.getJoinedYmdTo());
+				}
+				if (CheckUtil.isNotEmpty(form.getLineSize())) {
 					// パラメータ指定(開始行、末尾行)
 					statement.setInt(i++, Integer.parseInt(form.getLineSize()));
 					statement.setInt(i++, (Integer.parseInt(form.getCurrentPage())-1) * Integer.parseInt(form.getLineSize()));
-			    }
+				}
 				// ログイン情報を検索
 				if (!statement.execute()) {
 					// データなし

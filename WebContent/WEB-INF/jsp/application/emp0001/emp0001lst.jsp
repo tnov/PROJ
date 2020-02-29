@@ -54,10 +54,10 @@ if (infos != null) {
 %>
 </section>
 <form id="mainForm" method="post">
-<section>
 <%
 Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 %>
+<br>
 <table class="inputtable">
 	<tr>
 		<td class="label">
@@ -89,11 +89,12 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 			<label>所属部署</label>
 		</td>
 		<td>
-			<select name="department">
+			<select name="departmentId">
+				<option value=""></option>
 				<%
 		        for (Map.Entry<String, String> department : form.getDepartmentMap().entrySet()) {
 		        %>
-					<option value=<%= department.getKey()%> > <%= department.getValue()%> </option>
+					<option value=<%= department.getKey()%> <% if(department.getKey().equals(form.getDepartmentId())) { %> selected <% ;} %> > <%= department.getValue()%> </option>
 				<%
 		        }
 		         %>
@@ -105,21 +106,24 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 			<label>入社年月日</label>
 		</td>
 		<td>
-			<input type="text" name="joinedYmd" value="<%= form.getJoinedYmd() %>" placeholder=""  required />
+			<input class="joinedYmd" type="text" name="joinedYmdFrom" value="<%= form.getJoinedYmdFrom() %>" placeholder=""  required />
+			～
+			<input class="joinedYmd" type="text" name="joinedYmdTo" value="<%= form.getJoinedYmdTo() %>" placeholder=""  required />
+
 		</td>
 	</tr>
 
+	<tr>
+		<td  colspan="2"><br>
+			<input class="inButton" type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','1')" value="検索"/>
+			<input class="inButton" type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Dtl/init" %>');" value="社員登録"/>
+			<input class="inButton" type="button" onclick="doPost(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/csv" %>')" value="ＣＳＶ出力"/>
+			<input class="inButton" type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/menu" %>');" value="戻る"/>
+		</td>
+	</tr>
 </table>
-
-<div class="buttonGroup">
-	<input class="inButton" type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','1')" value="検索"/>
-	<input class="inButton" type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Dtl/init" %>');" value="社員登録"/>
-	<input class="inButton" type="button" onclick="doPost(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/csv" %>')" value="ＣＳＶ出力"/>
-	<input class="inButton" type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/menu" %>');" value="戻る"/>
-</div>
-</section>
 <section>
-<div>
+<br>
 <table class="detail">
 <thead>
 <tr>
@@ -195,7 +199,6 @@ Emp0001DataBean bean = list.get(i);
 </tr>
 </tfoot>
 </table>
-</div>
 <input type="hidden" name="paramEmployeeId" value="" />
 
 <input type="hidden" name="movePath" value="" />
