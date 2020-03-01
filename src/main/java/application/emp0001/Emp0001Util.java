@@ -1,7 +1,83 @@
 package application.emp0001;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import application.CheckUtil;
+import application.emp0001.detail.Emp0001DtlConstants;
+import application.emp0001.detail.Emp0001DtlForm;
+import application.proj.dao.MstEmployeeDao;
+import application.proj.entity.MstEmployee;
+
 public class Emp0001Util {
-	public static boolean existsEmployeeId(String employeeId) {
+	public boolean existsEmployeeId(String employeeId) {
 		return false;
+	}
+	// チェック処理
+	public List<String> check(Emp0001DtlForm form) {
+		List<String> messages = new ArrayList<>();
+		if (CheckUtil.isEmpty(form.getEmployeeId())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_ID_NOT_INPUT);
+		}
+		if (CheckUtil.isEmpty(form.getEmployeeName())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_NAME_NOT_INPUT);
+		}
+		if (CheckUtil.isEmpty(form.getBirthYmd())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_BIRTH_YMD_NOT_INPUT);
+		}
+		if (CheckUtil.isEmpty(form.getSex())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_SEX_NOT_INPUT);
+		}
+		if (CheckUtil.isEmpty(form.getAuthorized())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_AUTHORIZED_NOT_SELECTED);
+		}
+		return messages;
+	}
+
+
+	// 検索処理
+	public boolean save(Emp0001DtlForm form) {
+		boolean result = false;
+		MstEmployee data = null;
+		MstEmployeeDao dao = new MstEmployeeDao();
+		if (Emp0001DtlConstants.MODE_CREATE.equals(form.getMode())) {
+			MstEmployee key = new MstEmployee();
+			key.setEmployeeId(form.getEmployeeId());
+			data = dao.getMstEmployee(key);
+			if (data != null) {
+				return false;
+			}
+			data = new MstEmployee();
+			data.setEmployeeId(form.getEmployeeId());
+			data.setEmployeeName(form.getEmployeeName());
+			data.setBirthYmd(form.getBirthYmd());
+			data.setSex(form.getSex());
+			data.setZipCode(form.getZipCode());
+			data.setAddress(form.getAddress());
+			data.setJoinedYmd(form.getJoinedYmd());
+			data.setRetireYmd(form.getRetireYmd());
+			data.setAuthorized(form.getAuthorized());
+			data.setDepartmentId(form.getDepartmentId());
+			result = dao.insert(data);
+		} else if (Emp0001DtlConstants.MODE_UPDATE.equals(form.getMode())) {
+			MstEmployee key = new MstEmployee();
+			key.setEmployeeId(form.getParamEmployeeId());
+			data = dao.getMstEmployee(key);
+			if (data == null) {
+				return false;
+			}
+			data.setEmployeeId(form.getEmployeeId());
+			data.setEmployeeName(form.getEmployeeName());
+			data.setBirthYmd(form.getBirthYmd());
+			data.setSex(form.getSex());
+			data.setZipCode(form.getZipCode());
+			data.setAddress(form.getAddress());
+			data.setJoinedYmd(form.getJoinedYmd());
+			data.setRetireYmd(form.getRetireYmd());
+			data.setDepartmentId(form.getDepartmentId());
+			data.setAuthorized(form.getAuthorized());
+			result = dao.update(data, key);
+		}
+		return result;
 	}
 }

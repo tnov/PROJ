@@ -27,7 +27,7 @@ if (hierarchyList != null) {
 		HierarchyBean hierarchyBean = hierarchyList.get(i);
 %>
 	<div class="tile">
-		<label><%= hierarchyBean.getHierarchyName() %></label>
+		<label><%= hierarchyBean.getHierarchyId() %></label>&nbsp;<label><%= hierarchyBean.getHierarchyName() %></label>
 		<div class="list">
 <%
 		List<MenuBean> menuList = hierarchyBean.getMenuList();
@@ -37,8 +37,7 @@ if (hierarchyList != null) {
 %>
 			<div class="item">
 				<div style="" class="link" onclick="move(document.getElementById('mainForm'),'<%= menuBean.getMenuPath() %>');">
-					<label><%= menuBean.getMenuId() %></label>
-					<label><%= menuBean.getMenuName() %></label>
+					<label><%= menuBean.getMenuId() %></label>&nbsp;<label><%= menuBean.getMenuName() %></label>
 					<input type="hidden" name="menuPath" value="<%= request.getContextPath() + menuBean.getMenuPath() %>"/>
 				</div>
 			</div>

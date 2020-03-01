@@ -13,13 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import application.CheckUtil;
+import application.emp0001.Emp0001Util;
 import application.emp0001.detail.Emp0001DtlConstants;
 import application.emp0001.detail.Emp0001DtlForm;
-import application.proj.dao.MstEmployeeDao;
-import application.proj.entity.MstEmployee;
 import lib.common.Constants;
 
 public class Emp0001DtlSave extends HttpServlet {
+
+	public Emp0001Util util = new Emp0001Util();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,14 +39,14 @@ public class Emp0001DtlSave extends HttpServlet {
 		form.setAuthorized(req.getParameter("authorized"));
 		form.setMode(req.getParameter("mode"));
 		// チェック処理
-		List<String> messages = check(form);
+		List<String> messages = util.check(form);
 		if (CheckUtil.isNotEmpty(messages)) {
 			// チェック処理エラー
 			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, messages,form);
 			return;
 		}
 		// 保存処理
-		if (!save(form)) {
+		if (!util.save(form)) {
 			// 保存処理エラー
 			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, Emp0001DtlConstants.MESSAGE_ERROR_MST_EMPLOYEE_NOT_SAVE,form);
 			return;
@@ -55,73 +56,6 @@ public class Emp0001DtlSave extends HttpServlet {
 		ServletContext ctx = getServletContext();
 		RequestDispatcher dispatcher = ctx.getRequestDispatcher(Emp0001DtlConstants.CONTENTS_PATH);
 		dispatcher.forward(req, resp);
-	}
-
-	// チェック処理
-	private List<String> check(Emp0001DtlForm form) {
-		List<String> messages = new ArrayList<>();
-		if (CheckUtil.isEmpty(form.getEmployeeId())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_ID_NOT_INPUT);
-		}
-		if (CheckUtil.isEmpty(form.getEmployeeName())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_NAME_NOT_INPUT);
-		}
-		if (CheckUtil.isEmpty(form.getBirthYmd())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_BIRTH_YMD_NOT_INPUT);
-		}
-		if (CheckUtil.isEmpty(form.getSex())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_SEX_NOT_INPUT);
-		}
-		if (CheckUtil.isEmpty(form.getAuthorized())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_AUTHORIZED_NOT_SELECTED);
-		}
-		return messages;
-	}
-
-	// 検索処理
-	private boolean save(Emp0001DtlForm form) {
-		boolean result = false;
-		MstEmployee data = null;
-		MstEmployeeDao dao = new MstEmployeeDao();
-		if (Emp0001DtlConstants.MODE_CREATE.equals(form.getMode())) {
-			MstEmployee key = new MstEmployee();
-			key.setEmployeeId(form.getEmployeeId());
-			data = dao.getMstEmployee(key);
-			if (data != null) {
-				return false;
-			}
-			data = new MstEmployee();
-			data.setEmployeeId(form.getEmployeeId());
-			data.setEmployeeName(form.getEmployeeName());
-			data.setBirthYmd(form.getBirthYmd());
-			data.setSex(form.getSex());
-			data.setZipCode(form.getZipCode());
-			data.setAddress(form.getAddress());
-			data.setJoinedYmd(form.getJoinedYmd());
-			data.setRetireYmd(form.getRetireYmd());
-			data.setAuthorized(form.getAuthorized());
-			data.setDepartmentId(form.getDepartmentId());
-			result = dao.insert(data);
-		} else if (Emp0001DtlConstants.MODE_UPDATE.equals(form.getMode())) {
-			MstEmployee key = new MstEmployee();
-			key.setEmployeeId(form.getParamEmployeeId());
-			data = dao.getMstEmployee(key);
-			if (data == null) {
-				return false;
-			}
-			data.setEmployeeId(form.getEmployeeId());
-			data.setEmployeeName(form.getEmployeeName());
-			data.setBirthYmd(form.getBirthYmd());
-			data.setSex(form.getSex());
-			data.setZipCode(form.getZipCode());
-			data.setAddress(form.getAddress());
-			data.setJoinedYmd(form.getJoinedYmd());
-			data.setRetireYmd(form.getRetireYmd());
-			data.setDepartmentId(form.getDepartmentId());
-			data.setAuthorized(form.getAuthorized());
-			result = dao.update(data, key);
-		}
-		return result;
 	}
 
 

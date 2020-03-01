@@ -24,9 +24,6 @@ public class Emp0001UplInit extends HttpServlet {
 		// JSPの読み込み＆初期処理
 		Emp0001UplForm form = new Emp0001UplForm();
 
-//		form.setCurrentPage("0");
-//		form.setLineLimit("1000");
-//		form.setLineSize("5");
 		req.setAttribute("form", form);
 		ServletContext ctx = getServletContext();
 		RequestDispatcher dispatcher = ctx.getRequestDispatcher(Emp0001UplConstants.CONTENTS_PATH);

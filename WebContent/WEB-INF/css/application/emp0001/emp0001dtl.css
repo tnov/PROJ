@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+div {
+	text-align:  center;
+}
+
+.label {
+	width: 150px;
+	height: 30px;
+}
+
+table  {
+	margin:0 auto
+}
+
+table thead {
+	color: #000000;
+	background: #6cb6ff;
+}
+
+.inButton {
+	margin-right :5px ;
+}
+
+.detail {
+	margin:0 auto
+}
+
+.joinedYmd {
+	width: 80px;
+}

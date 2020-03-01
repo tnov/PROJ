@@ -34,6 +34,7 @@ public class Emp0001LstInit extends HttpServlet {
 		form.setDepartmentId("");
 		form.setDepartmentMap(CommonUtil.getDepartment());
 		form.setCurrentPage("0");
+		form.setPageSize("0");
 		form.setLineLimit("1000");
 		form.setLineSize("5");
 		req.setAttribute("form", form);

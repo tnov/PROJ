@@ -90,3 +90,27 @@ table tfoot tr.list {
 table tfoot tr td.list {
 	border: 1px black solid;
 }
+
+input[type=checkbox] {
+	height:23px;
+	width:23px;
+}
+
+input[type=radio] {
+	height:23px;
+	width:23px;
+}
+
+select {
+	height:28px;
+}
+
+input[type=text] {
+	height:23px;
+	font-size:large;
+}
+input[type=button] {
+	height:35px;
+	padding-left:10px;
+	padding-right:10px;
+}

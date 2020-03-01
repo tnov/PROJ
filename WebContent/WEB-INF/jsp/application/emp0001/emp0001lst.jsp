@@ -181,16 +181,16 @@ Emp0001DataBean bean = list.get(i);
 <tr>
 <td colspan="4">
 <% if ("0".equals(form.getCurrentPage()) || "1".equals(form.getCurrentPage())) { %>
-<label>先頭</label>
-<label>前頁</label>
+<input type="button" disabled="disabled" value="先頭"/>
+<input type="button" disabled="disabled" value="前頁"/>
 <% } else { %>
 <input type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','1')" value="先頭"/>
 <input type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','<%= Integer.parseInt(form.getCurrentPage()) - 1 %>')" value="前頁"/>
 <% } %>
 <label><%= form.getCurrentPage() %></label>/<label><%= form.getPageSize() %></label>
 <% if ("0".equals(form.getCurrentPage()) || form.getPageSize().equals(form.getCurrentPage())) { %>
-<label>次頁</label>
-<label>末尾</label>
+<input type="button" disabled="disabled" value="次頁"/>
+<input type="button" disabled="disabled" value="末尾"/>
 <% } else { %>
 <input type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','<%= Integer.parseInt(form.getCurrentPage()) + 1 %>')" value="次頁"/>
 <input type="button" onclick="search(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>','<%= form.getPageSize() %>')" value="末尾"/>
