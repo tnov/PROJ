@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Date, java.text.SimpleDateFormat" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/common.css" %>">
-<title><%=request.getParameter("title")%></title>
-</head>
-<body>
 <header>
 <div class="headerGroup">
 	<div class="headerUser">
@@ -26,6 +18,3 @@
 	</div>
 </div>
 </header>
-
-</body>
-</html>

@@ -1,7 +1,47 @@
 @charset "utf-8";
 
+form {
+	height:100%;
+}
+
+div {
+	text-align:  center;
+}
+
 .link {
 	position : relative;
-	top : 30px;
-	left : 30px;
+	text-align: left;
+}
+
+.container {
+	height:100%;
+	display:grid;
+	gap:10px;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	margin: 10px;
+	padding: 10px;
+}
+
+.tile {
+	background: #ddd;
+	border-radius: 8px;
+	border: 3px solid #ccc;
+}
+
+.list {
+	display:grid;
+	gap:10px;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+}
+
+.item {
+	cursor: pointer;
+	background: #aea;
+	border-radius: 8px;
+	border: 3px solid #ddd;
+	margin: 10px;
+	padding: 10px;
+	font-weight: bold;
 }
