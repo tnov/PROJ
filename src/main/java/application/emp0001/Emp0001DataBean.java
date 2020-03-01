@@ -11,6 +11,7 @@ public class Emp0001DataBean {
 	private String retireYmd = null;
 	private String departmentId = null;
 	private String authorized = null;
+	private String deleteFlg = null;
 
 	public String getEmployeeId() {
 		return employeeId;
@@ -71,5 +72,11 @@ public class Emp0001DataBean {
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	public String getDeleteFlg() {
+		return deleteFlg;
+	}
+	public void setDeleteFlg(String deleteFlg) {
+		this.deleteFlg = deleteFlg;
 	}
 }

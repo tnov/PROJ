@@ -22,6 +22,7 @@
     <jsp:param name="title" value="社員一覧" />
 </jsp:include>
 <section>
+<div class= "messageGroup">
 <%
 List<String> errors = (List<String>)request.getAttribute("errorMessages");
 if (errors != null) {
@@ -52,6 +53,7 @@ if (infos != null) {
 	}
 }
 %>
+</div>
 </section>
 <form id="mainForm" method="post">
 <%

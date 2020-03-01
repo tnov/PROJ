@@ -6,7 +6,7 @@
 }
 
 table  {
-	margin:0 auto
+	margin:0 auto;
 }
 
 table thead {
@@ -19,7 +19,7 @@ table thead {
 }
 
 .detail {
-	margin:0 auto
+	margin:0 auto;
 }
 
 .joinedYmd {

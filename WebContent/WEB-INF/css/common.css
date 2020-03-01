@@ -39,7 +39,7 @@ header {
 	right: 0;
 	bottom: 0;
  }
- /* ヘッダ部ユーザ */
+/* ヘッダ部ユーザ */
 .headerUser {
 	color: #ffffff;
 	font-size: 15pt;
@@ -47,7 +47,14 @@ header {
 	left: 0;
 	bottom: 0;
  }
-
+/* エラーメッセージ */
+.messageGroup{
+	margin :0 auto;
+	width : 500px;
+	text-align: center;
+	color: #ff0000;
+	font-weight: bold;
+}
 /* セクション部のスタイル */
 section {
 }
