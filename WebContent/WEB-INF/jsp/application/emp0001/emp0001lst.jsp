@@ -19,7 +19,7 @@
 </head>
 <body>
 <jsp:include page="../../header.jsp">
-    <jsp:param name="title" value="社員一覧" />
+	<jsp:param name="title" value="社員一覧" />
 </jsp:include>
 <section>
 <div class= "messageGroup">
@@ -82,8 +82,8 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 			<label>性別</label>
 		</td>
 		<td>
-		    <input type="checkbox" name="sex" value="1" <% if(form.getSex() == null || form.getSex().length == 2 || "1".equals(form.getSex()[0])){ %> checked="checked" <% } %>>男性
-		    <input type="checkbox" name="sex" value="2" <% if(form.getSex() == null || form.getSex().length == 2 || "2".equals(form.getSex()[0])){ %> checked="checked" <% } %>>女性
+			<input type="checkbox" name="sex" value="1" <% if(form.getSex() == null || form.getSex().length == 2 || "1".equals(form.getSex()[0])){ %> checked="checked" <% } %>>男性
+			<input type="checkbox" name="sex" value="2" <% if(form.getSex() == null || form.getSex().length == 2 || "2".equals(form.getSex()[0])){ %> checked="checked" <% } %>>女性
 		</td>
 	</tr>
 	<tr>
@@ -94,12 +94,12 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 			<select name="departmentId">
 				<option value=""></option>
 				<%
-		        for (Map.Entry<String, String> department : form.getDepartmentMap().entrySet()) {
-		        %>
+				for (Map.Entry<String, String> department : form.getDepartmentMap().entrySet()) {
+				%>
 					<option value=<%= department.getKey()%> <% if(department.getKey().equals(form.getDepartmentId())) { %> selected <% ;} %> > <%= department.getValue()%> </option>
 				<%
-		        }
-		         %>
+				}
+				 %>
 			</select>
 		</td>
 	</tr>

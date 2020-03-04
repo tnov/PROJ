@@ -1,5 +1,7 @@
 package application.emp0001.detail;
 
+import java.util.HashMap;
+
 import application.CommonForm;
 
 public class Emp0001DtlForm extends CommonForm {
@@ -17,8 +19,10 @@ public class Emp0001DtlForm extends CommonForm {
 	private String address = null;
 	private String joinedYmd = null;
 	private String retireYmd = null;
-	private String departmentId = null;
 	private String authorized = null;
+	private String departmentId = null;
+	private HashMap<String, String> departmentMap = new HashMap<String, String>();
+
 
 	public String getParamEmployeeId() {
 		return paramEmployeeId;
@@ -98,5 +102,11 @@ public class Emp0001DtlForm extends CommonForm {
 	}
 	public void setBackMode(String backMode) {
 		this.backMode = backMode;
+	}
+	public HashMap<String, String> getDepartmentMap() {
+		return departmentMap;
+	}
+	public void setDepartmentMap(HashMap<String, String> departmentMap) {
+		this.departmentMap = departmentMap;
 	}
 }

@@ -5,13 +5,17 @@ div {
 }
 
 .label {
-	width: 150px;
 	height: 30px;
 }
 
 table  {
-	margin:0 auto
+	margin:0 auto;
 }
+
+td  {
+	width: 150px;
+}
+
 
 table thead {
 	color: #000000;

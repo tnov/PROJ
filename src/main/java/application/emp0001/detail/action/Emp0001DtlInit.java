@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import application.CheckUtil;
+import application.CommonUtil;
 import application.emp0001.Emp0001DataBean;
 import application.emp0001.detail.Emp0001DtlConstants;
 import application.emp0001.detail.Emp0001DtlForm;
@@ -46,13 +47,14 @@ public class Emp0001DtlInit extends HttpServlet {
 		form.setEmployeeId("");
 		form.setEmployeeName("");
 		form.setBirthYmd("");
-		form.setSex("");
+		form.setSex("1");
 		form.setZipCode("");
 		form.setAddress("");
 		form.setJoinedYmd("");
 		form.setRetireYmd("");
 		form.setDepartmentId("");
 		form.setAuthorized("");
+		form.setDepartmentMap(CommonUtil.getDepartment());
 		form.setMode(Emp0001DtlConstants.MODE_CREATE);
 		return form;
 	}
@@ -73,6 +75,7 @@ public class Emp0001DtlInit extends HttpServlet {
 		form.setRetireYmd(result.getRetireYmd());
 		form.setDepartmentId(result.getDepartmentId());
 		form.setAuthorized(result.getAuthorized());
+		form.setDepartmentMap(CommonUtil.getDepartment());
 		form.setMode(Emp0001DtlConstants.MODE_UPDATE);
 		return form;
 	}
