@@ -110,13 +110,30 @@ input[type=radio] {
 
 select {
 	height:28px;
+	font-size:large;
 }
 
 input[type=text] {
 	height:23px;
 	font-size:large;
 }
+
+input[type=date] {
+	height:23px;
+	width:110px;
+	font-size:large;
+}
+
+input[type=password] {
+	height:23px;
+	font-size:large;
+}
 input[type=button] {
+	height:35px;
+	padding-left:10px;
+	padding-right:10px;
+}
+input[type=submit] {
 	height:35px;
 	padding-left:10px;
 	padding-right:10px;

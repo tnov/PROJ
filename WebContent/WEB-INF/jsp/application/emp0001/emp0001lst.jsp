@@ -108,9 +108,9 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 			<label>入社年月日</label>
 		</td>
 		<td>
-			<input class="joinedYmd" type="text" name="joinedYmdFrom" value="<%= form.getJoinedYmdFrom() %>" placeholder=""  required />
+			<input class="joinedYmd" type="date" name="joinedYmdFrom" value="<%= form.getJoinedYmdFrom() %>" placeholder=""  required />
 			～
-			<input class="joinedYmd" type="text" name="joinedYmdTo" value="<%= form.getJoinedYmdTo() %>" placeholder=""  required />
+			<input class="joinedYmd" type="date" name="joinedYmdTo" value="<%= form.getJoinedYmdTo() %>" placeholder=""  required />
 
 		</td>
 	</tr>
