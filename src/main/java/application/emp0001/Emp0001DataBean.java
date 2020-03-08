@@ -7,6 +7,7 @@ public class Emp0001DataBean {
 	private String sex = null;
 	private String zipCode = null;
 	private String address = null;
+	private String tel = null;
 	private String joinedYmd = null;
 	private String retireYmd = null;
 	private String departmentId = null;
@@ -60,6 +61,12 @@ public class Emp0001DataBean {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 	public String getBirthYmd() {
 		return birthYmd;

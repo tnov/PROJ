@@ -61,7 +61,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>PasswordInit</servlet-name>
-    <url-pattern>/password</url-pattern>
+    <url-pattern>/password/init</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>PasswordChange</servlet-name>
