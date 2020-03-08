@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import application.CheckUtil;
+import application.CommonUtil;
 import application.emp0001.Emp0001Util;
 import application.emp0001.detail.Emp0001DtlConstants;
 import application.emp0001.detail.Emp0001DtlForm;
@@ -97,9 +96,7 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 				}
 			}
 		}
-		ServletContext ctx = getServletContext();
-		RequestDispatcher dispatcher = ctx.getRequestDispatcher(Emp0001UplConstants.CONTENTS_PATH);
-		dispatcher.forward(req, resp);
+		CommonUtil.dispReturn(req, resp, Emp0001UplConstants.CONTENTS_PATH);
 	}
 
 
@@ -122,8 +119,6 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 		messages.add(message);
 		req.setAttribute(type, messages);
 		// メニュー遷移
-		ServletContext ctx = getServletContext();
-		RequestDispatcher dispatcher = ctx.getRequestDispatcher(Emp0001UplConstants.CONTENTS_PATH);
-		dispatcher.forward(req, resp);
+		CommonUtil.dispReturn(req, resp, Emp0001UplConstants.CONTENTS_PATH);
 	}
 }

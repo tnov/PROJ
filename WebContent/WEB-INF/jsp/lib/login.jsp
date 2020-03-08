@@ -12,6 +12,7 @@
 <title>ログイン</title>
 </head>
 <body>
+<form method="post" action="<%= request.getContextPath() + "/login/check" %>">
 <jsp:include page="../..//jsp/header.jsp">
     <jsp:param name="title" value="ログイン" />
 </jsp:include>
@@ -47,7 +48,6 @@ if (infos != null) {
 }
 %>
 </section>
-<form method="post" action="<%= request.getContextPath() + "/login/check" %>">
 <section>
 <br>
 <div><label>ユーザＩＤ</label><input type="text" name="userId" value="<%= request.getAttribute("userId") %>" placeholder="ユーザＩＤを入力" required /></div>

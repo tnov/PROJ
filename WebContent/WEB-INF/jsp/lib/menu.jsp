@@ -14,7 +14,6 @@
 <title>メニュー</title>
 </head>
 <body>
-<header></header>
 <form id="mainForm" method="post" action="<%= request.getContextPath() + "/menu/move" %>">
 <jsp:include page="../..//jsp/header.jsp">
     <jsp:param name="title" value="メニュー" />

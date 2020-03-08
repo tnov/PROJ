@@ -15,6 +15,7 @@
 <title>社員詳細</title>
 </head>
 <body>
+<form id="mainForm" method="post">
 <jsp:include page="../../header.jsp">
     <jsp:param name="title" value="社員詳細" />
 </jsp:include>
@@ -50,7 +51,6 @@ if (infos != null) {
 }
 %>
 </section>
-<form id="mainForm" method="post">
 <section>
 <%
 Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");

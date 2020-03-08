@@ -10,8 +10,6 @@ import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -68,9 +66,7 @@ public class Emp0001LstSearch extends HttpServlet {
 		form.setPageSize(getPageSize(form));
 		req.setAttribute("form", form);
 		// 画面遷移
-		ServletContext ctx = getServletContext();
-		RequestDispatcher dispatcher = ctx.getRequestDispatcher(Emp0001LstConstants.CONTENTS_PATH);
-		dispatcher.forward(req, resp);
+		CommonUtil.dispReturn(req, resp, Emp0001LstConstants.CONTENTS_PATH);
 	}
 	// 検索処理
 	private String getPageSize(Emp0001LstForm form) {

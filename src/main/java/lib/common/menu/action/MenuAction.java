@@ -2,12 +2,12 @@ package lib.common.menu.action;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import application.CommonUtil;
 
 public class MenuAction extends HttpServlet {
 
@@ -17,8 +17,6 @@ public class MenuAction extends HttpServlet {
 		// 画面パスを取得
 		String menuMovePath = req.getParameter("menuMovePath");
 		// 画面遷移
-		ServletContext ctx = getServletContext();
-		RequestDispatcher dispatcher = ctx.getRequestDispatcher(menuMovePath);
-		dispatcher.forward(req, resp);
+		CommonUtil.dispReturn(req, resp, menuMovePath);
 	}
 }

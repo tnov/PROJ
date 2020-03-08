@@ -9,11 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import application.CommonConstants;
+import application.CommonUtil;
 import application.DateUtil;
 import application.emp0001.Emp0001Constants;
 import application.emp0001.Emp0001DataBean;
@@ -54,9 +54,7 @@ public class Emp0001LstCsvDownload extends HttpServlet {
 			// TODO エラーメッセージ定数化
 			messages.add("出力対象にチェックを入れてください");
 			req.setAttribute(Constants.MESSAGE_TYPE_ERROR, messages);
-			ServletContext ctx = getServletContext();
-			RequestDispatcher dispatcher = ctx.getRequestDispatcher(Emp0001LstConstants.CONTENTS_PATH);
-			dispatcher.forward(req, resp);
+			CommonUtil.dispReturn(req, resp, Emp0001LstConstants.CONTENTS_PATH);
 			return;
 		}
 
@@ -68,20 +66,19 @@ public class Emp0001LstCsvDownload extends HttpServlet {
 			List<Emp0001DataBean> eployeeList = searchEployee(checklist);
 
 			for(Emp0001DataBean eployee :eployeeList) {
-
-				String outputString = eployee.getEmployeeId() + ","
-										+ eployee.getEmployeeName() + ","
-										+ eployee.getBirthYmd() + ","
-										+ eployee.getSex() + ","
-										+ eployee.getZipCode() + ","
-										+ eployee.getAddress() + ","
-										+ eployee.getJoinedYmd() + ","
-										+ eployee.getRetireYmd() + ","
-										+ eployee.getDepartmentId() + ","
-										+ eployee.getAuthorized() + ","
-										+ eployee.getDeleteFlg() + "\r\n";
-
-				pw.write(outputString);
+				StringJoiner sb = new StringJoiner(",","\"","\"");
+				sb.add(eployee.getEmployeeId())
+					.add(eployee.getEmployeeName())
+					.add(eployee.getBirthYmd())
+					.add(eployee.getSex())
+					.add(eployee.getZipCode())
+					.add(eployee.getAddress())
+					.add(eployee.getJoinedYmd())
+					.add(eployee.getRetireYmd())
+					.add(eployee.getDepartmentId())
+					.add(eployee.getAuthorized())
+					.add(eployee.getDeleteFlg());
+				pw.write(sb.toString());
 			}
 		}
 	}

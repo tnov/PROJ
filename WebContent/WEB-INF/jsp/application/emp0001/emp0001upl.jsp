@@ -13,6 +13,7 @@
 <title>社員ＣＳＶアップロード</title>
 </head>
 <body>
+<form id="mainForm" method="post">
 <jsp:include page="../../header.jsp">
     <jsp:param name="title" value="社員ＣＳＶアップロード" />
 </jsp:include><section>
@@ -47,7 +48,6 @@ if (infos != null) {
 }
 %>
 </section>
-<form id="mainForm" method="post">
 <section>
 <%
 Emp0001UplForm form = (Emp0001UplForm)request.getAttribute("form");

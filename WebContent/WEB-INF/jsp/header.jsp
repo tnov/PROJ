@@ -17,4 +17,5 @@
 		<%=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date())%>
 	</div>
 </div>
+<input type="hidden" name="token" value="<%= request.getAttribute("token") %>"/>
 </header>

@@ -2,8 +2,6 @@ package application.emp0001.detail.action;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,9 +34,7 @@ public class Emp0001DtlInit extends HttpServlet {
 		}
 		req.setAttribute("form", form);
 		// JSPの読み込み
-		ServletContext ctx = getServletContext();
-		RequestDispatcher dispatcher = ctx.getRequestDispatcher(Emp0001DtlConstants.CONTENTS_PATH);
-		dispatcher.forward(req, resp);
+		CommonUtil.dispReturn(req, resp, Emp0001DtlConstants.CONTENTS_PATH);
 	}
 
 	private Emp0001DtlForm createEmployee() {

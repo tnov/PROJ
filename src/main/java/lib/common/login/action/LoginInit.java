@@ -26,6 +26,7 @@ public class LoginInit extends HttpServlet {
 		// JSPの読み込み＆初期処理
 		req.setAttribute("userId", "");
 		req.setAttribute("password", "");
+		req.setAttribute("token", "");
 		ServletContext ctx = getServletContext();
 		RequestDispatcher dispatcher = ctx.getRequestDispatcher(LoginConstants.CONTENTS_PATH);
 		dispatcher.forward(req, resp);

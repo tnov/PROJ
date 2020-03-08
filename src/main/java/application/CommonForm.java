@@ -2,6 +2,8 @@ package application;
 
 public class CommonForm {
 
+	private String token = null;
+
 	private String movePath = null;
 
 	// 1ページ内の行数
@@ -54,5 +56,13 @@ public class CommonForm {
 
 	public void setPageSize(String pageSize) {
 		this.pageSize = pageSize;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 }

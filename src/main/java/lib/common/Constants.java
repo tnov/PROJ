@@ -4,7 +4,8 @@ public class Constants {
 
 	public static String CONTENTS_ROOT = "/WEB-INF";
 
-	public static String LOGIN_PAGE = "/login";
+	public static String LOGIN_PAGE = "/PROJ/login";
+	public static String LOGIN_ACTION = "/PROJ/login/check";
 
 	public static String MESSAGE_TYPE_INFO = "infoMessages";
 	public static String MESSAGE_TYPE_WARNING = "warningMessages";

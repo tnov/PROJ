@@ -12,8 +12,6 @@ import java.util.Set;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import application.CommonConstants;
+import application.CommonUtil;
 import lib.common.Constants;
 import lib.common.menu.HierarchyBean;
 import lib.common.menu.MenuBean;
@@ -42,9 +41,7 @@ public class MenuInit extends HttpServlet {
 		if (menuInfoList != null) {
 			req.setAttribute("list", menuInfoList);
 			// 画面遷移
-			ServletContext ctx = getServletContext();
-			RequestDispatcher dispatcher = ctx.getRequestDispatcher(MenuConstants.CONTENTS_PATH);
-			dispatcher.forward(req, resp);
+			CommonUtil.dispReturn(req, resp, MenuConstants.CONTENTS_PATH);
 		} else {
 			// データ有無チェック：ＮＧ（エラーメッセージ）
 			setMessage(req, resp,Constants.MESSAGE_TYPE_WARNING, MenuConstants.MESSAGE_ERROR_MENU_NOT_FOUND);
@@ -62,9 +59,7 @@ public class MenuInit extends HttpServlet {
 		messages.add(message);
 		req.setAttribute(type, messages);
 		// メニュー遷移
-		ServletContext ctx = getServletContext();
-		RequestDispatcher dispatcher = ctx.getRequestDispatcher(MenuConstants.CONTENTS_PATH);
-		dispatcher.forward(req, resp);
+		CommonUtil.dispReturn(req, resp, MenuConstants.CONTENTS_PATH);
 	}
 
 	// メニュー情報取得

@@ -11,8 +11,6 @@ import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +19,11 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import application.CommonConstants;
+import application.CommonUtil;
 import application.DateUtil;
 import lib.common.Constants;
 import lib.common.login.LoginConstants;
+import lib.util.SessionUtil;
 import lib.util.StringUtils;
 
 public class LoginCheck extends HttpServlet {
@@ -52,23 +52,19 @@ public class LoginCheck extends HttpServlet {
 			HttpSession session = req.getSession(true);
 			session.setAttribute("ip", req.getRemoteAddr());
 			session.setAttribute("host", req.getRemoteHost());
-			// TODO トークンはユーザＩＤとタイムスタンプ、キー値(UID)から生成
+			// トークンはユーザＩＤとタイムスタンプ、ランダム文字列から生成
 			// キー値はログイン時に生成し、セッションで保持
 			session.setAttribute("userId", userId);
 			// キー値はログイン時に生成し、セッションで保持
-			session.setAttribute("token", "");
+			session.setAttribute("token", SessionUtil.getToken(userId, DateUtil.getCurrentTimestamp(DateUtil.DATE_FORMAT_YYYYMMDDHHMMSSMILLS)));
 			// 前回ログインから所定機関経過した場合、パスワード変更へ
 			if (isInvalid(userId)) {
 				// パスワード変更へ
-				ServletContext ctx = getServletContext();
-				RequestDispatcher dispatcher = ctx.getRequestDispatcher(LoginConstants.DISPATCH_PASSWORD);
-				dispatcher.forward(req, resp);
+				CommonUtil.dispReturn(req, resp, LoginConstants.DISPATCH_PASSWORD);
 				return;
 			}
 			// メニュー遷移
-			ServletContext ctx = getServletContext();
-			RequestDispatcher dispatcher = ctx.getRequestDispatcher(LoginConstants.DISPATCH_PATH);
-			dispatcher.forward(req, resp);
+			CommonUtil.dispReturn(req, resp, LoginConstants.DISPATCH_PATH);
 		} else {
 			// 認証チェック：ＮＧ（エラーメッセージ）
 			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, LoginConstants.MESSAGE_ERROR_AUTHORIZED_FAILD);
@@ -85,10 +81,8 @@ public class LoginCheck extends HttpServlet {
 		}
 		messages.add(message);
 		req.setAttribute(type, messages);
-		// メニュー遷移
-		ServletContext ctx = getServletContext();
-		RequestDispatcher dispatcher = ctx.getRequestDispatcher(LoginConstants.CONTENTS_PATH);
-		dispatcher.forward(req, resp);
+		// ログイン遷移
+		CommonUtil.dispReturn(req, resp, LoginConstants.CONTENTS_PATH);
 	}
 
 	// 認証チェック

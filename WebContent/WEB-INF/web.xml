@@ -29,6 +29,10 @@
       <url-pattern>*.html</url-pattern>
       <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+      <filter-name>SessionFilter</filter-name>
+      <url-pattern>*</url-pattern>
+  </filter-mapping>
   <!-- (3)サーバ起動時の初期処理を適用する条件を指定します。-->
   <!--
   <listener>
