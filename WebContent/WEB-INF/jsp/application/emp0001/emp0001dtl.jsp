@@ -109,22 +109,6 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 	</tr>
 	<tr>
 		<td>
-			<label>郵便番号</label>
-		</td>
-		<td>
-			<input type="text" name="zipCode" value="<%= form.getZipCode() %>" placeholder="" required />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<label>住所</label>
-		</td>
-		<td>
-			<input type="text" name="address" value="<%= form.getAddress() %>" placeholder="" required />
-		</td>
-	</tr>
-	<tr>
-		<td>
 			<label>入社日</label>
 		</td>
 		<td>
@@ -141,10 +125,43 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 	</tr>
 	<tr>
 		<td>
-			<label>認証</label>
+			<label>郵便番号</label>
 		</td>
 		<td>
-			<input type="text" name="authorized" value="<%= form.getAuthorized() %>" placeholder="" required />
+			<input type="text" name="zipCode" value="<%= form.getZipCode() %>" placeholder="" required />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label>住所</label>
+		</td>
+		<td>
+			<input type="text" name="address" value="<%= form.getAddress() %>" placeholder="" required />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label>電話番号</label>
+		</td>
+		<td>
+			<input type="text" name="tel" value="<%= form.getTel() %>" placeholder="" required />
+		</td>
+	</tr>
+	<div></div>
+	<tr id="password">
+		<td>
+			<label>パスワード</label>
+		</td>
+		<td>
+			<input type="password" name="authorized" value="<%= form.getAuthorized() %>" placeholder="" required autocomplete="new-password"/>
+		</td>
+	</tr>
+	<tr id="passwordChk">
+		<td>
+			<label>パスワード確認用</label>
+		</td>
+		<td>
+			<input type="password" name="authorizedChk" value="<%= form.getAuthorizedChk() %>" placeholder="" required autocomplete="new-password"/>
 		</td>
 	</tr>
 	<tr>
@@ -156,7 +173,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 </table>
 <input type="hidden" name="paramEmployeeId" value="<%= form.getParamEmployeeId() %>" placeholder="" required />
 <input type="hidden" name="backMode" value="<%= form.getBackMode() %>" placeholder="" required />
-<input type="hidden" name="mode" value="<%= form.getMode() %>" placeholder="" required />
+<input type="hidden" id="mode" value="<%= form.getMode() %>" placeholder="" required />
 </section>
 </form>
 <footer></footer>

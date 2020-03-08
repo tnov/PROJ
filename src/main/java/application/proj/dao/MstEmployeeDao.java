@@ -14,7 +14,7 @@ import application.proj.entity.MstEmployee;
 
 public class MstEmployeeDao {
 
-	public static final String SQL_SELECT_PK = "SELECT employee_id, employee_name, birth_ymd, sex, zip_code, address, joined_ymd, retire_ymd, department_id, authorized, delete_flg, create_module_id, create_user_id, create_ymd, update_module_id, update_user_id, update_ymd FROM mst_employee WHERE employee_id = ?";
+	public static final String SQL_SELECT_PK = "SELECT employee_id, employee_name, birth_ymd, sex, zip_code, address, tel, joined_ymd, retire_ymd, department_id, authorized, delete_flg, create_module_id, create_user_id, create_ymd, update_module_id, update_user_id, update_ymd FROM mst_employee WHERE employee_id = ?";
 	public static final String SQL_INSERT = "INSERT INTO mst_employee (employee_id, employee_name, birth_ymd, sex, zip_code, address, joined_ymd, retire_ymd, department_id, authorized, delete_flg, create_module_id, create_user_id, create_ymd, update_module_id, update_user_id, update_ymd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	public static final String SQL_UPDATE = "UPDATE mst_employee set employee_id = ? , employee_name = ? , birth_ymd = ? , sex = ? , zip_code = ? , address = ? , joined_ymd = ? , retire_ymd = ? , department_id = ? , authorized = ? , delete_flg = ? , create_module_id = ? , create_user_id = ? , create_ymd = ? , update_module_id = ? , update_user_id = ? , update_ymd = ? WHERE employee_id = ?";
 	public static final String SQL_DELETE = "DELETE FROM mst_employee WHERE employee_id = ?";
@@ -55,28 +55,30 @@ public class MstEmployeeDao {
 						result.setZipCode(resultSet.getString(5));
 						// address
 						result.setAddress(resultSet.getString(6));
+						// tel
+						result.setTel(resultSet.getString(7));
 						// joined_ymd
-						result.setJoinedYmd(resultSet.getString(7));
+						result.setJoinedYmd(resultSet.getString(8));
 						// retire_ymd
-						result.setRetireYmd(resultSet.getString(8));
+						result.setRetireYmd(resultSet.getString(9));
 						// department_id
-						result.setDepartmentId(resultSet.getString(9));
+						result.setDepartmentId(resultSet.getString(10));
 						// authorized
-						result.setAuthorized(resultSet.getString(10));
+						result.setAuthorized(resultSet.getString(11));
 						// delete_flg
-						result.setDeleteFlg(resultSet.getString(11));
+						result.setDeleteFlg(resultSet.getString(12));
 						// create_module_id
-						result.setCreateModuleId(resultSet.getString(12));
+						result.setCreateModuleId(resultSet.getString(13));
 						// create_user_id
-						result.setCreateUserId(resultSet.getString(13));
+						result.setCreateUserId(resultSet.getString(14));
 						// create_ymd
-						result.setCreateYmd(resultSet.getString(14));
+						result.setCreateYmd(resultSet.getString(15));
 						// update_module_id
-						result.setUpdateModuleId(resultSet.getString(15));
+						result.setUpdateModuleId(resultSet.getString(16));
 						// update_user_id
-						result.setUpdateUserId(resultSet.getString(16));
+						result.setUpdateUserId(resultSet.getString(17));
 						// update_ymd
-						result.setUpdateYmd(resultSet.getString(17));
+						result.setUpdateYmd(resultSet.getString(18));
 					}
 				}
 			} catch (SQLException e) {

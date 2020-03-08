@@ -15,6 +15,11 @@ public class PasswordInit extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// JSPの読み込み＆初期処理
 		// セッションからユーザＩＤを取得
 		String userId = (String)req.getSession(false).getAttribute("user_id");

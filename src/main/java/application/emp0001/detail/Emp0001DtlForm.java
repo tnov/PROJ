@@ -17,9 +17,11 @@ public class Emp0001DtlForm extends CommonForm {
 	private String sex = null;
 	private String zipCode = null;
 	private String address = null;
+	private String tel = null;
 	private String joinedYmd = null;
 	private String retireYmd = null;
 	private String authorized = null;
+	private String authorizedChk = null;
 	private String departmentId = null;
 	private HashMap<String, String> departmentMap = new HashMap<String, String>();
 
@@ -60,7 +62,6 @@ public class Emp0001DtlForm extends CommonForm {
 	public void setDepartmentId(String departmentId) {
 		this.departmentId = departmentId;
 	}
-
 	public String getMode() {
 		return mode;
 	}
@@ -85,6 +86,12 @@ public class Emp0001DtlForm extends CommonForm {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getRetireYmd() {
 		return retireYmd;
 	}
@@ -96,6 +103,12 @@ public class Emp0001DtlForm extends CommonForm {
 	}
 	public void setAuthorized(String authorized) {
 		this.authorized = authorized;
+	}
+	public String getAuthorizedChk() {
+		return authorizedChk;
+	}
+	public void setAuthorizedChk(String authorizedChk) {
+		this.authorizedChk = authorizedChk;
 	}
 	public String getBackMode() {
 		return backMode;

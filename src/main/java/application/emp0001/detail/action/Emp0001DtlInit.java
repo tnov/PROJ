@@ -46,10 +46,12 @@ public class Emp0001DtlInit extends HttpServlet {
 		form.setSex("1");
 		form.setZipCode("");
 		form.setAddress("");
+		form.setTel("");
 		form.setJoinedYmd("");
 		form.setRetireYmd("");
 		form.setDepartmentId("");
 		form.setAuthorized("");
+		form.setAuthorizedChk("");
 		form.setDepartmentMap(CommonUtil.getDepartment());
 		form.setMode(Emp0001DtlConstants.MODE_CREATE);
 		return form;
@@ -67,10 +69,10 @@ public class Emp0001DtlInit extends HttpServlet {
 		form.setSex(result.getSex());
 		form.setZipCode(result.getZipCode());
 		form.setAddress(result.getAddress());
+		form.setTel(result.getTel());
 		form.setJoinedYmd(result.getJoinedYmd());
 		form.setRetireYmd(result.getRetireYmd());
 		form.setDepartmentId(result.getDepartmentId());
-		form.setAuthorized(result.getAuthorized());
 		form.setDepartmentMap(CommonUtil.getDepartment());
 		form.setMode(Emp0001DtlConstants.MODE_UPDATE);
 		return form;
@@ -92,10 +94,10 @@ public class Emp0001DtlInit extends HttpServlet {
 			result.setSex(entity.getSex());
 			result.setZipCode(entity.getZipCode());
 			result.setAddress(entity.getAddress());
+			result.setTel(entity.getTel());
 			result.setJoinedYmd(entity.getJoinedYmd());
 			result.setRetireYmd(entity.getRetireYmd());
 			result.setDepartmentId(entity.getDepartmentId());
-			result.setAuthorized(entity.getAuthorized());
 		}
 		return result;
 	}
