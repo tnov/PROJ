@@ -4,6 +4,8 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="application.emp0001.list.Emp0001LstForm"%>
 <%@ page import="application.emp0001.Emp0001DataBean"%>
+<%@ page import="application.emp0001.Emp0001Constants"%>
+
 <% request.setCharacterEncoding("UTF8"); %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -163,7 +165,7 @@ Emp0001DataBean bean = list.get(i);
 	<label><%= bean.getEmployeeName() %></label>
 </td>
 <td class="list">
-	<label><%= bean.getSex() %></label>
+	<label><%= Emp0001Constants.SELECTION_MAP.get(bean.getSex())%></label>
 </td>
 <td class="list">
 	<label><%= bean.getJoinedYmd() %></label>

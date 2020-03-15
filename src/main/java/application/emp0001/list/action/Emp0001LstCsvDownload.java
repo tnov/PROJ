@@ -66,13 +66,14 @@ public class Emp0001LstCsvDownload extends HttpServlet {
 			List<Emp0001DataBean> eployeeList = searchEployee(checklist);
 
 			for(Emp0001DataBean eployee :eployeeList) {
-				StringJoiner sb = new StringJoiner(",","\"","\"");
+				StringJoiner sb = new StringJoiner(",");
 				sb.add(eployee.getEmployeeId())
 					.add(eployee.getEmployeeName())
-					.add(eployee.getBirthYmd())
 					.add(eployee.getSex())
+					.add(eployee.getBirthYmd())
 					.add(eployee.getZipCode())
 					.add(eployee.getAddress())
+					.add(eployee.getTel())
 					.add(eployee.getJoinedYmd())
 					.add(eployee.getRetireYmd())
 					.add(eployee.getDepartmentId())
@@ -122,15 +123,16 @@ public class Emp0001LstCsvDownload extends HttpServlet {
 						Emp0001DataBean result = new Emp0001DataBean();
 						result.setEmployeeId(resultSet.getString(1));
 						result.setEmployeeName(resultSet.getString(2));
-						result.setBirthYmd(resultSet.getString(3));
-						result.setSex(resultSet.getString(4));
+						result.setSex(resultSet.getString(3));
+						result.setBirthYmd(resultSet.getString(4));
 						result.setZipCode(resultSet.getString(5));
 						result.setAddress(resultSet.getString(6));
-						result.setJoinedYmd(resultSet.getString(7));
-						result.setRetireYmd(resultSet.getString(8));
-						result.setDepartmentId(resultSet.getString(9));
-						result.setAuthorized(resultSet.getString(10));
-						result.setDeleteFlg(resultSet.getString(11));
+						result.setTel(resultSet.getString(7));
+						result.setJoinedYmd(resultSet.getString(8));
+						result.setRetireYmd(resultSet.getString(9));
+						result.setDepartmentId(resultSet.getString(10));
+						result.setAuthorized(resultSet.getString(11));
+						result.setDeleteFlg(resultSet.getString(12));
 						resultList.add(result);
 					}
 				}

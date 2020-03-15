@@ -13,4 +13,5 @@ public class Emp0001DtlConstants {
 
 	public static final String MODE_CREATE = "0";
 	public static final String MODE_UPDATE = "1";
+	public static final String MODE_DELETE = "2";
 }

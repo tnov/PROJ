@@ -7,15 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/common.css" %>">
-<!-- <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/application/emp0001/emp0001upl.css" %>"> -->
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/application/emp0001/emp0001upl.css" %>">
+
+
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/common.js" %>" ></script>
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/application/emp0001/emp0001upl.js" %>" ></script>
-<title>社員ＣＳＶアップロード</title>
+<title>社員情報取込</title>
 </head>
 <body>
 <form id="mainForm" method="post">
+
 <jsp:include page="../../header.jsp">
-    <jsp:param name="title" value="社員ＣＳＶアップロード" />
+    <jsp:param name="title" value="社員情報取込" />
 </jsp:include><section>
 <%
 List<String> errors = (List<String>)request.getAttribute("errorMessages");
@@ -52,9 +55,17 @@ if (infos != null) {
 <%
 Emp0001UplForm form = (Emp0001UplForm)request.getAttribute("form");
 %>
-<div><input type="file" name="file" /></div>
-<div><input type="button" onclick="doPostMultipart(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Upl/upload" %>')" value="アップロード"/></div>
-<div><input type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>');" value="戻る"/></div>
+<br>
+<div class="itemgroup">
+<input type="file" name="file" accept=".csv" multiple/>
+<br><br>
+<input type="hidden" name="buttontype">
+<input class="inButton" type="button" onclick="doPostMultipart(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Upl/upload" %>',this)" name="0" value="登録"/>
+<input class="inButton" type="button" onclick="doPostMultipart(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Upl/upload" %>',this)" name="1" value="更新"/>
+<input class="inButton" type="button" onclick="doPostMultipart(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Upl/upload" %>',this)" name="2" value="削除"/>
+<input class="inButton" type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>');" value="戻る"/>
+</div>
+
 </section>
 </form>
 <footer></footer>

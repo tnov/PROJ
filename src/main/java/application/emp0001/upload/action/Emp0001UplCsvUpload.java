@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,25 +24,37 @@ import application.emp0001.upload.Emp0001UplConstants;
 import application.emp0001.upload.Emp0001UplForm;
 import lib.common.Constants;
 
+@MultipartConfig(maxFileSize=1048576)
 public class Emp0001UplCsvUpload extends HttpServlet {
 
 	enum col {EMPLOYEE_ID
 		,EMPLOYEE_NAME
-		,BIRTH_YMD
 		,SEX
+		,BIRTH_YMD
 		,ZIP_CODE
 		,ADDRESS
+		,TEL
 		,JOINED_YMD
 		,RETIRE_YMD
 		,DEPARTMENT_ID
-		,AUTHORIZED};
+		,AUTHORIZED
+		,DELETE_FLG};
 
 		public Emp0001Util util = new Emp0001Util();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		// リクエストの取得
 		Emp0001UplForm form = new Emp0001UplForm();
+
+		// クラス名取得
+		final String className = new Object(){}.getClass().getName();
+
+		String buttontype = req.getParameter("buttontype");
+
+		String userId = (String)req.getSession().getAttribute("userId");
+
 		Part part = req.getPart("file");
 		String fileName = part.getSubmittedFileName();
 		if (CheckUtil.isEmpty(fileName)) {
@@ -60,33 +73,45 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 					continue;
 				}
 				String[] item = line.split(",");
-				if (item.length == 10) {
-					String employeeId = item[col.EMPLOYEE_ID.ordinal()].substring(1,item[col.EMPLOYEE_ID.ordinal()].length()-1);
-					String employeeName = item[col.EMPLOYEE_NAME.ordinal()].substring(1,item[col.EMPLOYEE_NAME.ordinal()].length()-1);
-					String birthYmd = item[col.BIRTH_YMD.ordinal()].substring(1,item[col.BIRTH_YMD.ordinal()].length()-1);
-					String sex = item[col.SEX.ordinal()].substring(1,item[col.SEX.ordinal()].length()-1);
-					String zipCode = item[col.ZIP_CODE.ordinal()].substring(1,item[col.ZIP_CODE.ordinal()].length()-1);
-					String address = item[col.ADDRESS.ordinal()].substring(1,item[col.ADDRESS.ordinal()].length()-1);
-					String joinedYmd = item[col.JOINED_YMD.ordinal()].substring(1,item[col.JOINED_YMD.ordinal()].length()-1);
-					String retireYmd = item[col.RETIRE_YMD.ordinal()].substring(1,item[col.RETIRE_YMD.ordinal()].length()-1);
-					String departmentId = item[col.DEPARTMENT_ID.ordinal()].substring(1,item[col.DEPARTMENT_ID.ordinal()].length()-1);
-					String authorized = item[col.AUTHORIZED.ordinal()].substring(1,item[col.AUTHORIZED.ordinal()].length()-1);
+				if (item.length == 12) {
+
+					String employeeId = item[col.EMPLOYEE_ID.ordinal()];
+					String employeeName = item[col.EMPLOYEE_NAME.ordinal()];
+					String sex = item[col.SEX.ordinal()];
+					String birthYmd = item[col.BIRTH_YMD.ordinal()];
+					String zipCode = item[col.ZIP_CODE.ordinal()];
+					String address = item[col.ADDRESS.ordinal()];
+					String tel = item[col.TEL.ordinal()];
+					String joinedYmd = item[col.JOINED_YMD.ordinal()];
+					String retireYmd = item[col.RETIRE_YMD.ordinal()];
+					String departmentId = item[col.DEPARTMENT_ID.ordinal()];
+					String authorized = item[col.AUTHORIZED.ordinal()];
+					String deleteFlg = item[col.DELETE_FLG.ordinal()];
 					Emp0001DtlForm dtlForm = new Emp0001DtlForm();
 					dtlForm.setEmployeeId(employeeId);
 					dtlForm.setEmployeeName(employeeName);
-					dtlForm.setBirthYmd(birthYmd);
 					dtlForm.setSex(sex);
+					dtlForm.setBirthYmd(birthYmd);
 					dtlForm.setZipCode(zipCode);
 					dtlForm.setAddress(address);
+					dtlForm.setTel(tel);
 					dtlForm.setJoinedYmd(joinedYmd);
 					dtlForm.setRetireYmd(retireYmd);
 					dtlForm.setDepartmentId(departmentId);
 					dtlForm.setAuthorized(authorized);
+					dtlForm.setDeleteFlg(deleteFlg);
+					dtlForm.setCreate_module_id(className);
+					dtlForm.setCreate_user_id(userId);
+					dtlForm.setUpdate_module_id(className);
+					dtlForm.setUpdate_user_id(userId);
+					dtlForm.setMode(buttontype);
+
 					// チェック処理
 					List<String> messages = util.check(dtlForm);
 					if (CheckUtil.isNotEmpty(messages)) {
 						errors.addAll(messages);
 					}
+
 					// 保存処理
 					if (!util.save(dtlForm)) {
 						// 保存処理エラー

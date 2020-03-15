@@ -16,7 +16,7 @@ public class Emp0001Constants {
 		SELECTION_MAP = Collections.unmodifiableMap(map);
 	}
 
-	public static final String SQL_SELECT = "SELECT employee_id, employee_name, birth_ymd, sex, zip_code, address, joined_ymd, retire_ymd, department_id, authorized, delete_flg, create_module_id, create_user_id, create_ymd, update_module_id, update_user_id, update_ymd FROM mst_employee";
+	public static final String SQL_SELECT = "SELECT employee_id, employee_name, sex, birth_ymd, zip_code, address, tel, joined_ymd, retire_ymd, department_id, authorized, delete_flg, create_module_id, create_user_id, create_ymd, update_module_id, update_user_id, update_ymd FROM mst_employee";
 	public static final String SQL_PRIMARY_KEY = "WHERE employee_id = ?";
 	public static final String SQL_ORDER = " ORDER BY employee_id";
 

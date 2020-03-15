@@ -272,8 +272,8 @@ public class Emp0001LstSearch extends HttpServlet {
 						Emp0001DataBean result = new Emp0001DataBean();
 						result.setEmployeeId(resultSet.getString(1));
 						result.setEmployeeName(resultSet.getString(2));
-						result.setSex(resultSet.getString(4));
-						result.setJoinedYmd(resultSet.getString(7));
+						result.setSex(resultSet.getString(3));
+						result.setJoinedYmd(resultSet.getString(8));
 						resultList.add(result);
 					}
 				}

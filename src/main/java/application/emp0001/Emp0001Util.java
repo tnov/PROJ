@@ -35,29 +35,28 @@ public class Emp0001Util {
 	}
 
 
-	// 検索処理
+	// 登録処理
 	public boolean save(Emp0001DtlForm form) {
 		boolean result = false;
 		MstEmployee data = null;
 		MstEmployeeDao dao = new MstEmployeeDao();
 		if (Emp0001DtlConstants.MODE_CREATE.equals(form.getMode())) {
-			MstEmployee key = new MstEmployee();
-			key.setEmployeeId(form.getEmployeeId());
-			data = dao.getMstEmployee(key);
-			if (data != null) {
-				return false;
-			}
 			data = new MstEmployee();
 			data.setEmployeeId(form.getEmployeeId());
 			data.setEmployeeName(form.getEmployeeName());
-			data.setBirthYmd(form.getBirthYmd());
 			data.setSex(form.getSex());
+			data.setBirthYmd(form.getBirthYmd());
 			data.setZipCode(form.getZipCode());
 			data.setAddress(form.getAddress());
 			data.setJoinedYmd(form.getJoinedYmd());
 			data.setRetireYmd(form.getRetireYmd());
-			data.setAuthorized(form.getAuthorized());
 			data.setDepartmentId(form.getDepartmentId());
+			data.setAuthorized(form.getAuthorized());
+			data.setDeleteFlg(form.getDeleteFlg());
+			data.setCreateModuleId(form.getCreate_module_id());
+			data.setCreateUserId(form.getCreate_user_id());
+			data.setUpdateModuleId(form.getUpdate_module_id());
+			data.setUpdateUserId(form.getUpdate_user_id());
 			result = dao.insert(data);
 		} else if (Emp0001DtlConstants.MODE_UPDATE.equals(form.getMode())) {
 			MstEmployee key = new MstEmployee();

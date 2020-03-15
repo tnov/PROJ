@@ -23,6 +23,12 @@ public class Emp0001DtlForm extends CommonForm {
 	private String authorized = null;
 	private String authorizedChk = null;
 	private String departmentId = null;
+	private String deleteFlg = null;
+	private String create_module_id = null;
+	private String create_user_id = null;
+	private String update_module_id = null;
+	private String update_user_id = null;
+
 	private HashMap<String, String> departmentMap = new HashMap<String, String>();
 
 
@@ -121,5 +127,35 @@ public class Emp0001DtlForm extends CommonForm {
 	}
 	public void setDepartmentMap(HashMap<String, String> departmentMap) {
 		this.departmentMap = departmentMap;
+	}
+	public String getDeleteFlg() {
+		return deleteFlg;
+	}
+	public void setDeleteFlg(String deleteFlg) {
+		this.deleteFlg = deleteFlg;
+	}
+	public String getCreate_module_id() {
+		return create_module_id;
+	}
+	public void setCreate_module_id(String create_module_id) {
+		this.create_module_id = create_module_id;
+	}
+	public String getCreate_user_id() {
+		return create_user_id;
+	}
+	public void setCreate_user_id(String create_user_id) {
+		this.create_user_id = create_user_id;
+	}
+	public String getUpdate_module_id() {
+		return update_module_id;
+	}
+	public void setUpdate_module_id(String update_module_id) {
+		this.update_module_id = update_module_id;
+	}
+	public String getUpdate_user_id() {
+		return update_user_id;
+	}
+	public void setUpdate_user_id(String update_user_id) {
+		this.update_user_id = update_user_id;
 	}
 }
