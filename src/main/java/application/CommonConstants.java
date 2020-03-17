@@ -2,6 +2,10 @@ package application;
 
 public class CommonConstants {
 
+	public static final String CSV_SEPARATOR = ",";
+	public static final String CSV_DEMILITER = System.lineSeparator();
+	public static final String CSV_QUALIFIER = "\"";
+
 	public static final String DELETE_FLG_OFF = "0";
 	public static final String DELETE_FLG_ON = "1";
 

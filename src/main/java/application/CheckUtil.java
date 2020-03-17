@@ -10,14 +10,17 @@ public class CheckUtil {
 		return str == null || str.isEmpty();
 	}
 
+	/* チェック(not empty) */
 	public static boolean isNotEmpty(String str) {
 		return !isEmpty(str);
 	}
 
+	/* チェック(empty list) */
 	public static boolean isEmpty(List<?> list) {
 		return list == null || list.isEmpty();
 	}
 
+	/* チェック(not empty list) */
 	public static boolean isNotEmpty(List<?> list) {
 		return !isEmpty(list);
 	}
@@ -64,5 +67,5 @@ public class CheckUtil {
 		return true;
 	}
 	/* チェック(checkbox) */
-	/* チェック(radio) */
+	/* チェック(radio not select) */
 }

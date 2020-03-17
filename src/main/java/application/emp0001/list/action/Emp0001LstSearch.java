@@ -64,6 +64,9 @@ public class Emp0001LstSearch extends HttpServlet {
 		form.setResultList(resultList);
 		// 件数取得
 		form.setPageSize(getPageSize(form));
+		if (form.getPageSize().equals("0")) {
+			form.setCurrentPage("0");
+		}
 		req.setAttribute("form", form);
 		// 画面遷移
 		CommonUtil.dispReturn(req, resp, Emp0001LstConstants.CONTENTS_PATH);

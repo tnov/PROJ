@@ -128,9 +128,9 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 </table>
 <section>
 <br>
-<table class="detail">
+<table style="height:280px;">
 <thead>
-<tr>
+<tr style="height:30px;">
 <td class="list">
 	<label>社員ＩＤ</Label>
 </td>
@@ -157,7 +157,7 @@ if (list != null) {
 <%
 Emp0001DataBean bean = list.get(i);
 %>
-<tr>
+<tr style="height:30px">
 <td class="list">
 	<a href="javascript:void(0)" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Dtl/init" %>','<%= bean.getEmployeeId() %>');return false;"><%= bean.getEmployeeId() %></a>
 </td>
@@ -181,9 +181,9 @@ Emp0001DataBean bean = list.get(i);
 }
 %>
 </tbody>
-<tfoot>
+<tfoot aligne="">
 <tr>
-<td colspan="4">
+<td colspan="4" valign="bottom">
 <% if ("0".equals(form.getCurrentPage()) || "1".equals(form.getCurrentPage())) { %>
 <input type="button" disabled="disabled" value="先頭"/>
 <input type="button" disabled="disabled" value="前頁"/>

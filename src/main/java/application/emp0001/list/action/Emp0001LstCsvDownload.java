@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -65,22 +64,34 @@ public class Emp0001LstCsvDownload extends HttpServlet {
 
 			List<Emp0001DataBean> eployeeList = searchEployee(checklist);
 
-			for(Emp0001DataBean eployee :eployeeList) {
-				StringJoiner sb = new StringJoiner(",");
-				sb.add(eployee.getEmployeeId())
-					.add(eployee.getEmployeeName())
-					.add(eployee.getSex())
-					.add(eployee.getBirthYmd())
-					.add(eployee.getZipCode())
-					.add(eployee.getAddress())
-					.add(eployee.getTel())
-					.add(eployee.getJoinedYmd())
-					.add(eployee.getRetireYmd())
-					.add(eployee.getDepartmentId())
-					.add(eployee.getAuthorized())
-					.add(eployee.getDeleteFlg());
-				pw.write(sb.toString());
+			StringBuilder sb = new StringBuilder();
+			for(Emp0001DataBean employee :eployeeList) {
+				sb.append(CommonConstants.CSV_QUALIFIER + employee.getEmployeeId() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + employee.getEmployeeName() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + employee.getSex() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + employee.getBirthYmd() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + employee.getZipCode() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + employee.getAddress() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + employee.getTel() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + employee.getJoinedYmd() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + employee.getRetireYmd() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + employee.getDepartmentId() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + employee.getAuthorized() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + employee.getDeleteFlg() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_DEMILITER);
 			}
+			pw.write(sb.toString());
 		}
 	}
 
