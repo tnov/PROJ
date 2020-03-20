@@ -8,8 +8,10 @@ public class Emp0001DtlConstants {
 	public static final String MESSAGE_ERROR_BIRTH_YMD_NOT_INPUT = "生年月日を入力してください。";
 	public static final String MESSAGE_ERROR_SEX_NOT_INPUT = "性別を入力してください。";
 	public static final String MESSAGE_ERROR_AUTHORIZED_NOT_SELECTED = "認証を選択してください。";
-
 	public static final String MESSAGE_ERROR_MST_EMPLOYEE_NOT_SAVE = "社員情報の保存に失敗しました。";
+
+	public static final String MESSAGE_INFO_MST_EMPLOYEE_SAVE = "社員情報の保存に成功しました。";
+
 
 	public static final String MODE_CREATE = "0";
 	public static final String MODE_UPDATE = "1";

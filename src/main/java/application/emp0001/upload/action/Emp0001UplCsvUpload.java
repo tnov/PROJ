@@ -113,10 +113,12 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 					}
 
 					// 保存処理
-					if (!util.save(dtlForm)) {
+					if (util.save(dtlForm)) {
+						// 成功時
+						setMessage(req, resp, Constants.MESSAGE_TYPE_INFO, Emp0001DtlConstants.MESSAGE_INFO_MST_EMPLOYEE_SAVE,form);
+					}else {
 						// 保存処理エラー
 						setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, Emp0001DtlConstants.MESSAGE_ERROR_MST_EMPLOYEE_NOT_SAVE,form);
-						return;
 					}
 				}
 			}

@@ -19,7 +19,9 @@
 
 <jsp:include page="../../header.jsp">
     <jsp:param name="title" value="社員情報取込" />
-</jsp:include><section>
+</jsp:include>
+<section>
+<div class= "messageGroup">
 <%
 List<String> errors = (List<String>)request.getAttribute("errorMessages");
 if (errors != null) {
@@ -50,6 +52,7 @@ if (infos != null) {
 	}
 }
 %>
+</div>
 </section>
 <section>
 <%

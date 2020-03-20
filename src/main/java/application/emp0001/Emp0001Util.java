@@ -35,11 +35,17 @@ public class Emp0001Util {
 	}
 
 
-	// 登録処理
+	/**
+	 * 社員情報CSV保存
+	 *
+	 * @param form
+	 * @return 処理結果
+	 */
 	public boolean save(Emp0001DtlForm form) {
 		boolean result = false;
 		MstEmployee data = null;
 		MstEmployeeDao dao = new MstEmployeeDao();
+		// 登録処理
 		if (Emp0001DtlConstants.MODE_CREATE.equals(form.getMode())) {
 			data = new MstEmployee();
 			data.setEmployeeId(form.getEmployeeId());
@@ -48,6 +54,7 @@ public class Emp0001Util {
 			data.setBirthYmd(form.getBirthYmd());
 			data.setZipCode(form.getZipCode());
 			data.setAddress(form.getAddress());
+			data.setTel(form.getTel());
 			data.setJoinedYmd(form.getJoinedYmd());
 			data.setRetireYmd(form.getRetireYmd());
 			data.setDepartmentId(form.getDepartmentId());
@@ -58,23 +65,32 @@ public class Emp0001Util {
 			data.setUpdateModuleId(form.getUpdate_module_id());
 			data.setUpdateUserId(form.getUpdate_user_id());
 			result = dao.insert(data);
+
+			// 更新処理
 		} else if (Emp0001DtlConstants.MODE_UPDATE.equals(form.getMode())) {
+			String aaa = form.getEmployeeId();
+
 			MstEmployee key = new MstEmployee();
-			key.setEmployeeId(form.getParamEmployeeId());
+			key.setEmployeeId(aaa);
 			data = dao.getMstEmployee(key);
 			if (data == null) {
 				return false;
 			}
 			data.setEmployeeId(form.getEmployeeId());
 			data.setEmployeeName(form.getEmployeeName());
-			data.setBirthYmd(form.getBirthYmd());
 			data.setSex(form.getSex());
+			data.setBirthYmd(form.getBirthYmd());
 			data.setZipCode(form.getZipCode());
 			data.setAddress(form.getAddress());
+			data.setTel(form.getTel());
 			data.setJoinedYmd(form.getJoinedYmd());
 			data.setRetireYmd(form.getRetireYmd());
 			data.setDepartmentId(form.getDepartmentId());
 			data.setAuthorized(form.getAuthorized());
+			data.setDeleteFlg(form.getDeleteFlg());
+			data.setUpdateModuleId(form.getUpdate_module_id());
+			data.setUpdateUserId(form.getUpdate_user_id());
+
 			result = dao.update(data, key);
 		}
 		return result;
