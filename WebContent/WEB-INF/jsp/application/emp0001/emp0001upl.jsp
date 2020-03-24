@@ -66,7 +66,7 @@ Emp0001UplForm form = (Emp0001UplForm)request.getAttribute("form");
 <input class="inButton" type="button" onclick="doPostMultipart(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Upl/upload" %>',this)" name="0" value="登録"/>
 <input class="inButton" type="button" onclick="doPostMultipart(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Upl/upload" %>',this)" name="1" value="更新"/>
 <input class="inButton" type="button" onclick="doPostMultipart(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Upl/upload" %>',this)" name="2" value="削除"/>
-<input class="inButton" type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Lst/search" %>');" value="戻る"/>
+<input class="inButton" type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/menu" %>');" value="戻る"/>
 </div>
 
 </section>

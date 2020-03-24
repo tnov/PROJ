@@ -36,6 +36,27 @@ public class Emp0001LstSearch extends HttpServlet {
 			// 検索結果を戻す
 			HttpSession session = req.getSession(false);
 			form = (Emp0001LstForm)session.getAttribute("Emp0001LstSearch");
+
+			// 未検索の場合
+			if(form == null) {
+				form = new Emp0001LstForm();
+				form.setEmployeeId("");
+				form.setEmployeeName("");
+				form.setSex(null);
+				form.setJoinedYmdFrom("");
+				form.setJoinedYmdTo("");
+				form.setRetiredYmd("");
+				form.setDepartmentId("");
+				form.setDepartmentMap(CommonUtil.getDepartment());
+				form.setCurrentPage("0");
+				form.setPageSize("0");
+				form.setLineLimit("1000");
+				form.setLineSize("5");
+				req.setAttribute("form", form);
+				// 画面遷移
+				CommonUtil.dispReturn(req, resp, Emp0001LstConstants.CONTENTS_PATH);
+				return;
+			}
 		} else {
 			// リクエストの取得
 			form = new Emp0001LstForm();

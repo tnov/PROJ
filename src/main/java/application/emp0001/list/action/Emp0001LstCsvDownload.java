@@ -35,7 +35,8 @@ public class Emp0001LstCsvDownload extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/csv;charset=UTF8");
-		Emp0001LstForm form = null;
+
+		Emp0001LstForm form =null;
 
 		// チェックボックス状態取得
 		String[] checklist = req.getParameterValues("checklist");
@@ -45,6 +46,7 @@ public class Emp0001LstCsvDownload extends HttpServlet {
 
 			HttpSession session = req.getSession(false);
 			form = (Emp0001LstForm)session.getAttribute("Emp0001LstSearch");
+
 			req.setAttribute("form", form);
 
 			// メッセージの設定
@@ -130,6 +132,7 @@ public class Emp0001LstCsvDownload extends HttpServlet {
 				} else {
 					resultList = new ArrayList<>();
 					ResultSet resultSet = statement.getResultSet();
+
 					while (resultSet.next()) {
 						Emp0001DataBean result = new Emp0001DataBean();
 						result.setEmployeeId(resultSet.getString(1));
@@ -144,6 +147,7 @@ public class Emp0001LstCsvDownload extends HttpServlet {
 						result.setDepartmentId(resultSet.getString(10));
 						result.setAuthorized(resultSet.getString(11));
 						result.setDeleteFlg(resultSet.getString(12));
+
 						resultList.add(result);
 					}
 				}

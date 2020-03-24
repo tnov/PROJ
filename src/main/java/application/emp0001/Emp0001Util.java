@@ -68,10 +68,10 @@ public class Emp0001Util {
 
 			// 更新処理
 		} else if (Emp0001DtlConstants.MODE_UPDATE.equals(form.getMode())) {
-			String aaa = form.getEmployeeId();
 
+			String employeeId = form.getEmployeeId();
 			MstEmployee key = new MstEmployee();
-			key.setEmployeeId(aaa);
+			key.setEmployeeId(employeeId);
 			data = dao.getMstEmployee(key);
 			if (data == null) {
 				return false;
@@ -92,6 +92,20 @@ public class Emp0001Util {
 			data.setUpdateUserId(form.getUpdate_user_id());
 
 			result = dao.update(data, key);
+
+			// 削除処理
+		} else if (Emp0001DtlConstants.MODE_DELETE.equals(form.getMode())) {
+
+			String employeeId = form.getEmployeeId();
+			MstEmployee key = new MstEmployee();
+			key.setEmployeeId(employeeId);
+			data = dao.getMstEmployee(key);
+			if (data == null) {
+				return false;
+			}
+			data.setEmployeeId(form.getEmployeeId());
+
+			result = dao.delete(data);
 		}
 		return result;
 	}

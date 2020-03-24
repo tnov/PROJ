@@ -14,6 +14,7 @@ public class Emp0001LstForm extends CommonForm {
 	private String joinedYmdTo = null;
 	private String retiredYmd = null;
 	private String departmentId = null;
+
 	private HashMap<String, String> departmentMap = new HashMap<String, String>();
 
 	private List<Emp0001DataBean> resultList = null;

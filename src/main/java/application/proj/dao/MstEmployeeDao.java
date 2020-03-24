@@ -221,4 +221,37 @@ public class MstEmployeeDao {
 		}
 		return result;
 	}
+
+	// 削除処理
+	public boolean delete(MstEmployee entity) {
+		boolean result = false;
+		try {
+			// JNDIからDBデータソース取得
+		    InitialContext initialContext = new InitialContext();
+		    DataSource dataSource = (DataSource)initialContext.lookup(CommonConstants.JNDI_JDBC_EMPDB);
+		    // QUERY作成
+		    StringBuilder query = new StringBuilder();
+	    	// 新規
+	    	query.append(SQL_DELETE);
+		    // コネクションの取得
+		    // SQL実行
+			try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(query.toString())
+					) {
+				int i = 1;
+		    	// employee_id
+				statement.setString(i++, entity.getEmployeeId());
+				// SQL実行
+				result = statement.executeUpdate() == 1 ? true : false;
+			} catch (SQLException e) {
+				throw e;
+			}
+		} catch (NamingException ne) {
+			ne.printStackTrace();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		return result;
+	}
+
 }
