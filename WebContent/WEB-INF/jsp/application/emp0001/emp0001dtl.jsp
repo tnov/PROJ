@@ -78,8 +78,8 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label>性別</label>
 		</td>
 		<td>
-			<input type="radio" name="sex" value="1" <% if("1".equals(form.getSex())){ %> checked <% } %>>男性
-			<input type="radio" name="sex" value="2" <% if("2".equals(form.getSex())){ %> checked <% } %>>女性
+			<input type="radio" name="sex" value="0" <% if("0".equals(form.getSex())){ %> checked <% } %>>男性
+			<input type="radio" name="sex" value="1" <% if("1".equals(form.getSex())){ %> checked <% } %>>女性
 		</td>
 	</tr>
 	<tr>
@@ -112,7 +112,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label>入社日</label>
 		</td>
 		<td>
-			<input type="text" name="joinedYmd" value="<%= form.getJoinedYmd() %>" placeholder="" required />
+			<input type="text" name="joinedYmd" value="<%if(form.getJoinedYmd() != null){ %><%= form.getJoinedYmd() %> <% } %>" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -120,7 +120,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label>退職日</label>
 		</td>
 		<td>
-			<input type="text" name="retireYmd" value="<%= form.getRetireYmd() %>" placeholder="" required />
+			<input type="text" name="retireYmd" value="<%if(form.getRetireYmd() != null){ %><%= form.getRetireYmd() %> <% } %>" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -128,7 +128,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label>郵便番号</label>
 		</td>
 		<td>
-			<input type="text" name="zipCode" value="<%= form.getZipCode() %>" placeholder="" required />
+			<input type="text" name="zipCode" value="<%if(form.getZipCode() != null){ %><%= form.getZipCode() %> <% } %>" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -136,7 +136,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label>住所</label>
 		</td>
 		<td>
-			<input type="text" name="address" value="<%= form.getAddress() %>" placeholder="" required />
+			<input type="text" name="address" value="<%if(form.getAddress() != null){ %><%= form.getAddress() %> <% } %>" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -144,7 +144,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label>電話番号</label>
 		</td>
 		<td>
-			<input type="text" name="tel" value="<%= form.getTel() %>" placeholder="" required />
+			<input type="text" name="tel" value="<%if(form.getTel() != null){ %><%= form.getTel() %> <% } %>" placeholder="" required />
 		</td>
 	</tr>
 	<div></div>

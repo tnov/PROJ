@@ -61,6 +61,5 @@ if (infos != null) {
 <div><input type="submit" value="パスワード変更"/></div>
 </section>
 </form>
-<footer>copy write ...</footer>
 </body>
 </html>

@@ -47,10 +47,10 @@ public class MstEmployeeDao {
 						result.setEmployeeId(resultSet.getString(1));
 						// employee_name
 						result.setEmployeeName(resultSet.getString(2));
-						// birth_ymd
-						result.setBirthYmd(resultSet.getString(3));
 						// sex
-						result.setSex(resultSet.getString(4));
+						result.setSex(resultSet.getString(3));
+						// birth_ymd
+						result.setBirthYmd(resultSet.getString(4));
 						// zip_code
 						result.setZipCode(resultSet.getString(5));
 						// address

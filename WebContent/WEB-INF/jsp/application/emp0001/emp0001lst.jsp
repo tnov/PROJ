@@ -169,7 +169,7 @@ Emp0001DataBean bean = list.get(i);
 	<label><%= Emp0001Constants.SELECTION_MAP.get(bean.getSex())%></label>
 </td>
 <td class="list">
-	<label><%= bean.getJoinedYmd() %></label>
+	<label><%if(bean.getJoinedYmd() != null){ %><%= bean.getJoinedYmd() %> <% } %></label>
 </td>
 <td class="list">
 	<input type="checkbox" name="checklist" value=<%= bean.getEmployeeId() %>>

@@ -43,7 +43,7 @@ public class Emp0001DtlInit extends HttpServlet {
 		form.setEmployeeId("");
 		form.setEmployeeName("");
 		form.setBirthYmd("");
-		form.setSex("1");
+		form.setSex("0");
 		form.setZipCode("");
 		form.setAddress("");
 		form.setTel("");
