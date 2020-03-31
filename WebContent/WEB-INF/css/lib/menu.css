@@ -19,14 +19,14 @@ div {
 	gap:10px;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
-	margin: 10px;
-	padding: 10px;
+	margin: 20px;
+	padding: 20px;
 }
 
 .tile {
-	background: #ddd;
-	border-radius: 8px;
-	border: 3px solid #ccc;
+	background: #ececec;
+	border-radius: 3px;
+	border: 3px solid #d2d2d2;
 }
 
 .list {
@@ -37,11 +37,58 @@ div {
 }
 
 .item {
+	height: 3px;
 	cursor: pointer;
-	background: #aea;
 	border-radius: 8px;
-	border: 3px solid #ddd;
-	margin: 10px;
-	padding: 10px;
+	margin: 5px;
+	padding: 5px;
 	font-weight: bold;
+	float: left;
+}
+
+.item:hover {
+  color: #0000ff;
+}
+
+.groupname {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	position: relative;
+	display: inline-block;
+	margin-bottom: 1em;
+}
+
+.groupname:before {
+	content: '';
+	position: absolute;
+	bottom: -5px;
+	display: inline-block;
+	width: 130px;
+	height: 1px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	background-color: #d2d2d2;
+	border-radius: 1px;
+}
+
+.menuname {
+	list-style: none;
+	position: relative;
+	padding-left: 30px;
+}
+
+.menuname:before {
+	content: '';
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 5px;
+	width: 0;
+	height: 0;
+	margin-top: -9px;
+	border-top: solid 8px transparent;
+	border-right: solid 10px transparent;
+	border-bottom: solid 8px transparent;
+	border-left: solid 10px #697b91;
 }

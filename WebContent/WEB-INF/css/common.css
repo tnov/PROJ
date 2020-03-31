@@ -6,7 +6,7 @@ html {
 
 /* 画面全体のスタイル */
 body {
-	background-color: #fffacd;
+	background-color: #fffce1;
 	height: 100%;
 	position: relative;
 	box-sizing: border-box;
@@ -16,7 +16,7 @@ body {
 }
 /* ヘッダ部のスタイル */
 header {
-	background-color: #0000ff;
+	background-color: #3277eb;
 	width: 100%;
 }
 /* ヘッダ部グループ */
