@@ -76,26 +76,67 @@ footer {
 	position: absolute;
 	bottom: 0px;
 }
+table {
+  border-collapse: collapse;
+}
+table thead {
+	font-size:15px;
+	color: #000000;
+	background: #5c94ef;
+}
 /* 一覧部のスタイル */
 table.list {
-	border-collapse:collapse;
-	border-spacing: 0;
+	height: 50px;
 }
 table thead tr.list {
 }
+table thead td {
+}
 table thead tr td.list {
-	border: 1px black solid;
+	color: #ffffff;
+	border: 1px #c0c0c0 solid;
 }
 table tbody tr.list {
 }
 table tbody tr td.list {
-	border: 1px black solid;
+	border: 1px #c0c0c0 solid;
 	background-color: white;
+}
+table tfoot {
+	text-align: center;
 }
 table tfoot tr.list {
 }
 table tfoot tr td.list {
-	border: 1px black solid;
+}
+
+/* インプット基本 */
+input{
+	border:1px solid #ced4da;
+	border-radius: .25rem;
+	transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	padding: .175rem .75rem;
+	vertical-align:middle;
+	background-color: white;
+	height:30px;
+}
+
+input:focus{
+	color:#495057;
+	background-color: white;
+	border-color: #80bdff;
+	outline: 0;
+	box-shadow: 0 0 0 .2rem rgba(0,123,255, .25);
+}
+
+select{
+	border:1px solid #ced4da;
+	border-radius: .25rem;
+	transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	padding: .175rem .75rem;
+	vertical-align:middle;
+	background-color: white;
+	height:30px;
 }
 
 input[type=checkbox] {
@@ -129,12 +170,35 @@ input[type=password] {
 	font-size:large;
 }
 input[type=button] {
-	height:35px;
-	padding-left:10px;
-	padding-right:10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+	height:30px;
+	padding-left:15px;
+	padding-right:15px;
 }
 input[type=submit] {
-	height:35px;
-	padding-left:10px;
-	padding-right:10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+	height:30px;
+	padding-left:15px;
+	padding-right:15px;
+}
+
+input[type=button]:hover {
+    background-color: #EEEEEE;
+}
+input[type=submit]:hover {
+    background-color: #EEEEEE;
+}
+
+input[type=button]:disabled {
+    background-image: none;
+    background-color: #ffffff;
+    border-color: #ced4da;
 }

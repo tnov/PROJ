@@ -9,9 +9,12 @@ table  {
 	margin:0 auto;
 }
 
-table thead {
-	color: #000000;
-	background: #6cb6ff;
+input{
+	margin-bottom: 5px;
+}
+select{
+	margin-bottom: 5px;
+	font-size:15px;
 }
 
 .inButton {
@@ -20,4 +23,33 @@ table thead {
 
 .detail {
 	margin:0 auto;
+}
+
+.employeeId{
+	width: 100px;
+	text-align: center;
+}
+
+.employeeName{
+	width: 180px;
+	text-align: center;
+}
+
+.sex{
+	width: 40px;
+	text-align: center;
+}
+
+.joinedYmd{
+	width: 100px;
+	text-align: center;
+}
+
+.csvCheck{
+	width: 80px;
+	text-align: center;
+}
+
+.list{
+	margin-left :5px ;
 }

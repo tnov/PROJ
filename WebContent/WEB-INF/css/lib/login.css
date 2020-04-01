@@ -6,3 +6,7 @@ div {
 label {
 	margin-right : 10px;
 }
+.loginbutton {
+    padding-right: 70px;
+    text-align:  center;
+}

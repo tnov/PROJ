@@ -128,23 +128,22 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 	</tr>
 </table>
 <section>
-<br>
-<table style="height:280px;">
+<table>
 <thead>
 <tr style="height:30px;">
-<td class="list">
+<td class="list employeeId">
 	<label>社員ＩＤ</Label>
 </td>
-<td class="list">
+<td class="list employeeName">
 	<label>社員氏名</Label>
 </td>
-<td class="list">
+<td class="list sex">
 	<label>性別</Label>
 </td>
-<td class="list">
+<td class="list joinedYmd">
 	<label>入社年月日</Label>
 </td>
-<td class="list">
+<td class="list csvCheck">
 	<label>CSV出力</Label>
 </td>
 </tr>
@@ -158,7 +157,7 @@ if (list != null) {
 <%
 Emp0001DataBean bean = list.get(i);
 %>
-<tr style="height:30px">
+<tr>
 <td class="list">
 	<a href="javascript:void(0)" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Dtl/init" %>','<%= bean.getEmployeeId() %>');return false;"><%= bean.getEmployeeId() %></a>
 </td>
@@ -182,9 +181,11 @@ Emp0001DataBean bean = list.get(i);
 }
 %>
 </tbody>
+<br>
 <tfoot aligne="">
+<tr><td></td></tr>
 <tr>
-<td colspan="4" valign="bottom">
+<td colspan="5" valign="bottom">
 <% if ("0".equals(form.getCurrentPage()) || "1".equals(form.getCurrentPage())) { %>
 <input type="button" disabled="disabled" value="先頭"/>
 <input type="button" disabled="disabled" value="前頁"/>

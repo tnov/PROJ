@@ -50,11 +50,13 @@ if (infos != null) {
 </section>
 <section>
 <br>
+<br>
 <div><label>ユーザＩＤ</label><input type="text" name="userId" value="<%= request.getAttribute("userId") %>" placeholder="ユーザＩＤを入力" required /></div>
 <br>
 <div><label>パスワード</label><input type="password" name="password" value="" placeholder="パスワードを入力"  required /></div>
 <br>
-<div><input type="submit" value="ログイン"/></div>
+<div class="loginbutton"><input type="submit" value="ログイン"/></div>
+
 </section>
 </form>
 </body>
