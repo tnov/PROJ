@@ -1,7 +1,7 @@
 window.onload = function() {
 
-	// 新規登録時はパスワード項目を非表示
-	if(document.getElementById('mode').value == '0'){
+	// 新規登録時のみパスワード項目を表示
+	if(document.getElementById('mode').value == '1'){
 		document.getElementById("password").style.display="none";
 		document.getElementById("passwordChk").style.display="none";
 	}

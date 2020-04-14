@@ -173,7 +173,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 </table>
 <input type="hidden" name="paramEmployeeId" value="<%= form.getParamEmployeeId() %>" placeholder="" required />
 <input type="hidden" name="backMode" value="<%= form.getBackMode() %>" placeholder="" required />
-<input type="hidden" id="mode" value="<%= form.getMode() %>" placeholder="" required />
+<input type="hidden" name="mode" id="mode" value="<%= form.getMode() %>" placeholder="" required />
 </section>
 </form>
 <footer></footer>

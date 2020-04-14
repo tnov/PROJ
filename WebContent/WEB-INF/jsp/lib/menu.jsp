@@ -24,9 +24,18 @@ List<HierarchyBean> hierarchyList = (List<HierarchyBean>)request.getAttribute("l
 if (hierarchyList != null) {
 	for (int i = 0 ; i < hierarchyList.size() ; i++) {
 		HierarchyBean hierarchyBean = hierarchyList.get(i);
-%>
-	<div class="tile">
 
+		if(hierarchyBean.getDispFlg().equals("1")){
+%>
+	<div class="tile" style="visibility:hidden">
+<%
+		}else{
+	%>
+		<div class="tile">
+
+<%
+		}
+	%>
 		<div class="groupname"><label><%= hierarchyBean.getHierarchyName() %></label></div>
 		<div class="list">
 <%

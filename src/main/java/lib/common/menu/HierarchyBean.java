@@ -5,6 +5,7 @@ import java.util.List;
 public class HierarchyBean {
 	private String hierarchyId;
 	private String hierarchyName;
+	private String dispFlg;
 	private List<MenuBean> menuList;
 	public String getHierarchyId() {
 		return hierarchyId;
@@ -23,5 +24,11 @@ public class HierarchyBean {
 	}
 	public void setMenuList(List<MenuBean> menuList) {
 		this.menuList = menuList;
+	}
+	public String getDispFlg() {
+		return dispFlg;
+	}
+	public void setDispFlg(String dispFlg) {
+		this.dispFlg = dispFlg;
 	}
 }

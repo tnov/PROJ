@@ -1,6 +1,6 @@
 -- Project Name : 社員DB
--- Date/Time    : 2020/02/26 4:58:20
--- Author       : ryzen
+-- Date/Time    : 2020/04/14 9:07:55
+-- Author       : And
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
 
@@ -11,13 +11,14 @@ create table MST_HIERARCHY (
   HIERARCHY_ID character varying not null
   , HIERARCHY_NAME character varying not null
   , HIERARCHY_ORDER integer default 0 not null
+  , DISP_FLG character not null
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_HIERARCHY_PKC primary key (HIERARCHY_ID)
 ) ;
 
@@ -30,10 +31,10 @@ create table MST_DEPARTMENT (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_DEPARTMENT_PKC primary key (DEPARTMENT_ID)
 ) ;
 
@@ -49,10 +50,10 @@ create table MST_FUNCTION (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_FUNCTION_PKC primary key (FUNCTION_ID,FUNCTION_NAME)
 ) ;
 
@@ -66,10 +67,10 @@ create table MST_MENU (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_MENU_PKC primary key (HIERARCHY_ID,FUNCTION_ID)
 ) ;
 
@@ -83,10 +84,10 @@ create table MST_SECTION_GROUP (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_SECTION_GROUP_PKC primary key (SECTION_GROUP_ID)
 ) ;
 
@@ -101,10 +102,10 @@ create table MST_SECTION (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_SECTION_PKC primary key (SECTION_GROUP_ID,SECTION_ID)
 ) ;
 
@@ -126,10 +127,10 @@ create table MST_EMPLOYEE (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint MST_EMPLOYEE_PKC primary key (EMPLOYEE_ID)
 ) ;
 
@@ -144,10 +145,10 @@ create table AUTHORIZED_USER (
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
   , CREATE_USER_ID character varying
-  , CREATE_YMD character varying
+  , CREATE_YMD timestamp
   , UPDATE_MODULE_ID character varying
   , UPDATE_USER_ID character varying
-  , UPDATE_YMD character varying
+  , UPDATE_YMD timestamp
   , constraint AUTHORIZED_USER_PKC primary key (USER_ID)
 ) ;
 
@@ -155,6 +156,7 @@ comment on table MST_HIERARCHY is '階層マスタ';
 comment on column MST_HIERARCHY.HIERARCHY_ID is '階層ID';
 comment on column MST_HIERARCHY.HIERARCHY_NAME is '階層名';
 comment on column MST_HIERARCHY.HIERARCHY_ORDER is '階層順序';
+comment on column MST_HIERARCHY.DISP_FLG is '表示フラグ';
 comment on column MST_HIERARCHY.DELETE_FLG is '削除フラグ:0:未削除、1:削除';
 comment on column MST_HIERARCHY.CREATE_MODULE_ID is '作成モジュールＩＤ';
 comment on column MST_HIERARCHY.CREATE_USER_ID is '作成ユーザＩＤ';

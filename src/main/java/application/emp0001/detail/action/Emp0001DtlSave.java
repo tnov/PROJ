@@ -35,7 +35,8 @@ public class Emp0001DtlSave extends HttpServlet {
 		form.setJoinedYmd(req.getParameter("joinedYmd"));
 		form.setRetireYmd(req.getParameter("retireYmd"));
 		form.setDepartmentId(req.getParameter("departmentId"));
-		form.setAuthorized(req.getParameter("authorized"));
+//		form.setAuthorized(req.getParameter("authorized"));
+		form.setAuthorized("0");
 		form.setMode(req.getParameter("mode"));
 		// チェック処理
 		List<String> messages = util.check(form);

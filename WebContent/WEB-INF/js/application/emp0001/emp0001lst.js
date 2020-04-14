@@ -31,12 +31,14 @@ function clearItem() {
 
 window.onload = function() {
 
-	// 検索結果が0件の場合はCSV出力ボタンを非活性にする
+	// 検索結果が0件の場合
 	const button = document.getElementById("csvButton");
 	if(document.getElementById('pageSize').value == '0'){
 		button.disabled = true;
+		document.getElementById("resultDisp").style.display="none";
 	}else{
 		button.disabled = false;
+		document.getElementById("resultDisp").style.display="block";
 	}
 
 }

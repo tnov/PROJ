@@ -84,8 +84,8 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 			<label>性別</label>
 		</td>
 		<td>
-			<input type="checkbox" name="sex" id="sexMen" value="1" <% if(form.getSex() == null || form.getSex().length == 2 || "1".equals(form.getSex()[0])){ %> checked="checked" <% } %>>男性
-			<input type="checkbox" name="sex" id="sexWomen" value="2" <% if(form.getSex() == null || form.getSex().length == 2 || "2".equals(form.getSex()[0])){ %> checked="checked" <% } %>>女性
+			<input type="checkbox" name="sex" id="sexMen" value="0" <% if(form.getSex() == null || form.getSex().length == 2 || "0".equals(form.getSex()[0])){ %> checked="checked" <% } %>>男性
+			<input type="checkbox" name="sex" id="sexWomen" value="1" <% if(form.getSex() == null || form.getSex().length == 2 || "1".equals(form.getSex()[0])){ %> checked="checked" <% } %>>女性
 		</td>
 	</tr>
 	<tr>
@@ -128,9 +128,10 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 	</tr>
 </table>
 <section>
+<div id="resultDisp">
 <table>
 <thead>
-<tr style="height:30px;">
+<tr>
 <td class="list employeeId">
 	<label>社員ＩＤ</Label>
 </td>
@@ -205,6 +206,7 @@ Emp0001DataBean bean = list.get(i);
 </tr>
 </tfoot>
 </table>
+</div>
 <input type="hidden" name="paramEmployeeId" value="" />
 
 <input type="hidden" name="movePath" value="" />

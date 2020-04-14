@@ -72,7 +72,7 @@ public class MenuInit extends HttpServlet {
 		    // コネクションの取得
 		    // SQL実行
 			try (Connection connection = dataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement("select mst_menu.hierarchy_id, mst_hierarchy.hierarchy_name, mst_menu.function_id, mst_function.function_name, mst_function.function_path from mst_hierarchy left join mst_menu on mst_hierarchy.hierarchy_id = mst_menu.hierarchy_id left join mst_function on mst_menu.function_id = mst_function.function_id and mst_function.delete_flg = '0' where mst_hierarchy.delete_flg = '0' and  mst_menu.delete_flg = '0' and  mst_function.delete_flg = '0' order by mst_hierarchy.hierarchy_order , mst_menu.function_order , mst_hierarchy.hierarchy_id , mst_menu.function_id")
+				PreparedStatement statement = connection.prepareStatement("select mst_menu.hierarchy_id, mst_hierarchy.hierarchy_name,mst_hierarchy.disp_flg, mst_menu.function_id, mst_function.function_name, mst_function.function_path from mst_hierarchy left join mst_menu on mst_hierarchy.hierarchy_id = mst_menu.hierarchy_id left join mst_function on mst_menu.function_id = mst_function.function_id and mst_function.delete_flg = '0' where mst_hierarchy.delete_flg = '0' and  mst_menu.delete_flg = '0' and  mst_function.delete_flg = '0' order by mst_hierarchy.hierarchy_order , mst_menu.function_order , mst_hierarchy.hierarchy_id , mst_menu.function_id")
 					) {
 				// メニュー情報を検索
 				if (!statement.execute()) {
@@ -84,23 +84,26 @@ public class MenuInit extends HttpServlet {
 						HierarchyBean hierarchyBean = null;
 						String hierarchyId = resultSet.getString(1);
 						String hierarchyName = resultSet.getString(2);
+						String dispFlg = resultSet.getString(3);
+
 						if (!keyset.contains(hierarchyId)) {
 							// 新規追加
 							keyset.add(hierarchyId);
 							hierarchyBean = new HierarchyBean();
 							hierarchyBean.setHierarchyId(hierarchyId);
 							hierarchyBean.setHierarchyName(hierarchyName);
+							hierarchyBean.setDispFlg(dispFlg);
 							hierarchyBean.setMenuList(new ArrayList<MenuBean>());
 							menuInfoList.add(hierarchyBean);
 						}
 						hierarchyBean = menuInfoList.get(menuInfoList.size()-1);
 						MenuBean menuBean = new MenuBean();
 						// 画面ＩＤ
-						menuBean.setMenuId(resultSet.getString(3));
+						menuBean.setMenuId(resultSet.getString(4));
 						// 画面名
-						menuBean.setMenuName(resultSet.getString(4));
+						menuBean.setMenuName(resultSet.getString(5));
 						// 画面URL
-						menuBean.setMenuPath(resultSet.getString(5));
+						menuBean.setMenuPath(resultSet.getString(6));
 						hierarchyBean.getMenuList().add(menuBean);
 					}
 				}
