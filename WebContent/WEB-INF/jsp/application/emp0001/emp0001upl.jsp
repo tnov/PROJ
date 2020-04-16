@@ -21,7 +21,7 @@
     <jsp:param name="title" value="社員情報取込" />
 </jsp:include>
 <section>
-<div class= "messageGroup">
+<div class= "errorMessageGroup">
 <%
 List<String> errors = (List<String>)request.getAttribute("errorMessages");
 if (errors != null) {
@@ -42,6 +42,8 @@ if (warnings != null) {
 	}
 }
 %>
+</div>
+<div class= "infoMessageGroup">
 <%
 List<String> infos = (List<String>)request.getAttribute("infoMessages");
 if (infos != null) {

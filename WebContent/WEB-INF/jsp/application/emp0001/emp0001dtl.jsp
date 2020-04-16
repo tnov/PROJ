@@ -20,6 +20,7 @@
     <jsp:param name="title" value="社員詳細" />
 </jsp:include>
 <section>
+<div class= "errorMessageGroup">
 <%
 List<String> errors = (List<String>)request.getAttribute("errorMessages");
 if (errors != null) {
@@ -40,6 +41,8 @@ if (warnings != null) {
 	}
 }
 %>
+</div>
+<div class= "infoMessageGroup">
 <%
 List<String> infos = (List<String>)request.getAttribute("infoMessages");
 if (infos != null) {
@@ -50,6 +53,7 @@ if (infos != null) {
 	}
 }
 %>
+</div>
 </section>
 <section>
 <%
@@ -87,7 +91,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label>生年月日</label>
 		</td>
 		<td>
-			<input type="text" name="birthYmd" value="<%= form.getBirthYmd() %>" placeholder="" required />
+			<input class="inputDate" type="text" name="birthYmd" maxlength="8" value="<%= form.getBirthYmd() %>"  placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -112,7 +116,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label>入社日</label>
 		</td>
 		<td>
-			<input type="text" name="joinedYmd" value="<%if(form.getJoinedYmd() != null){ %><%= form.getJoinedYmd() %> <% } %>" placeholder="" required />
+			<input class="inputDate" type="text" name="joinedYmd" maxlength="8" value="<%= form.getJoinedYmd() %>" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -120,7 +124,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label>退職日</label>
 		</td>
 		<td>
-			<input type="text" name="retireYmd" value="<%if(form.getRetireYmd() != null){ %><%= form.getRetireYmd() %> <% } %>" placeholder="" required />
+			<input class="inputDate" type="text" name="retireYmd" maxlength="8" value="<%= form.getRetireYmd() %>" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -128,7 +132,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label>郵便番号</label>
 		</td>
 		<td>
-			<input type="text" name="zipCode" value="<%if(form.getZipCode() != null){ %><%= form.getZipCode() %> <% } %>" placeholder="" required />
+			<input class="inputZip" type="text" name="zipCode" maxlength="7" value="<%= form.getZipCode() %>" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -136,7 +140,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label>住所</label>
 		</td>
 		<td>
-			<input type="text" name="address" value="<%if(form.getAddress() != null){ %><%= form.getAddress() %> <% } %>" placeholder="" required />
+			<input class="active" type="text" name="address" value="<%= form.getAddress() %>" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -144,7 +148,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label>電話番号</label>
 		</td>
 		<td>
-			<input type="text" name="tel" value="<%if(form.getTel() != null){ %><%= form.getTel() %> <% } %>" placeholder="" required />
+			<input class="inputTel" class="disabled" type="text" name="tel" maxlength="11" value="<%= form.getTel() %>" placeholder="" required />
 		</td>
 	</tr>
 	<div></div>

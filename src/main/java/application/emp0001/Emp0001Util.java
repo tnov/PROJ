@@ -2,6 +2,7 @@ package application.emp0001;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import application.CheckUtil;
 import application.emp0001.detail.Emp0001DtlConstants;
@@ -13,12 +14,22 @@ public class Emp0001Util {
 	public boolean existsEmployeeId(String employeeId) {
 		return false;
 	}
-	// チェック処理
-	public List<String> check(Emp0001DtlForm form) {
+	// 入力チェック処理
+	public List<String> inputCheck(Emp0001DtlForm form) {
 		List<String> messages = new ArrayList<>();
+
+		// 社員ID nullチェック
 		if (CheckUtil.isEmpty(form.getEmployeeId())) {
 			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_ID_NOT_INPUT);
+			return messages;
 		}
+		// 社員ID 半角英数字チェック
+		if(!Pattern.matches(Emp0001Constants.REGEX_HALF_ALPHANUMERIC, form.getEmployeeId())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_ID_NOT_HALF_ALPHANUMERIC);
+			return messages;
+		}
+
+
 		if (CheckUtil.isEmpty(form.getEmployeeName())) {
 			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_NAME_NOT_INPUT);
 		}
@@ -58,7 +69,8 @@ public class Emp0001Util {
 			data.setJoinedYmd(form.getJoinedYmd());
 			data.setRetireYmd(form.getRetireYmd());
 			data.setDepartmentId(form.getDepartmentId());
-			data.setAuthorized(form.getAuthorized());
+//			data.setAuthorized(form.getAuthorized());
+			data.setAuthorized("0");
 			data.setDeleteFlg(form.getDeleteFlg());
 			data.setCreateModuleId(form.getCreate_module_id());
 			data.setCreateUserId(form.getCreate_user_id());

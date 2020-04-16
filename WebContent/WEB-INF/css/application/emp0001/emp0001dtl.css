@@ -36,3 +36,15 @@ select{
 .detail {
 	margin:0 auto
 }
+
+.inputDate {
+	width: 100px;
+}
+
+.inputZip {
+	width: 80px;
+}
+
+.inputTel {
+	width: 120px;
+}

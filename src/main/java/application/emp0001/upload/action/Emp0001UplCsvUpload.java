@@ -107,7 +107,7 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 					dtlForm.setMode(buttontype);
 
 					// チェック処理
-					List<String> messages = util.check(dtlForm);
+					List<String> messages = util.inputCheck(dtlForm);
 					if (CheckUtil.isNotEmpty(messages)) {
 						errors.addAll(messages);
 					}

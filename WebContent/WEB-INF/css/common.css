@@ -48,13 +48,22 @@ header {
 	bottom: 0;
  }
 /* エラーメッセージ */
-.messageGroup{
+.errorMessageGroup{
 	margin :0 auto;
 	width : 500px;
 	text-align: center;
 	color: #ff0000;
 	font-weight: bold;
 }
+/* 情報メッセージ */
+.infoMessageGroup{
+	margin :0 auto;
+	width : 500px;
+	text-align: center;
+	color: #3f3f3f;
+	font-weight: bold;
+}
+
 /* セクション部のスタイル */
 section {
 }

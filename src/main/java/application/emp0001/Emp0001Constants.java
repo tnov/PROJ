@@ -20,4 +20,7 @@ public class Emp0001Constants {
 	public static final String SQL_PRIMARY_KEY = "WHERE employee_id = ?";
 	public static final String SQL_ORDER = " ORDER BY employee_id";
 
+	// 正規表現パターン 半角英数字
+	public static final String REGEX_HALF_ALPHANUMERIC = "^[0-9a-zA-Z]+$";
+
 }
