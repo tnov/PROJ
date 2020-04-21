@@ -3,6 +3,9 @@
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Map"%>
 <%@ page import="application.emp0001.detail.Emp0001DtlForm"%>
+<%@ page import="application.CommonConstants"%>
+<%@ page import="application.emp0001.detail.Emp0001DtlConstants"%>
+
 <% request.setCharacterEncoding("UTF8"); %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -26,7 +29,8 @@ List<String> errors = (List<String>)request.getAttribute("errorMessages");
 if (errors != null) {
 	for (int esize = 0 ; esize < errors.size() ; esize++) {
 %>
-		<label><%= errors.get(esize) %></label>
+		<label><%= errors.get(esize) %></label><br>
+
 <%
 	}
 }
@@ -36,7 +40,7 @@ List<String> warnings = (List<String>)request.getAttribute("warningMessages");
 if (warnings != null) {
 	for (int wsize = 0 ; wsize < warnings.size() ; wsize++) {
 %>
-		<label><%= warnings.get(wsize) %></label>
+		<label><%= warnings.get(wsize) %></label><br>
 <%
 	}
 }
@@ -48,7 +52,7 @@ List<String> infos = (List<String>)request.getAttribute("infoMessages");
 if (infos != null) {
 	for (int isize = 0 ; isize < infos.size() ; isize++) {
 %>
-		<label><%= infos.get(isize) %></label>
+		<label><%= infos.get(isize) %></label><br>
 <%
 	}
 }
@@ -63,7 +67,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 <table class="inputtable">
 	<tr>
 		<td>
-			<label>社員ＩＤ</label>
+			<label><%=Emp0001DtlConstants.EMPLOYEE_ID %><%=CommonConstants.REQUIRED %></label>
 		</td>
 		<td>
 			<input type="text" name="employeeId" value="<%= form.getEmployeeId() %>" placeholder="" required />
@@ -71,7 +75,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 	</tr>
 	<tr>
 		<td>
-			<label>社員氏名</label>
+			<label><%=Emp0001DtlConstants.EMPLOYEE_NAME %><%=CommonConstants.REQUIRED %></label>
 		</td>
 		<td>
 			<input type="text" name="employeeName" value="<%= form.getEmployeeName() %>" placeholder="" required />
@@ -79,7 +83,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 	</tr>
 	<tr>
 		<td>
-			<label>性別</label>
+			<label><%=Emp0001DtlConstants.SEX %></label>
 		</td>
 		<td>
 			<input type="radio" name="sex" value="0" <% if("0".equals(form.getSex())){ %> checked <% } %>>男性
@@ -88,15 +92,17 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 	</tr>
 	<tr>
 		<td>
-			<label>生年月日</label>
+			<label><%=Emp0001DtlConstants.BIRTH_YMD %></label>
 		</td>
 		<td>
 			<input class="inputDate" type="text" name="birthYmd" maxlength="8" value="<%= form.getBirthYmd() %>"  placeholder="" required />
+			&nbsp;
+			<%=CommonConstants.DISP_FORMAT_YYYYMMDD %>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<label>所属部署</label>
+			<label><%=Emp0001DtlConstants.DEPARTMENT_NAME %></label>
 		</td>
 		<td>
 			<select name="departmentId">
@@ -113,23 +119,27 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 	</tr>
 	<tr>
 		<td>
-			<label>入社日</label>
+			<label><%=Emp0001DtlConstants.JOINED_YMD %></label>
 		</td>
 		<td>
 			<input class="inputDate" type="text" name="joinedYmd" maxlength="8" value="<%= form.getJoinedYmd() %>" placeholder="" required />
+			&nbsp;
+			<%=CommonConstants.DISP_FORMAT_YYYYMMDD %>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<label>退職日</label>
+			<label><%=Emp0001DtlConstants.RETIRE_YMD %></label>
 		</td>
 		<td>
 			<input class="inputDate" type="text" name="retireYmd" maxlength="8" value="<%= form.getRetireYmd() %>" placeholder="" required />
+			&nbsp;
+			<%=CommonConstants.DISP_FORMAT_YYYYMMDD %>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<label>郵便番号</label>
+			<label><%=Emp0001DtlConstants.ZIP_CODE %></label>
 		</td>
 		<td>
 			<input class="inputZip" type="text" name="zipCode" maxlength="7" value="<%= form.getZipCode() %>" placeholder="" required />
@@ -137,7 +147,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 	</tr>
 	<tr>
 		<td>
-			<label>住所</label>
+			<label><%=Emp0001DtlConstants.ADDRESS %></label>
 		</td>
 		<td>
 			<input class="active" type="text" name="address" value="<%= form.getAddress() %>" placeholder="" required />
@@ -145,7 +155,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 	</tr>
 	<tr>
 		<td>
-			<label>電話番号</label>
+			<label><%=Emp0001DtlConstants.TEL %></label>
 		</td>
 		<td>
 			<input class="inputTel" class="disabled" type="text" name="tel" maxlength="11" value="<%= form.getTel() %>" placeholder="" required />
@@ -154,7 +164,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 	<div></div>
 	<tr id="password">
 		<td>
-			<label>パスワード</label>
+			<label><%=Emp0001DtlConstants.PASSWORD %><%=CommonConstants.REQUIRED %></label>
 		</td>
 		<td>
 			<input type="password" name="authorized" value="<%= form.getAuthorized() %>" placeholder="" required autocomplete="new-password"/>
@@ -162,7 +172,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 	</tr>
 	<tr id="passwordChk">
 		<td>
-			<label>パスワード確認用</label>
+			<label><%=Emp0001DtlConstants.PASSWORD_CHK %><%=CommonConstants.REQUIRED %></label>
 		</td>
 		<td>
 			<input type="password" name="authorizedChk" value="<%= form.getAuthorizedChk() %>" placeholder="" required autocomplete="new-password"/>

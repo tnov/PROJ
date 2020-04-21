@@ -236,7 +236,7 @@ comment on column MST_EMPLOYEE.ZIP_CODE is '郵便番号';
 comment on column MST_EMPLOYEE.ADDRESS is '住所';
 comment on column MST_EMPLOYEE.TEL is '電話番号';
 comment on column MST_EMPLOYEE.JOINED_YMD is '入社日';
-comment on column MST_EMPLOYEE.RETIRE_YMD is '退職日';
+comment on column MST_EMPLOYEE.RETIRE_YMD is '退社日';
 comment on column MST_EMPLOYEE.DEPARTMENT_ID is '部署ＩＤ';
 comment on column MST_EMPLOYEE.AUTHORIZED is '認証';
 comment on column MST_EMPLOYEE.DELETE_FLG is '削除フラグ:0:未削除、1:削除';

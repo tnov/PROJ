@@ -22,5 +22,7 @@ public class Emp0001Constants {
 
 	// 正規表現パターン 半角英数字
 	public static final String REGEX_HALF_ALPHANUMERIC = "^[0-9a-zA-Z]+$";
+	// 正規表現パターン 半角数字
+	public static final String REGEX_NUMBER = "^[0-9]+$";
 
 }

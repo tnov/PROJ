@@ -2,6 +2,8 @@ package application;
 
 public class CommonConstants {
 
+	public static final String REQUIRED = "（＊）";
+
 	public static final String CSV_SEPARATOR = ",";
 	public static final String CSV_DEMILITER = System.lineSeparator();
 	public static final String CSV_QUALIFIER = "\"";
@@ -19,4 +21,8 @@ public class CommonConstants {
 	public static final String SEX_MALE_NAME = "男";
 	public static final String SEX_FEMALE = "1";
 	public static final String SEX_FEMALE_NAME = "女";
+
+	public static final String DISP_FORMAT_YYYYMMDD = "YYYYMMDD";
+	public static final String FORMAT_YYYYMMDD = "yyyyMMdd";
+
 }

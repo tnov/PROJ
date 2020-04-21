@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import application.CheckUtil;
+import application.CommonConstants;
 import application.emp0001.detail.Emp0001DtlConstants;
 import application.emp0001.detail.Emp0001DtlForm;
 import application.proj.dao.MstEmployeeDao;
@@ -18,30 +19,70 @@ public class Emp0001Util {
 	public List<String> inputCheck(Emp0001DtlForm form) {
 		List<String> messages = new ArrayList<>();
 
-		// 社員ID nullチェック
+		// 社員ID 必須チェック
 		if (CheckUtil.isEmpty(form.getEmployeeId())) {
 			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_ID_NOT_INPUT);
-			return messages;
-		}
 		// 社員ID 半角英数字チェック
-		if(!Pattern.matches(Emp0001Constants.REGEX_HALF_ALPHANUMERIC, form.getEmployeeId())) {
+		}else if(!Pattern.matches(Emp0001Constants.REGEX_HALF_ALPHANUMERIC, form.getEmployeeId())) {
 			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_ID_NOT_HALF_ALPHANUMERIC);
-			return messages;
 		}
 
-
+		// 社員氏名 必須チェック
 		if (CheckUtil.isEmpty(form.getEmployeeName())) {
 			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_NAME_NOT_INPUT);
 		}
-		if (CheckUtil.isEmpty(form.getBirthYmd())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_BIRTH_YMD_NOT_INPUT);
+
+		// 生年月日 数値チェック
+		if(!CheckUtil.isEmpty(form.getBirthYmd())
+					&& !Pattern.matches(Emp0001Constants.REGEX_NUMBER, form.getBirthYmd())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_BIRTH_YMD_NOT_NUMBER);
+		// 生年月日 日付妥当性チェック
+		}else if(!CheckUtil.dateValidChk(form.getBirthYmd(), CommonConstants.FORMAT_YYYYMMDD)){
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_BIRTH_YMD_NOT_DATE);
 		}
-		if (CheckUtil.isEmpty(form.getSex())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_SEX_NOT_INPUT);
+
+		// 入社日 数値チェック
+		if(!CheckUtil.isEmpty(form.getJoinedYmd())
+					&& !Pattern.matches(Emp0001Constants.REGEX_NUMBER, form.getJoinedYmd())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_JOINED_YMD_NOT_NUMBER);
+		// 入社日 日付妥当性チェック
+		}else if(!CheckUtil.dateValidChk(form.getJoinedYmd(), CommonConstants.FORMAT_YYYYMMDD)){
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_JOINED_YMD_NOT_DATE);
 		}
+
+		// 退社日 数値チェック
+		if(!CheckUtil.isEmpty(form.getRetireYmd())
+					&& !Pattern.matches(Emp0001Constants.REGEX_NUMBER, form.getRetireYmd())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_RETIRE_YMD_NOT_NUMBER);
+		// 退社日 日付妥当性チェック
+		}else if(!CheckUtil.dateValidChk(form.getRetireYmd(), CommonConstants.FORMAT_YYYYMMDD)){
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_RETIRE_YMD_NOT_DATE);
+		}
+
+		// 郵便番号 数値チェック
+		if(!CheckUtil.isEmpty(form.getZipCode())
+			&& !Pattern.matches(Emp0001Constants.REGEX_NUMBER, form.getZipCode())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_ZIP_CODE_NOT_NUMBER);
+		}
+
+		// 電話番号 数値チェック
+		if(!CheckUtil.isEmpty(form.getTel())
+			&& !Pattern.matches(Emp0001Constants.REGEX_NUMBER, form.getTel())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_TEL_NOT_NUMBER);
+		}
+
+		// パスワード 必須チェック
 		if (CheckUtil.isEmpty(form.getAuthorized())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_AUTHORIZED_NOT_SELECTED);
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_AUTHORIZED_NOT_INPUT);
+		// パスワード確認用 必須チェック
+		}else if (CheckUtil.isEmpty(form.getAuthorizedChk())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_AUTHORIZED_CHK_NOT_INPUT);
+		// パスワード、パスワード確認用一致チェック
+		}else if (!form.getAuthorized().equals(form.getAuthorizedChk())) {
+			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_AUTHORIZED_CHK_NOT_EQUAL);
 		}
+
+
 		return messages;
 	}
 

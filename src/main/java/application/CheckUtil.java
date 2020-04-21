@@ -1,5 +1,8 @@
 package application;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -68,4 +71,25 @@ public class CheckUtil {
 	}
 	/* チェック(checkbox) */
 	/* チェック(radio not select) */
+
+	/**
+	 * 日付妥当性チェック
+	 *
+	 * @param dateStr 日付文字列
+	 * @param format 日付フォーマット
+	 * @return 判定
+	 */
+	public static boolean dateValidChk(String dateStr,String format) {
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		dateFormat.setLenient(false);
+		try {
+			dateFormat.parse(dateStr);
+		} catch (ParseException  e) {
+			return false;
+		}
+		return true;
+	}
+
+
 }

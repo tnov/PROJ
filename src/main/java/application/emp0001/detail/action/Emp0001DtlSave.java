@@ -3,7 +3,6 @@ package application.emp0001.detail.action;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,12 +39,15 @@ public class Emp0001DtlSave extends HttpServlet {
 		form.setTel(req.getParameter("tel"));
 		form.setDepartmentId(req.getParameter("departmentId"));
 		form.setAuthorized(req.getParameter("authorized"));
+		form.setAuthorizedChk(req.getParameter("authorizedChk"));
+
 		form.setMode(req.getParameter("mode"));
 
 		// 入力チェック処理
 		List<String> messages = util.inputCheck(form);
 		if (CheckUtil.isNotEmpty(messages)) {
 			form.setAuthorized("");
+			form.setAuthorizedChk("");
 			req.setAttribute("form", form);
 
 			// チェック処理エラー
@@ -69,23 +71,15 @@ public class Emp0001DtlSave extends HttpServlet {
 	}
 
 
-	private void setMessage(HttpServletRequest req, HttpServletResponse resp, String type, List<String> messages, Emp0001DtlForm form) throws ServletException, IOException {
-		StringJoiner sj = new StringJoiner("\r\n");
-		for (String message : messages) {
-			sj.add(message);
-		}
-		setMessage(req,resp,type,sj.toString(),form);
+	private void setMessage(HttpServletRequest req, HttpServletResponse resp, String type, String messages, Emp0001DtlForm form) throws ServletException, IOException {
+		List<String> messagesList = new ArrayList<String>();
+		messagesList.add(messages);
+		setMessage(req,resp,type,messagesList,form);
 	}
 
-	private void setMessage(HttpServletRequest req, HttpServletResponse resp, String type, String message, Emp0001DtlForm form) throws ServletException, IOException {
+	private void setMessage(HttpServletRequest req, HttpServletResponse resp, String type,  List<String> messages, Emp0001DtlForm form) throws ServletException, IOException {
 		// 画面項目セット
 		req.setAttribute("form", form);
-		// メッセージの設定
-		List<String> messages = (List<String>)req.getAttribute(type);
-		if (messages == null) {
-			messages = new ArrayList<String>();
-		}
-		messages.add(message);
 		req.setAttribute(type, messages);
 		// メニュー遷移
 		CommonUtil.dispReturn(req, resp, Emp0001DtlConstants.CONTENTS_PATH);
