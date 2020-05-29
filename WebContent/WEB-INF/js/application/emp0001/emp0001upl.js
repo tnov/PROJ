@@ -1,5 +1,7 @@
-function move(form,url) {
-	form.backMode.value="1";
+function move(form,url,id) {
+	if (id) {
+		form.paramEmployeeId.value=id;
+	}
 	form.action=url;
 	form.submit();
 }
