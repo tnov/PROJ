@@ -3,9 +3,17 @@
 .itemgroup {
 	margin:0 auto;
     width: 300px;
-
 }
 
 .inButton {
 	margin-right :5px ;
+}
+
+.fileselect{
+	border:0px;
+	background-color: #fffce1;
+
+}
+.fileselect:focus{
+	background-color: #fffce1;
 }

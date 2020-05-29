@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -72,7 +74,7 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 					existsHeader = false;
 					continue;
 				}
-				String[] item = line.split(",");
+				String[] item = splitLineWithComma(line);
 				if (item.length == 12) {
 
 					String employeeId = item[col.EMPLOYEE_ID.ordinal()];
@@ -148,4 +150,52 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 		// メニュー遷移
 		CommonUtil.dispReturn(req, resp, Emp0001UplConstants.CONTENTS_PATH);
 	}
+
+    /**
+     * カンマ区切りで行を分割し、文字列配列を返す。
+     *
+     * ※下記について、アンエスケープ後の文字列を返す。
+     * 1. 値にカンマ(,)を含む場合は,値の前後をダブルクオート(")で囲う
+     * 2. ダブルクオート(")は，2つのダブルクオートに置換する("")
+     *
+     * */
+    private static String[] splitLineWithComma(String line) {
+        // 分割後の文字列配列
+        String[] arr = null;
+        // 後ろに偶数個の「"」が現れる「,」にマッチする正規表現
+        String REGEX_CSV_COMMA = ",(?=(([^\"]*\"){2})*[^\"]*$)";
+        // 最初と最後の「"」にマッチする正規表現
+        String REGEX_SURROUND_DOUBLEQUATATION = "^\"|\"$";
+        // 「""」にマッチする正規表現*
+        String REGEX_DOUBLEQUOATATION = "\"\"";
+
+        try {
+            // １、「"」で囲まれていない「,」で行を分割する。
+            Pattern cPattern = Pattern.compile(REGEX_CSV_COMMA);
+            String[] cols = cPattern.split(line, -1);
+
+            arr = new String[cols.length];
+            for (int i = 0, len = cols.length; i < len; i++) {
+                String col = cols[i].trim();
+
+                // ２、最初と最後に「"」があれば削除する。
+                Pattern sdqPattern =
+                    Pattern.compile(REGEX_SURROUND_DOUBLEQUATATION);
+                Matcher matcher = sdqPattern.matcher(col);
+                col = matcher.replaceAll("");
+
+                // ３、エスケープされた「"」を戻す。
+                Pattern dqPattern =
+                    Pattern.compile(REGEX_DOUBLEQUOATATION);
+                matcher = dqPattern.matcher(col);
+                col = matcher.replaceAll("\"");
+
+                arr[i] = col;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return arr;
+    }
 }

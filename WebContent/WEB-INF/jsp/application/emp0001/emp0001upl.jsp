@@ -62,7 +62,7 @@ Emp0001UplForm form = (Emp0001UplForm)request.getAttribute("form");
 %>
 <br>
 <div class="itemgroup">
-<input type="file" name="file" accept=".csv" multiple/>
+<input class="fileselect" type="file" name="file" size="70" accept=".csv" multiple/>
 <br><br>
 <input type="hidden" name="buttontype">
 <input class="inButton" type="button" onclick="doPostMultipart(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0001Upl/upload" %>',this)" name="0" value="登録"/>
