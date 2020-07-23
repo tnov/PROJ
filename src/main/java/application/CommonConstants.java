@@ -22,6 +22,14 @@ public class CommonConstants {
 	public static final String SEX_FEMALE = "1";
 	public static final String SEX_FEMALE_NAME = "女";
 
+	public static final String AGREE_STATUS_NO_AGREE = "0";
+	public static final String AGREE_STATUS_NO_AGREE_NAME = "契約なし";
+	public static final String AGREE_STATUS_AGREE = "1";
+	public static final String AGREE_STATUS_AGREE_NAME = "契約中";
+	public static final String AGREE_STATUS_AGREE_FIN = "2";
+	public static final String AGREE_STATUS_AGREE_FIN_NAME = "契約終了";
+
+
 	public static final String DISP_FORMAT_YYYYMMDD = "YYYYMMDD";
 	public static final String FORMAT_YYYYMMDD = "yyyyMMdd";
 

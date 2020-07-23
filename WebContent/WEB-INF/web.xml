@@ -151,4 +151,30 @@
     <servlet-name>Emp0001UplCsvUpload</servlet-name>
     <url-pattern>/Emp0001Upl/upload</url-pattern>
   </servlet-mapping>
+  <!-- 顧客一覧 -->
+  <servlet>
+    <servlet-name>Emp0002LstInit</servlet-name>
+    <servlet-class>application.emp0002.list.action.Emp0002LstInit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Emp0002LstInit</servlet-name>
+    <url-pattern>/Emp0002Lst/init</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Emp0002LstCsvDownload</servlet-name>
+    <servlet-class>application.emp0002.list.action.Emp0002LstCsvDownload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Emp0002LstCsvDownload</servlet-name>
+    <url-pattern>/Emp0002Lst/csv</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Emp0002LstSearch</servlet-name>
+    <servlet-class>application.emp0002.list.action.Emp0002LstSearch</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Emp0002LstSearch</servlet-name>
+    <url-pattern>/Emp0002Lst/search</url-pattern>
+  </servlet-mapping>
+
 </web-app>

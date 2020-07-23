@@ -1,5 +1,5 @@
 -- Project Name : 社員DB
--- Date/Time    : 2020/06/24 11:35:24
+-- Date/Time    : 2020/06/25 10:01:22
 -- Author       : And
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -44,7 +44,7 @@ create table MST_CUSTOMER (
   , MAINTENANCE_FLG character default 0
   , OPERATION_FLG character default 0
   , INFRASTRUCTURE_FLG character default 0
-  , FIRST_AGREE_YMD character varying
+  , AGREE_YMD character varying
   , AGREE_STATUS character
   , DELETE_FLG character default 0 not null
   , CREATE_MODULE_ID character varying
@@ -236,7 +236,7 @@ comment on column MST_CUSTOMER.DEVELOPMENT_FLG is '開発業務有無';
 comment on column MST_CUSTOMER.MAINTENANCE_FLG is '保守業務有無';
 comment on column MST_CUSTOMER.OPERATION_FLG is '運用業務有無';
 comment on column MST_CUSTOMER.INFRASTRUCTURE_FLG is 'インフラ業務有無';
-comment on column MST_CUSTOMER.FIRST_AGREE_YMD is '初回契約年月日';
+comment on column MST_CUSTOMER.AGREE_YMD is '契約年月日';
 comment on column MST_CUSTOMER.AGREE_STATUS is '契約状況';
 comment on column MST_CUSTOMER.DELETE_FLG is '削除フラグ:0:未削除、1:削除';
 comment on column MST_CUSTOMER.CREATE_MODULE_ID is '作成モジュールＩＤ';

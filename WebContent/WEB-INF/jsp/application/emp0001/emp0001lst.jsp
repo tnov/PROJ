@@ -64,35 +64,35 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 <br>
 <table class="inputtable">
 	<tr>
-		<td class="label">
+		<td class="label inputTd">
 			<label>社員ＩＤ</label>
 		</td>
-		<td>
+		<td class="inputTd">
 			<input type="text" name="employeeId" id="employeeId" value="<%= form.getEmployeeId() %>" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
-		<td class="label">
+		<td class="label inputTd">
 			<label>社員氏名</label>
 		</td>
-		<td>
+		<td class="inputTd">
 			<input type="text" name="employeeName" id="employeeName" value="<%= form.getEmployeeName() %>" placeholder=""  required />
 		</td>
 	</tr>
 	<tr>
-		<td class="label">
+		<td class="label inputTd">
 			<label>性別</label>
 		</td>
-		<td>
+		<td class="inputTd">
 			<input type="checkbox" name="sex" id="sexMen" value="0" <% if(form.getSex() == null || form.getSex().length == 2 || "0".equals(form.getSex()[0])){ %> checked="checked" <% } %>>男性
 			<input type="checkbox" name="sex" id="sexWomen" value="1" <% if(form.getSex() == null || form.getSex().length == 2 || "1".equals(form.getSex()[0])){ %> checked="checked" <% } %>>女性
 		</td>
 	</tr>
 	<tr>
-		<td class="label">
+		<td class="label inputTd">
 			<label>所属部署</label>
 		</td>
-		<td>
+		<td class="inputTd">
 			<select name="departmentId" id="departmentId">
 				<option value=""></option>
 				<%
@@ -106,10 +106,10 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 		</td>
 	</tr>
 	<tr>
-		<td class="label">
+		<td class="label inputTd">
 			<label>入社年月日</label>
 		</td>
-		<td>
+		<td class="inputTd">
 			<input class="joinedYmd" type="date" name="joinedYmdFrom" id="joinedYmdFrom" value="<%= form.getJoinedYmdFrom() %>" placeholder=""  required />
 			～
 			<input class="joinedYmd" type="date" name="joinedYmdTo" id="joinedYmdTo" value="<%= form.getJoinedYmdTo() %>" placeholder=""  required />

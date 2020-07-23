@@ -16,6 +16,7 @@ td.inputTd{
 input{
 	margin-bottom: 5px;
 }
+
 select{
 	margin-bottom: 5px;
 	font-size:15px;
@@ -29,22 +30,27 @@ select{
 	margin:0 auto;
 }
 
-.employeeId{
+.customerId{
 	width: 100px;
 	text-align: center;
 }
 
-.employeeName{
+.customerName{
 	width: 180px;
 	text-align: center;
 }
 
-.sex{
-	width: 40px;
+.tel{
+	width: 120px;
 	text-align: center;
 }
 
-.joinedYmd{
+.agreeStatus{
+	width: 80px;
+	text-align: center;
+}
+
+.agreeYmd{
 	width: 100px;
 	text-align: center;
 }
