@@ -176,5 +176,21 @@
     <servlet-name>Emp0002LstSearch</servlet-name>
     <url-pattern>/Emp0002Lst/search</url-pattern>
   </servlet-mapping>
-
+  <!-- 顧客詳細 -->
+  <servlet>
+    <servlet-name>Emp0002DtlInit</servlet-name>
+    <servlet-class>application.emp0002.detail.action.Emp0002DtlInit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Emp0002DtlInit</servlet-name>
+    <url-pattern>/Emp0002Dtl/init</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Emp0002DtlSave</servlet-name>
+    <servlet-class>application.emp0002.detail.action.Emp0002DtlSave</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Emp0002DtlSave</servlet-name>
+    <url-pattern>/Emp0002Dtl/save</url-pattern>
+  </servlet-mapping>
 </web-app>

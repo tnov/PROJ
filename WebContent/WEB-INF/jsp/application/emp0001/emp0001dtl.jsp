@@ -15,12 +15,12 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/application/emp0001/emp0001dtl.css" %>">
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/common.js" %>" ></script>
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/application/emp0001/emp0001dtl.js" %>" ></script>
-<title>社員詳細</title>
+<title>社員情報編集</title>
 </head>
 <body>
 <form id="mainForm" method="post">
 <jsp:include page="../../header.jsp">
-    <jsp:param name="title" value="社員詳細" />
+    <jsp:param name="title" value="社員情報編集" />
 </jsp:include>
 <section>
 <div class= "errorMessageGroup">
@@ -70,7 +70,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label><%=Emp0001DtlConstants.EMPLOYEE_ID %><%=CommonConstants.REQUIRED %></label>
 		</td>
 		<td>
-			<input type="text" name="employeeId" value="<%= form.getEmployeeId() %>" placeholder="" required />
+			<input type="text" name="employeeId" value="<%= form.getEmployeeId() %>" style="ime-mode: inactive" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -78,7 +78,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label><%=Emp0001DtlConstants.EMPLOYEE_NAME %><%=CommonConstants.REQUIRED %></label>
 		</td>
 		<td>
-			<input type="text" name="employeeName" value="<%= form.getEmployeeName() %>" placeholder="" required />
+			<input type="text" name="employeeName" value="<%= form.getEmployeeName() %>"  style="ime-mode: active" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -158,7 +158,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label><%=Emp0001DtlConstants.TEL %></label>
 		</td>
 		<td>
-			<input class="inputTel" class="disabled" type="text" name="tel" maxlength="11" value="<%= form.getTel() %>" placeholder="" required />
+			<input class="inputTel" type="text" name="tel" maxlength="11" value="<%= form.getTel() %>" placeholder="" required />
 		</td>
 	</tr>
 	<div></div>

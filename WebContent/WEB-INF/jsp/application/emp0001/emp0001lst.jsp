@@ -68,7 +68,7 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 			<label>社員ＩＤ</label>
 		</td>
 		<td class="inputTd">
-			<input type="text" name="employeeId" id="employeeId" value="<%= form.getEmployeeId() %>" placeholder="" required />
+			<input type="text" name="employeeId" id="employeeId" value="<%= form.getEmployeeId() %>" style="ime-mode: inactive" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -76,7 +76,7 @@ Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 			<label>社員氏名</label>
 		</td>
 		<td class="inputTd">
-			<input type="text" name="employeeName" id="employeeName" value="<%= form.getEmployeeName() %>" placeholder=""  required />
+			<input type="text" name="employeeName" id="employeeName" value="<%= form.getEmployeeName() %>" style="ime-mode: active" placeholder=""  required />
 		</td>
 	</tr>
 	<tr>

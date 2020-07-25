@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+div {
+	text-align:  center;
+}
+
+.label {
+	height: 30px;
+}
+
+table  {
+	margin:0 auto;
+}
+
+td  {
+	width: 200px;
+}
+
+
+table thead {
+	color: #000000;
+	background: #6cb6ff;
+}
+
+input{
+	margin-bottom: 5px;
+}
+select{
+	margin-bottom: 5px;
+}
+
+.inButton {
+	margin-right :5px ;
+}
+
+.detail {
+	margin:0 auto
+}
+
+.inputZip {
+	width: 80px;
+}
+
+.inputTel {
+	width: 120px;
+}

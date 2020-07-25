@@ -5,158 +5,123 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import application.CheckUtil;
-import application.CommonConstants;
-import application.emp0001.detail.Emp0001DtlConstants;
-import application.emp0001.detail.Emp0001DtlForm;
-import application.proj.dao.MstEmployeeDao;
-import application.proj.entity.MstEmployee;
+import application.emp0002.detail.Emp0002DtlConstants;
+import application.emp0002.detail.Emp0002DtlForm;
+import application.proj.dao.MstCustomerDao;
+import application.proj.entity.MstCustomer;
 
 public class Emp0002Util {
 	public boolean existsEmployeeId(String employeeId) {
 		return false;
 	}
 	// 入力チェック処理
-	public List<String> inputCheck(Emp0001DtlForm form) {
+	public List<String> inputCheck(Emp0002DtlForm form) {
 		List<String> messages = new ArrayList<>();
 
-		// 社員ID 必須チェック
-		if (CheckUtil.isEmpty(form.getEmployeeId())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_ID_NOT_INPUT);
-		// 社員ID 半角英数字チェック
-		}else if(!Pattern.matches(Emp0002Constants.REGEX_HALF_ALPHANUMERIC, form.getEmployeeId())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_ID_NOT_HALF_ALPHANUMERIC);
+		// 顧客ID 必須チェック
+		if (CheckUtil.isEmpty(form.getCustomerId())) {
+			messages.add(Emp0002DtlConstants.MESSAGE_ERROR_CUSTOMER_ID_NOT_INPUT);
+		// 顧客ID 半角英数字チェック
+		}else if(!Pattern.matches(Emp0002Constants.REGEX_HALF_ALPHANUMERIC, form.getCustomerId())) {
+			messages.add(Emp0002DtlConstants.MESSAGE_ERROR_CUSTOMER_ID_NOT_HALF_ALPHANUMERIC);
 		}
 
-		// 社員氏名 必須チェック
-		if (CheckUtil.isEmpty(form.getEmployeeName())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_EMPLOYEE_NAME_NOT_INPUT);
-		}
-
-		// 生年月日 数値チェック
-		if(!CheckUtil.isEmpty(form.getBirthYmd())
-					&& !Pattern.matches(Emp0002Constants.REGEX_NUMBER, form.getBirthYmd())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_BIRTH_YMD_NOT_NUMBER);
-		// 生年月日 日付妥当性チェック
-		}else if(!CheckUtil.dateValidChk(form.getBirthYmd(), CommonConstants.FORMAT_YYYYMMDD)){
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_BIRTH_YMD_NOT_DATE);
-		}
-
-		// 入社日 数値チェック
-		if(!CheckUtil.isEmpty(form.getJoinedYmd())
-					&& !Pattern.matches(Emp0002Constants.REGEX_NUMBER, form.getJoinedYmd())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_JOINED_YMD_NOT_NUMBER);
-		// 入社日 日付妥当性チェック
-		}else if(!CheckUtil.dateValidChk(form.getJoinedYmd(), CommonConstants.FORMAT_YYYYMMDD)){
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_JOINED_YMD_NOT_DATE);
-		}
-
-		// 退社日 数値チェック
-		if(!CheckUtil.isEmpty(form.getRetireYmd())
-					&& !Pattern.matches(Emp0002Constants.REGEX_NUMBER, form.getRetireYmd())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_RETIRE_YMD_NOT_NUMBER);
-		// 退社日 日付妥当性チェック
-		}else if(!CheckUtil.dateValidChk(form.getRetireYmd(), CommonConstants.FORMAT_YYYYMMDD)){
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_RETIRE_YMD_NOT_DATE);
+		// 顧客名称 必須チェック
+		if (CheckUtil.isEmpty(form.getCustomerName())) {
+			messages.add(Emp0002DtlConstants.MESSAGE_ERROR_CUSTOMER_NAME_NOT_INPUT);
 		}
 
 		// 郵便番号 数値チェック
 		if(!CheckUtil.isEmpty(form.getZipCode())
 			&& !Pattern.matches(Emp0002Constants.REGEX_NUMBER, form.getZipCode())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_ZIP_CODE_NOT_NUMBER);
+			messages.add(Emp0002DtlConstants.MESSAGE_ERROR_ZIP_CODE_NOT_NUMBER);
 		}
 
 		// 電話番号 数値チェック
 		if(!CheckUtil.isEmpty(form.getTel())
 			&& !Pattern.matches(Emp0002Constants.REGEX_NUMBER, form.getTel())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_TEL_NOT_NUMBER);
+			messages.add(Emp0002DtlConstants.MESSAGE_ERROR_TEL_NOT_NUMBER);
 		}
-
-		// パスワード 必須チェック
-		if (CheckUtil.isEmpty(form.getAuthorized())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_AUTHORIZED_NOT_INPUT);
-		// パスワード確認用 必須チェック
-		}else if (CheckUtil.isEmpty(form.getAuthorizedChk())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_AUTHORIZED_CHK_NOT_INPUT);
-		// パスワード、パスワード確認用一致チェック
-		}else if (!form.getAuthorized().equals(form.getAuthorizedChk())) {
-			messages.add(Emp0001DtlConstants.MESSAGE_ERROR_AUTHORIZED_CHK_NOT_EQUAL);
-		}
-
 
 		return messages;
 	}
 
 
 	/**
-	 * 社員情報CSV保存
+	 * 顧客情報CSV保存
 	 *
 	 * @param form
 	 * @return 処理結果
 	 */
-	public boolean save(Emp0001DtlForm form) {
+	public boolean save(Emp0002DtlForm form) {
 		boolean result = false;
-		MstEmployee data = null;
-		MstEmployeeDao dao = new MstEmployeeDao();
+		MstCustomer data = null;
+		MstCustomerDao dao = new MstCustomerDao();
 		// 登録処理
-		if (Emp0001DtlConstants.MODE_CREATE.equals(form.getMode())) {
-			data = new MstEmployee();
-			data.setEmployeeId(form.getEmployeeId());
-			data.setEmployeeName(form.getEmployeeName());
-			data.setSex(form.getSex());
-			data.setBirthYmd(form.getBirthYmd());
+		if (Emp0002DtlConstants.MODE_CREATE.equals(form.getMode())) {
+			data = new MstCustomer();
+			data.setCustomerId(form.getCustomerId());
+			data.setCustomerName(form.getCustomerName());
 			data.setZipCode(form.getZipCode());
 			data.setAddress(form.getAddress());
+			data.setLiaison(form.getLiaison());
+			data.setStaff(form.getStaff());
 			data.setTel(form.getTel());
-			data.setJoinedYmd(form.getJoinedYmd());
-			data.setRetireYmd(form.getRetireYmd());
-			data.setDepartmentId(form.getDepartmentId());
-//			data.setAuthorized(form.getAuthorized());
-			data.setAuthorized("0");
+			data.setDevelopmentFlg(form.getDevelopmentFlg());
+			data.setMaintenanceFlg(form.getMaintenanceFlg());
+			data.setOperationFlg(form.getOperationFlg());
+			data.setInfrastructureFlg(form.getInfrastructureFlg());
+			data.setAgreeYmd(form.getAgreeYmd());
+			data.setAgreeStatus(form.getAgreeStatus());
 			data.setDeleteFlg(form.getDeleteFlg());
-			data.setCreateModuleId(form.getCreate_module_id());
-			data.setCreateUserId(form.getCreate_user_id());
-			data.setUpdateModuleId(form.getUpdate_module_id());
-			data.setUpdateUserId(form.getUpdate_user_id());
+			data.setCreateModuleId(form.getCreateModuleId());
+			data.setCreateUserId(form.getCreateUserId());
+			data.setUpdateModuleId(form.getUpdateModuleId());
+			data.setUpdateUserId(form.getUpdateUserId());
 			result = dao.insert(data);
 
 			// 更新処理
-		} else if (Emp0001DtlConstants.MODE_UPDATE.equals(form.getMode())) {
+		} else if (Emp0002DtlConstants.MODE_UPDATE.equals(form.getMode())) {
 
-			String employeeId = form.getEmployeeId();
-			MstEmployee key = new MstEmployee();
-			key.setEmployeeId(employeeId);
-			data = dao.getMstEmployee(key);
+			String employeeId = form.getCustomerId();
+			MstCustomer key = new MstCustomer();
+			key.setCustomerId(employeeId);
+			data = dao.getMstCustomer(key);
 			if (data == null) {
 				return false;
 			}
-			data.setEmployeeId(form.getEmployeeId());
-			data.setEmployeeName(form.getEmployeeName());
-			data.setSex(form.getSex());
-			data.setBirthYmd(form.getBirthYmd());
+			data.setCustomerId(form.getCustomerId());
+			data.setCustomerName(form.getCustomerName());
 			data.setZipCode(form.getZipCode());
 			data.setAddress(form.getAddress());
+			data.setLiaison(form.getLiaison());
+			data.setStaff(form.getStaff());
 			data.setTel(form.getTel());
-			data.setJoinedYmd(form.getJoinedYmd());
-			data.setRetireYmd(form.getRetireYmd());
-			data.setDepartmentId(form.getDepartmentId());
-			data.setAuthorized(form.getAuthorized());
+			data.setDevelopmentFlg(form.getDevelopmentFlg());
+			data.setMaintenanceFlg(form.getMaintenanceFlg());
+			data.setOperationFlg(form.getOperationFlg());
+			data.setInfrastructureFlg(form.getInfrastructureFlg());
+			data.setAgreeYmd(form.getAgreeYmd());
+			data.setAgreeStatus(form.getAgreeStatus());
 			data.setDeleteFlg(form.getDeleteFlg());
-			data.setUpdateModuleId(form.getUpdate_module_id());
-			data.setUpdateUserId(form.getUpdate_user_id());
+			data.setCreateModuleId(form.getCreateModuleId());
+			data.setCreateUserId(form.getCreateUserId());
+			data.setUpdateModuleId(form.getUpdateModuleId());
+			data.setUpdateUserId(form.getUpdateUserId());
 
-			result = dao.update(data, key);
+			result = dao.update(data);
 
 			// 削除処理
-		} else if (Emp0001DtlConstants.MODE_DELETE.equals(form.getMode())) {
+		} else if (Emp0002DtlConstants.MODE_DELETE.equals(form.getMode())) {
 
-			String employeeId = form.getEmployeeId();
-			MstEmployee key = new MstEmployee();
-			key.setEmployeeId(employeeId);
-			data = dao.getMstEmployee(key);
+			String employeeId = form.getCustomerId();
+			MstCustomer key = new MstCustomer();
+			key.setCustomerId(employeeId);
+			data = dao.getMstCustomer(key);
 			if (data == null) {
 				return false;
 			}
-			data.setEmployeeId(form.getEmployeeId());
+			data.setCustomerId(form.getCustomerId());
 
 			result = dao.delete(data);
 		}

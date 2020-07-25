@@ -171,7 +171,7 @@ Emp0002DataBean bean = list.get(i);
 	<label><%= Emp0002Constants.AGREE_STATUS_MAP.get(bean.getAgreeStatus()) %></label>
 </td>
 <td class="list">
-	<label><%= bean.getAgreeYmd() %></label>
+	<label><%if(bean.getAgreeYmd() != null){ %><%= bean.getAgreeYmd() %> <% } %></label>
 </td>
 <td class="list">
 	<input type="checkbox" name="checklist" value=<%= bean.getCustomerId() %>>
@@ -209,7 +209,7 @@ Emp0002DataBean bean = list.get(i);
 </tfoot>
 </table>
 </div>
-<input type="hidden" name="paramEmployeeId" value="" />
+<input type="hidden" name="paramCustomerId" value="" />
 
 <input type="hidden" name="movePath" value="" />
 <input type="hidden" name="lineSize" value="<%= form.getLineSize() %>" />
