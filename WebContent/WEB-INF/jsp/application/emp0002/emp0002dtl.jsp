@@ -118,7 +118,7 @@ Emp0002DtlForm form = (Emp0002DtlForm)request.getAttribute("form");
 			<label><%=Emp0002DtlConstants.TEL %></label>
 		</td>
 		<td>
-			<input class="inputTel"  type="text" name="tel" value="<%= form.getTel() %>" placeholder="" required />
+			<input class="inputTel"  type="text" name="tel" maxlength="11" value="<%= form.getTel() %>" placeholder="" required />
 		</td>
 	</tr>
 	<tr>
@@ -163,7 +163,6 @@ Emp0002DtlForm form = (Emp0002DtlForm)request.getAttribute("form");
 		</td>
 		<td>
 			<select name="agreeStatus">
-				<option value=""></option>
 				<%
 				for (Map.Entry<String, String> agreeStatus : form.getAgreeMap().entrySet()) {
 				%>
@@ -174,11 +173,20 @@ Emp0002DtlForm form = (Emp0002DtlForm)request.getAttribute("form");
 			</select>
 		</td>
 	</tr>
-
 	<tr>
 		<td  colspan="2"><br>
 			<input class="inButton" type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0002Lst/search" %>');" value="戻る"/>
-			<input class="inButton" type="button" onclick="doPost(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0002Dtl/save" %>')" value="保存"/>
+			<input class="inButton" type="button" onclick="doPost(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0002Dtl/save" %>')" value="<% if(form.getParamCustomerId() == ""){%>登録<%}else{%>更新<% } %>"/>
+		</td>
+	</tr>
+	<tr>
+		<td  colspan="2"><br><br>
+			<label><%=Emp0002DtlConstants.MATTER_INFO %></label>
+		</td>
+	</tr>
+	<tr>
+		<td  colspan="2">
+			<input class="inButton" type="button" onclick="move(document.getElementById('mainForm'),'<%= request.getContextPath() + "/Emp0002Mtr/regist" %>');" value="追加"/>
 		</td>
 	</tr>
 </table>

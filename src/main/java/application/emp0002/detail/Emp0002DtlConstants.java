@@ -15,6 +15,7 @@ public class Emp0002DtlConstants {
 	public static final String OPERATION = "運用業務";
 	public static final String INFRASTRUCTURE = "インフラ業務";
 	public static final String AGREE_STATUS = "契約状況";
+	public static final String MATTER_INFO = "案件情報";
 
 	public static final String MESSAGE_ERROR_CUSTOMER_ID_NOT_INPUT = "顧客ＩＤを入力してください。";
 	public static final String MESSAGE_ERROR_CUSTOMER_ID_NOT_HALF_ALPHANUMERIC = "社員ＩＤは半角英数字で入力してください。";

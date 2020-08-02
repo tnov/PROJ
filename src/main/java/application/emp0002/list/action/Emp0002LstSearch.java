@@ -46,7 +46,8 @@ public class Emp0002LstSearch extends HttpServlet {
 				form.setMaintenance("1");
 				form.setOperation("1");
 				form.setInfrastructure("1");
-				form.setAgreeStatus(null);
+				String[] agreeStatusCheck = {"0","1","2"};
+				form.setAgreeStatus(agreeStatusCheck);
 				form.setCurrentPage("0");
 				form.setPageSize("0");
 				form.setLineLimit("1000");
@@ -274,26 +275,26 @@ public class Emp0002LstSearch extends HttpServlet {
 			query.append(")");
 
 		}else {
-			query.append(where?" AND 1=2 ":" WHERE 1=2 ");
+			query.append(where?" AND ":" WHERE ");
+			query.append("( development_flg = '0' AND maintenance_flg = '0' AND operation_flg = '0' AND infrastructure_flg = '0') ");
 		}
 
 		// SQL条件：契約有無
 		if (form.getAgreeStatus() != null) {
-			if(form.getAgreeStatus().length == 0) {
-				query.append(" AND 1=2 ");
-				where = true;
-			}else {
 
-				query.append(" AND agree_status IN ( ");
+			query.append(" AND agree_status IN ( ");
 
-				for( int i = 0 ; i < form.getAgreeStatus().length; i++ ) {
-					query.append("?,");
-				}
-				query.deleteCharAt(query.length() -1);
-				query.append(")");
-				where = true;
+			for( int i = 0 ; i < form.getAgreeStatus().length; i++ ) {
+				query.append("?,");
 			}
+			query.deleteCharAt(query.length() -1);
+			query.append(")");
+			where = true;
+		}else {
+			query.append(" AND 1=2 ");
+			where = true;
 		}
+
 		// SQL条件：契約開始日From
 		if (CheckUtil.isNotEmpty(form.getAgreeYmdFrom())) {
 			query.append(" AND agree_ymd >= ?");

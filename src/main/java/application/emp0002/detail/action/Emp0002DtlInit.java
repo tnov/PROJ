@@ -33,6 +33,7 @@ public class Emp0002DtlInit extends HttpServlet {
 		} else {
 			form = updateCustomer(paramCustomerId);
 		}
+		form.setParamCustomerId(paramCustomerId);
 		req.setAttribute("form", form);
 		// JSPの読み込み
 		CommonUtil.dispReturn(req, resp, Emp0002DtlConstants.CONTENTS_PATH);
@@ -47,10 +48,10 @@ public class Emp0002DtlInit extends HttpServlet {
 		form.setLiaison("");
 		form.setStaff("");
 		form.setTel("");
-		form.setDevelopmentFlg("");
-		form.setMaintenanceFlg("");
-		form.setOperationFlg("");
-		form.setInfrastructureFlg("");
+		form.setDevelopmentFlg("0");
+		form.setMaintenanceFlg("0");
+		form.setOperationFlg("0");
+		form.setInfrastructureFlg("0");
 		form.setAgreeStatus("");
 		form.setAgreeYmd("");
 		form.setAgreeMap(Emp0002Constants.AGREE_STATUS_MAP);

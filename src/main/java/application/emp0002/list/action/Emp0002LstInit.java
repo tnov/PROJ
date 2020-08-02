@@ -29,7 +29,8 @@ public class Emp0002LstInit extends HttpServlet {
 		form.setMaintenance("1");
 		form.setOperation("1");
 		form.setInfrastructure("1");
-		form.setAgreeStatus(null);
+		String[] agreeStatusCheck = {"0","1","2"};
+		form.setAgreeStatus(agreeStatusCheck);
 		form.setAgreeYmdFrom("");
 		form.setAgreeYmdTo("");
 		form.setDepartmentMap(CommonUtil.getDepartment());

@@ -96,9 +96,9 @@ Emp0002LstForm form = (Emp0002LstForm)request.getAttribute("form");
 			<label>契約有無</label>
 		</td>
 		<td class="inputTd">
-			<label><input type="checkbox" name="agreeStatus" id="agreeStatusNoAgree" value="0" <% if(form.getAgreeStatus() == null || Arrays.asList(form.getAgreeStatus()).contains("0")){ %> checked="checked" <% } %>>未契約</label>
-			<label><input type="checkbox" name="agreeStatus" id="agreeStatusAgree" value="1" <% if(form.getAgreeStatus() == null || Arrays.asList(form.getAgreeStatus()).contains("1")){ %> checked="checked" <% } %>>契約中</label>
-			<label><input type="checkbox" name="agreeStatus" id="agreeStatusAgreeFin" value="2" <% if(form.getAgreeStatus() == null || Arrays.asList(form.getAgreeStatus()).contains("2")){ %> checked="checked" <% } %>>契約終了</label>
+			<label><input type="checkbox" name="agreeStatus" id="agreeStatusNoAgree" value="0" <% if(form.getAgreeStatus() != null){if(Arrays.asList(form.getAgreeStatus()).contains("0")){ %> checked="checked" <% }} %>>未契約</label>
+			<label><input type="checkbox" name="agreeStatus" id="agreeStatusAgree" value="1" <% if(form.getAgreeStatus() != null){if(Arrays.asList(form.getAgreeStatus()).contains("1")){ %> checked="checked" <% }} %>>契約中</label>
+			<label><input type="checkbox" name="agreeStatus" id="agreeStatusAgreeFin" value="2" <% if(form.getAgreeStatus() != null){if(Arrays.asList(form.getAgreeStatus()).contains("2")){ %> checked="checked" <% }} %>>契約終了</label>
 		</td>
 	</tr>
 	<tr>
