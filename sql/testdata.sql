@@ -7,8 +7,7 @@ insert into mst_function(function_id,function_name,function_path,function_commen
 insert into mst_function(function_id,function_name,function_path,function_comment,authorized_id,delete_flg,create_module_id,create_user_id,create_ymd,update_module_id,update_user_id,update_ymd) values ('EMP0001UPL','社員CSVアップロード','/Emp0001Upl/init','社員のCSV一括登録',null,'0',null,null,null,null,null,null);
 insert into mst_function(function_id,function_name,function_path,function_comment,authorized_id,delete_flg,create_module_id,create_user_id,create_ymd,update_module_id,update_user_id,update_ymd) values ('Password','パスワード変更','/password/init',null,null,'0',null,null,null,null,null,null);
 
-
-insert into authorized_user(user_id,user_password,last_update_ymd,last_update_password,delete_flg,create_module_id,create_user_id,create_ymd,update_module_id,update_user_id,update_ymd) values ('root','root','root',null,'0',null,null,null,null,null,null);
+insert into authorized_user(user_id,user_password,last_update_ymd,last_update_password,delete_flg,create_module_id,create_user_id,create_ymd,update_module_id,update_user_id,update_ymd) values ('root','root','2021-04-05 10:38:18.046963+09',null,'0',null,null,null,null,null,null);
 
 insert into mst_menu(hierarchy_id,function_id,function_order,delete_flg,create_module_id,create_user_id,create_ymd,update_module_id,update_user_id,update_ymd) values ('dummy4','dummy4',0,'0',null,null,null,null,null,null);
 insert into mst_menu(hierarchy_id,function_id,function_order,delete_flg,create_module_id,create_user_id,create_ymd,update_module_id,update_user_id,update_ymd) values ('dummy5','dummy5',0,'0',null,null,null,null,null,null);

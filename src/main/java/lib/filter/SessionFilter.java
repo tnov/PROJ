@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import lib.common.Constants;
+import lib.util.StringUtils;
 
 public class SessionFilter implements Filter {
 
@@ -38,7 +39,7 @@ public class SessionFilter implements Filter {
 				String sessionHost = (String)session.getAttribute("host");
 				String sessionToken = (String)session.getAttribute("token");
 //				if (!ip.equals(sessionIp) || !host.equals(sessionHost) || !token.equals(sessionToken)) {
-				if (!ip.equals(sessionIp) || !token.equals(sessionToken)) {
+				if (StringUtils.isEmpty(ip) || !ip.equals(sessionIp) || StringUtils.isEmpty(token) || !token.equals(sessionToken)) {
 					// セッション不一致(セッション破棄)
 					session.invalidate();
 					((HttpServletResponse)response).sendRedirect(REDIRECT_URL);

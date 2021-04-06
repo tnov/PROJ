@@ -7,6 +7,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="<%= request.getContextPath() + "/img/favicon.png" %>">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/common.css" %>">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/lib/menu.css" %>">
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/common.js" %>" ></script>

@@ -5,12 +5,17 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import application.CheckUtil;
+import application.MessageManager;
 import application.emp0002.detail.Emp0002DtlConstants;
 import application.emp0002.detail.Emp0002DtlForm;
 import application.proj.dao.MstCustomerDao;
 import application.proj.entity.MstCustomer;
 
 public class Emp0002Util {
+
+	/** メッセージマネージャ */
+	MessageManager message = MessageManager.getInstance();
+
 	public boolean existsEmployeeId(String employeeId) {
 		return false;
 	}
@@ -20,27 +25,27 @@ public class Emp0002Util {
 
 		// 顧客ID 必須チェック
 		if (CheckUtil.isEmpty(form.getCustomerId())) {
-			messages.add(Emp0002DtlConstants.MESSAGE_ERROR_CUSTOMER_ID_NOT_INPUT);
+			messages.add(message.getMessage(Emp0002DtlConstants.MESSAGE_ERROR_CUSTOMER_ID_NOT_INPUT));
 		// 顧客ID 半角英数字チェック
 		}else if(!Pattern.matches(Emp0002Constants.REGEX_HALF_ALPHANUMERIC, form.getCustomerId())) {
-			messages.add(Emp0002DtlConstants.MESSAGE_ERROR_CUSTOMER_ID_NOT_HALF_ALPHANUMERIC);
+			messages.add(message.getMessage(Emp0002DtlConstants.MESSAGE_ERROR_CUSTOMER_ID_NOT_HALF_ALPHANUMERIC));
 		}
 
 		// 顧客名称 必須チェック
 		if (CheckUtil.isEmpty(form.getCustomerName())) {
-			messages.add(Emp0002DtlConstants.MESSAGE_ERROR_CUSTOMER_NAME_NOT_INPUT);
+			messages.add(message.getMessage(Emp0002DtlConstants.MESSAGE_ERROR_CUSTOMER_NAME_NOT_INPUT));
 		}
 
 		// 郵便番号 数値チェック
 		if(!CheckUtil.isEmpty(form.getZipCode())
 			&& !Pattern.matches(Emp0002Constants.REGEX_NUMBER, form.getZipCode())) {
-			messages.add(Emp0002DtlConstants.MESSAGE_ERROR_ZIP_CODE_NOT_NUMBER);
+			messages.add(message.getMessage(Emp0002DtlConstants.MESSAGE_ERROR_ZIP_CODE_NOT_NUMBER));
 		}
 
 		// 電話番号 数値チェック
 		if(!CheckUtil.isEmpty(form.getTel())
 			&& !Pattern.matches(Emp0002Constants.REGEX_NUMBER, form.getTel())) {
-			messages.add(Emp0002DtlConstants.MESSAGE_ERROR_TEL_NOT_NUMBER);
+			messages.add(message.getMessage(Emp0002DtlConstants.MESSAGE_ERROR_TEL_NOT_NUMBER));
 		}
 
 		return messages;

@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="<%= request.getContextPath() + "/img/favicon.png" %>">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/common.css" %>">
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/common.js" %>" ></script>
 <title>System Error</title>

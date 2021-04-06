@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import application.CheckUtil;
 import application.CommonUtil;
+import application.MessageManager;
 import application.emp0002.Emp0002Constants;
 import application.emp0002.Emp0002Util;
 import application.emp0002.detail.Emp0002DtlConstants;
@@ -19,7 +20,10 @@ import lib.common.Constants;
 
 public class Emp0002DtlSave extends HttpServlet {
 
-	public Emp0002Util util = new Emp0002Util();
+	/** メッセージマネージャ */
+	MessageManager message = MessageManager.getInstance();
+
+	private Emp0002Util util = new Emp0002Util();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -51,20 +55,23 @@ public class Emp0002DtlSave extends HttpServlet {
 
 			// チェック処理エラー
 			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, messages,form);
+			// 元画面遷移
+			CommonUtil.dispReturn(req, resp, Emp0002DtlConstants.CONTENTS_PATH);
 			return;
 		}
 		// 保存処理
 		if (!util.save(form)) {
 			req.setAttribute("form", form);
 			// 保存処理エラー
-			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, Emp0002DtlConstants.MESSAGE_ERROR_MST_CUSTOMER_NOT_SAVE,form);
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, message.getMessage(Emp0002DtlConstants.MESSAGE_ERROR_MST_CUSTOMER_NOT_SAVE),form);
+			// 元画面遷移
+			CommonUtil.dispReturn(req, resp, Emp0002DtlConstants.CONTENTS_PATH);
 			return;
 		}
 		req.setAttribute("form", form);
 
-		setMessage(req, resp, Constants.MESSAGE_TYPE_INFO, Emp0002DtlConstants.MESSAGE_INFO_MST_CUSTOMER_SAVE,form);
-
-		// 画面遷移
+		setMessage(req, resp, Constants.MESSAGE_TYPE_INFO, message.getMessage(Emp0002DtlConstants.MESSAGE_INFO_MST_CUSTOMER_SAVE),form);
+		// 元画面遷移
 		CommonUtil.dispReturn(req, resp, Emp0002DtlConstants.CONTENTS_PATH);
 	}
 
@@ -79,7 +86,5 @@ public class Emp0002DtlSave extends HttpServlet {
 		// 画面項目セット
 		req.setAttribute("form", form);
 		req.setAttribute(type, messages);
-		// メニュー遷移
-		CommonUtil.dispReturn(req, resp, Emp0002DtlConstants.CONTENTS_PATH);
 	}
 }

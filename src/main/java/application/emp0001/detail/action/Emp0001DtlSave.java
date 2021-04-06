@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import application.CheckUtil;
 import application.CommonUtil;
+import application.MessageManager;
 import application.emp0001.Emp0001Util;
 import application.emp0001.detail.Emp0001DtlConstants;
 import application.emp0001.detail.Emp0001DtlForm;
@@ -18,7 +19,9 @@ import lib.common.Constants;
 
 public class Emp0001DtlSave extends HttpServlet {
 
-	public Emp0001Util util = new Emp0001Util();
+	private MessageManager message = MessageManager.getInstance();
+
+	private Emp0001Util util = new Emp0001Util();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -52,6 +55,8 @@ public class Emp0001DtlSave extends HttpServlet {
 
 			// チェック処理エラー
 			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, messages,form);
+			// 元画面遷移
+			CommonUtil.dispReturn(req, resp, Emp0001DtlConstants.CONTENTS_PATH);
 			return;
 		}
 		// 保存処理
@@ -59,13 +64,12 @@ public class Emp0001DtlSave extends HttpServlet {
 			form.setAuthorized("");
 			req.setAttribute("form", form);
 			// 保存処理エラー
-			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, Emp0001DtlConstants.MESSAGE_ERROR_MST_EMPLOYEE_NOT_SAVE,form);
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, message.getMessage(Emp0001DtlConstants.MESSAGE_ERROR_MST_EMPLOYEE_NOT_SAVE),form);
 			return;
 		}
 		req.setAttribute("form", form);
 
-		setMessage(req, resp, Constants.MESSAGE_TYPE_INFO, Emp0001DtlConstants.MESSAGE_INFO_MST_EMPLOYEE_SAVE,form);
-
+		setMessage(req, resp, Constants.MESSAGE_TYPE_INFO, message.getMessage(Emp0001DtlConstants.MESSAGE_INFO_MST_EMPLOYEE_SAVE),form);
 		// 画面遷移
 		CommonUtil.dispReturn(req, resp, Emp0001DtlConstants.CONTENTS_PATH);
 	}
@@ -81,7 +85,5 @@ public class Emp0001DtlSave extends HttpServlet {
 		// 画面項目セット
 		req.setAttribute("form", form);
 		req.setAttribute(type, messages);
-		// メニュー遷移
-		CommonUtil.dispReturn(req, resp, Emp0001DtlConstants.CONTENTS_PATH);
 	}
 }

@@ -19,6 +19,7 @@ import javax.servlet.http.Part;
 
 import application.CheckUtil;
 import application.CommonUtil;
+import application.MessageManager;
 import application.emp0001.Emp0001Util;
 import application.emp0001.detail.Emp0001DtlConstants;
 import application.emp0001.detail.Emp0001DtlForm;
@@ -28,6 +29,9 @@ import lib.common.Constants;
 
 @MultipartConfig(maxFileSize=1048576)
 public class Emp0001UplCsvUpload extends HttpServlet {
+
+	/** メッセージマネージャ */
+	MessageManager message = MessageManager.getInstance();
 
 	enum col {EMPLOYEE_ID
 		,EMPLOYEE_NAME
@@ -61,7 +65,10 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 		String fileName = part.getSubmittedFileName();
 		if (CheckUtil.isEmpty(fileName)) {
 			// ファイル未設定
-			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, Emp0001UplConstants.MESSAGE_ERROR_FILE_NOT_SELECT,form);
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, message.getMessage(Emp0001UplConstants.MESSAGE_ERROR_FILE_NOT_SELECT),form);
+			// 元画面遷移
+			CommonUtil.dispReturn(req, resp, Emp0001UplConstants.CONTENTS_PATH);
+			return;
 		}
 		List<String> errors = new ArrayList<>();
 		try (InputStream is = part.getInputStream();
@@ -117,14 +124,15 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 					// 保存処理
 					if (util.save(dtlForm)) {
 						// 成功時
-						setMessage(req, resp, Constants.MESSAGE_TYPE_INFO, Emp0001DtlConstants.MESSAGE_INFO_MST_EMPLOYEE_SAVE,form);
+						setMessage(req, resp, Constants.MESSAGE_TYPE_INFO, message.getMessage(Emp0001DtlConstants.MESSAGE_INFO_MST_EMPLOYEE_SAVE),form);
 					}else {
 						// 保存処理エラー
-						setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, Emp0001DtlConstants.MESSAGE_ERROR_MST_EMPLOYEE_NOT_SAVE,form);
+						setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, message.getMessage(Emp0001DtlConstants.MESSAGE_ERROR_MST_EMPLOYEE_NOT_SAVE),form);
 					}
 				}
 			}
 		}
+		// 元画面遷移
 		CommonUtil.dispReturn(req, resp, Emp0001UplConstants.CONTENTS_PATH);
 	}
 
@@ -147,8 +155,6 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 		}
 		messages.add(message);
 		req.setAttribute(type, messages);
-		// メニュー遷移
-		CommonUtil.dispReturn(req, resp, Emp0001UplConstants.CONTENTS_PATH);
 	}
 
     /**
