@@ -25,40 +25,7 @@
 <jsp:include page="../../header.jsp">
 	<jsp:param name="title" value="社員一覧" />
 </jsp:include>
-<section>
-<div class= "messageGroup">
-<%
-List<String> errors = (List<String>)request.getAttribute("errorMessages");
-if (errors != null) {
-	for (int esize = 0 ; esize < errors.size() ; esize++) {
-%>
-		<label><%= errors.get(esize) %></label>
-<%
-	}
-}
-%>
-<%
-List<String> warnings = (List<String>)request.getAttribute("warningMessages");
-if (warnings != null) {
-	for (int wsize = 0 ; wsize < warnings.size() ; wsize++) {
-%>
-		<label><%= warnings.get(wsize) %></label>
-<%
-	}
-}
-%>
-<%
-List<String> infos = (List<String>)request.getAttribute("infoMessages");
-if (infos != null) {
-	for (int isize = 0 ; isize < infos.size() ; isize++) {
-%>
-		<label><%= infos.get(isize) %></label>
-<%
-	}
-}
-%>
-</div>
-</section>
+<jsp:include page="../../message.jsp"/>
 <%
 Emp0001LstForm form = (Emp0001LstForm)request.getAttribute("form");
 %>
@@ -184,7 +151,7 @@ Emp0001DataBean bean = list.get(i);
 %>
 </tbody>
 <br>
-<tfoot aligne="">
+<tfoot align="">
 <tr><td></td></tr>
 <tr>
 <td colspan="5" valign="bottom">

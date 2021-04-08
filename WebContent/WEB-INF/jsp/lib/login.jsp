@@ -14,41 +14,10 @@
 </head>
 <body>
 <form method="post" action="<%= request.getContextPath() + "/login/check" %>">
-<jsp:include page="../..//jsp/header.jsp">
+<jsp:include page="../../jsp/header.jsp">
     <jsp:param name="title" value="ログイン" />
 </jsp:include>
-<section>
-<%
-ArrayList<String> errors = (ArrayList<String>)request.getAttribute("errorMessages");
-if (errors != null) {
-	for (int esize = 0 ; esize < errors.size() ; esize++) {
-%>
-		<label><%= errors.get(esize) %></label>
-<%
-	}
-}
-%>
-<%
-ArrayList<String> warnings = (ArrayList<String>)request.getAttribute("warningMessages");
-if (warnings != null) {
-	for (int wsize = 0 ; wsize < warnings.size() ; wsize++) {
-%>
-		<label><%= warnings.get(wsize) %></label>
-<%
-	}
-}
-%>
-<%
-ArrayList<String> infos = (ArrayList<String>)request.getAttribute("infoMessages");
-if (infos != null) {
-	for (int isize = 0 ; isize < infos.size() ; isize++) {
-%>
-		<label><%= infos.get(isize) %></label>
-<%
-	}
-}
-%>
-</section>
+<jsp:include page="../message.jsp"/>
 <section>
 <br>
 <br>

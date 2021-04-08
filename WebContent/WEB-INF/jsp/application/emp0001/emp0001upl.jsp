@@ -21,42 +21,7 @@
 <jsp:include page="../../header.jsp">
     <jsp:param name="title" value="社員情報取込" />
 </jsp:include>
-<section>
-<div class= "errorMessageGroup">
-<%
-List<String> errors = (List<String>)request.getAttribute("errorMessages");
-if (errors != null) {
-	for (int esize = 0 ; esize < errors.size() ; esize++) {
-%>
-		<label><%= errors.get(esize) %></label>
-<%
-	}
-}
-%>
-<%
-List<String> warnings = (List<String>)request.getAttribute("warningMessages");
-if (warnings != null) {
-	for (int wsize = 0 ; wsize < warnings.size() ; wsize++) {
-%>
-		<label><%= warnings.get(wsize) %></label>
-<%
-	}
-}
-%>
-</div>
-<div class= "infoMessageGroup">
-<%
-List<String> infos = (List<String>)request.getAttribute("infoMessages");
-if (infos != null) {
-	for (int isize = 0 ; isize < infos.size() ; isize++) {
-%>
-		<label><%= infos.get(isize) %></label>
-<%
-	}
-}
-%>
-</div>
-</section>
+<jsp:include page="../../message.jsp"/>
 <section>
 <%
 Emp0001UplForm form = (Emp0001UplForm)request.getAttribute("form");

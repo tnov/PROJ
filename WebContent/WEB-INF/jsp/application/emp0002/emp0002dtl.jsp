@@ -11,6 +11,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="<%= request.getContextPath() + "/img/favicon.png" %>">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/common.css" %>">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() + "/css/application/emp0002/emp0002dtl.css" %>">
 <script type="text/javascript" src="<%= request.getContextPath() + "/js/common.js" %>" ></script>
@@ -22,43 +23,7 @@
 <jsp:include page="../../header.jsp">
     <jsp:param name="title" value="顧客情報編集" />
 </jsp:include>
-<section>
-<div class= "errorMessageGroup">
-<%
-List<String> errors = (List<String>)request.getAttribute("errorMessages");
-if (errors != null) {
-	for (int esize = 0 ; esize < errors.size() ; esize++) {
-%>
-		<label><%= errors.get(esize) %></label><br>
-
-<%
-	}
-}
-%>
-<%
-List<String> warnings = (List<String>)request.getAttribute("warningMessages");
-if (warnings != null) {
-	for (int wsize = 0 ; wsize < warnings.size() ; wsize++) {
-%>
-		<label><%= warnings.get(wsize) %></label><br>
-<%
-	}
-}
-%>
-</div>
-<div class= "infoMessageGroup">
-<%
-List<String> infos = (List<String>)request.getAttribute("infoMessages");
-if (infos != null) {
-	for (int isize = 0 ; isize < infos.size() ; isize++) {
-%>
-		<label><%= infos.get(isize) %></label><br>
-<%
-	}
-}
-%>
-</div>
-</section>
+<jsp:include page="../../message.jsp"/>
 <section>
 <%
 Emp0002DtlForm form = (Emp0002DtlForm)request.getAttribute("form");
