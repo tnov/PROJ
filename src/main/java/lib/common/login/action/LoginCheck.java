@@ -11,6 +11,8 @@ import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,30 +21,36 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import application.CommonConstants;
-import application.CommonUtil;
 import application.DateUtil;
 import lib.common.Constants;
 import lib.common.login.LoginConstants;
+import lib.util.MessageManager;
 import lib.util.SessionUtil;
 import lib.util.StringUtils;
 
 public class LoginCheck extends HttpServlet {
+
+	private MessageManager message = MessageManager.getInstance();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// リクエストの取得
 		String userId = req.getParameter("userId");
 		String password = req.getParameter("password");
+		// 画面項目セット
+		req.setAttribute("userId", userId);
 		// バリデーション
 		// ユーザＩＤ・パスワード未入力ＮＧ
 		if (StringUtils.isEmpty(userId)) {
 			// バリデーションエラー
-			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, LoginConstants.MESSAGE_ERROR_USER_ID_NOT_INPUT);
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, message.getMessage(LoginConstants.MESSAGE_ERROR_USER_ID_NOT_INPUT));
+			dispReturn(req, resp, LoginConstants.CONTENTS_PATH);
 			return;
 		}
 		if (StringUtils.isEmpty(password)) {
 			// バリデーションエラー
-			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, LoginConstants.MESSAGE_ERROR_PASSWORD_NOT_INPUT);
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, message.getMessage(LoginConstants.MESSAGE_ERROR_PASSWORD_NOT_INPUT));
+			dispReturn(req, resp, LoginConstants.CONTENTS_PATH);
 			return;
 		}
 		// 認証チェック
@@ -60,20 +68,19 @@ public class LoginCheck extends HttpServlet {
 			// 前回ログインから所定機関経過した場合、パスワード変更へ
 			if (isInvalid(userId)) {
 				// パスワード変更へ
-				CommonUtil.dispReturn(req, resp, LoginConstants.DISPATCH_PASSWORD);
+				dispReturn(req, resp, LoginConstants.DISPATCH_PASSWORD);
 				return;
 			}
 			// メニュー遷移
-			CommonUtil.dispReturn(req, resp, LoginConstants.DISPATCH_PATH);
+			dispReturn(req, resp, LoginConstants.DISPATCH_PATH);
 		} else {
 			// 認証チェック：ＮＧ（エラーメッセージ）
-			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, LoginConstants.MESSAGE_ERROR_AUTHORIZED_FAILD);
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, message.getMessage(LoginConstants.MESSAGE_ERROR_AUTHORIZED_FAILD));
+			dispReturn(req, resp, LoginConstants.CONTENTS_PATH);
 		}
 	}
 
 	private void setMessage(HttpServletRequest req, HttpServletResponse resp, String type, String message) throws ServletException, IOException {
-		// 画面項目セット
-		req.setAttribute("userId", req.getParameter("userId"));
 		// メッセージの設定
 		List<String> messages = (List<String>)req.getAttribute(type);
 		if (messages == null) {
@@ -81,8 +88,6 @@ public class LoginCheck extends HttpServlet {
 		}
 		messages.add(message);
 		req.setAttribute(type, messages);
-		// ログイン遷移
-		CommonUtil.dispReturn(req, resp, LoginConstants.CONTENTS_PATH);
 	}
 
 	// 認証チェック
@@ -110,7 +115,7 @@ public class LoginCheck extends HttpServlet {
 						// 件数が1件の場合 true：正常
 						// 件数が1件以外の場合 false：異常
 						int count = resultSet.getInt(1);
-						result = count == 1 ? true : false;
+						result = count == 1;
 					}
 				}
 			} catch (SQLException e) {
@@ -164,4 +169,11 @@ public class LoginCheck extends HttpServlet {
 		}
 		return result;
 	}
+
+	private void dispReturn(HttpServletRequest req,HttpServletResponse resp,String dispatchUrl) throws ServletException, IOException {
+		ServletContext ctx = req.getServletContext();
+		RequestDispatcher dispatcher = ctx.getRequestDispatcher(dispatchUrl);
+		dispatcher.forward(req, resp);
+	}
+
 }

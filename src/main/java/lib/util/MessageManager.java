@@ -1,10 +1,12 @@
-package application;
+package lib.util;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+
+import lib.common.Constants;
 
 /**
  * ResourceBundleを使用したメッセージ
@@ -23,7 +25,7 @@ public class MessageManager {
 	 * @return MessageManagerインスタンス
 	 */
 	public static MessageManager getInstance() {
-		return getInstance(CommonConstants.MESSAGE_PROPERTIES);
+		return getInstance(Constants.MESSAGE_PROPERTIES);
 	}
 
 	/**

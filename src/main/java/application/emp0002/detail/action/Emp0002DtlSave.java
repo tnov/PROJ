@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import application.CheckUtil;
 import application.CommonUtil;
-import application.MessageManager;
 import application.emp0002.Emp0002Constants;
 import application.emp0002.Emp0002Util;
 import application.emp0002.detail.Emp0002DtlConstants;
 import application.emp0002.detail.Emp0002DtlForm;
 import lib.common.Constants;
+import lib.util.MessageManager;
 
 public class Emp0002DtlSave extends HttpServlet {
 

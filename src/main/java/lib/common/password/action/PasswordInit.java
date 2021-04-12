@@ -22,8 +22,8 @@ public class PasswordInit extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// JSPの読み込み＆初期処理
 		// セッションからユーザＩＤを取得
-		String userId = (String)req.getSession(false).getAttribute("user_id");
-		req.setAttribute("userId", "userId");
+		String userId = (String)req.getSession().getAttribute("userId");
+		req.setAttribute("userId", userId);
 		req.setAttribute("password", "");
 		req.setAttribute("newPassword", "");
 		req.setAttribute("confirmPassword", "");

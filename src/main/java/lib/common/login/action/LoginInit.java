@@ -22,7 +22,6 @@ public class LoginInit extends HttpServlet {
 		if (session != null) {
 		    session.invalidate();
 		}
-		// TODO CSRF対応(サーバとクライアントにトークンをセットしフィルターで監視)
 		// JSPの読み込み＆初期処理
 		req.setAttribute("userId", "");
 		req.setAttribute("password", "");

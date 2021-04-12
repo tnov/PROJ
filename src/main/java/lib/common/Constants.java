@@ -2,6 +2,9 @@ package lib.common;
 
 public class Constants {
 
+	public static final String MESSAGE_PROPERTIES = "message";
+
+
 	public static String CONTENTS_ROOT = "/WEB-INF";
 
 	public static String LOGIN_PAGE = "/PROJ/login";

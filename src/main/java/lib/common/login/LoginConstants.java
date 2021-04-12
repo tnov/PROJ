@@ -7,9 +7,9 @@ public class LoginConstants {
 	public static final String DISPATCH_PATH = "/menu";
 	public static final String DISPATCH_PASSWORD = "/password";
 
-	public static final String MESSAGE_ERROR_AUTHORIZED_FAILD = "ログインに失敗しました。";
-	public static final String MESSAGE_ERROR_USER_ID_NOT_INPUT = "ユーザＩＤを入力してください。";
-	public static final String MESSAGE_ERROR_PASSWORD_NOT_INPUT = "パスワードを入力してください。";
+	public static final String MESSAGE_ERROR_AUTHORIZED_FAILD = "LoginConstants.MESSAGE_ERROR_AUTHORIZED_FAILD";
+	public static final String MESSAGE_ERROR_USER_ID_NOT_INPUT = "LoginConstants.MESSAGE_ERROR_USER_ID_NOT_INPUT";
+	public static final String MESSAGE_ERROR_PASSWORD_NOT_INPUT = "LoginConstants.MESSAGE_ERROR_PASSWORD_NOT_INPUT";
 
 	public static final int VALID_INTERVAL = 1;
 }

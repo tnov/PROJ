@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import application.CheckUtil;
 import application.CommonUtil;
-import application.MessageManager;
 import application.emp0001.Emp0001Util;
 import application.emp0001.detail.Emp0001DtlConstants;
 import application.emp0001.detail.Emp0001DtlForm;
 import lib.common.Constants;
+import lib.util.MessageManager;
 
 public class Emp0001DtlSave extends HttpServlet {
 
@@ -68,6 +68,8 @@ public class Emp0001DtlSave extends HttpServlet {
 			req.setAttribute("form", form);
 			// 保存処理エラー
 			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, message.getMessage(Emp0001DtlConstants.MESSAGE_ERROR_MST_EMPLOYEE_NOT_SAVE),form);
+			// 元画面遷移
+			CommonUtil.dispReturn(req, resp, Emp0001DtlConstants.CONTENTS_PATH);
 			return;
 		}
 		form.setMode(Emp0001DtlConstants.MODE_UPDATE);

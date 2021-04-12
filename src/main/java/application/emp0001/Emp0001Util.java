@@ -6,15 +6,15 @@ import java.util.List;
 import application.CheckUtil;
 import application.CommonConstants;
 import application.DateUtil;
-import application.MessageManager;
+import application.database.dao.MstAuthorizedUserDao;
+import application.database.dao.MstEmployeeDao;
+import application.database.entity.MstAuthorizedUser;
+import application.database.entity.MstEmployee;
 import application.emp0001.detail.Emp0001DtlConstants;
 import application.emp0001.detail.Emp0001DtlForm;
 import application.emp0001.list.Emp0001LstConstants;
 import application.emp0001.list.Emp0001LstForm;
-import application.proj.dao.MstAuthorizedUserDao;
-import application.proj.dao.MstEmployeeDao;
-import application.proj.entity.MstAuthorizedUser;
-import application.proj.entity.MstEmployee;
+import lib.util.MessageManager;
 
 public class Emp0001Util {
 

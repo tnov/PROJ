@@ -1,4 +1,4 @@
-package lib.deprecated.database.entity;
+package lib.database.entity;
 
 import java.sql.Timestamp;
 

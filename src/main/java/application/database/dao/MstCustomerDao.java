@@ -1,4 +1,4 @@
-package application.proj.dao;
+package application.database.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import application.CommonConstants;
-import application.proj.entity.MstCustomer;
+import application.database.entity.MstCustomer;
 
 public class MstCustomerDao {
 

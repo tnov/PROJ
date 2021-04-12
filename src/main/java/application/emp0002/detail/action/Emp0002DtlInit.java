@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import application.CheckUtil;
 import application.CommonUtil;
+import application.database.dao.MstCustomerDao;
+import application.database.entity.MstCustomer;
 import application.emp0002.Emp0002Constants;
 import application.emp0002.Emp0002DataBean;
 import application.emp0002.detail.Emp0002DtlConstants;
 import application.emp0002.detail.Emp0002DtlForm;
-import application.proj.dao.MstCustomerDao;
-import application.proj.entity.MstCustomer;
 
 public class Emp0002DtlInit extends HttpServlet {
 

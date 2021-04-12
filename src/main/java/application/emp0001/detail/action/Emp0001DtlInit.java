@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import application.CheckUtil;
 import application.CommonUtil;
 import application.DateUtil;
+import application.database.dao.MstEmployeeDao;
+import application.database.entity.MstEmployee;
 import application.emp0001.Emp0001DataBean;
 import application.emp0001.detail.Emp0001DtlConstants;
 import application.emp0001.detail.Emp0001DtlForm;
-import application.proj.dao.MstEmployeeDao;
-import application.proj.entity.MstEmployee;
 
 public class Emp0001DtlInit extends HttpServlet {
 

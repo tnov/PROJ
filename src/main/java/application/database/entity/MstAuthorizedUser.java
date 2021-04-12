@@ -1,6 +1,6 @@
-package application.proj.entity;
+package application.database.entity;
 
-import lib.deprecated.database.entity.CommonEntity;
+import lib.database.entity.CommonEntity;
 
 public class MstAuthorizedUser extends CommonEntity {
 	private String userId = null;

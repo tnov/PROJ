@@ -1,6 +1,6 @@
-package application.proj.entity;
+package application.database.entity;
 
-import lib.deprecated.database.entity.CommonEntity;
+import lib.database.entity.CommonEntity;
 
 public class MstMenu extends CommonEntity {
 	private String hierarchy = null;

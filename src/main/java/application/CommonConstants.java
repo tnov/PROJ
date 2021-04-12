@@ -33,6 +33,4 @@ public class CommonConstants {
 	public static final String DISP_FORMAT_YYYYMMDD = "YYYYMMDD";
 	public static final String FORMAT_YYYYMMDD = "yyyyMMdd";
 
-	public static final String MESSAGE_PROPERTIES = "message";
-
 }
