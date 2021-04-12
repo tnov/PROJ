@@ -88,8 +88,6 @@ public class Emp0002LstCsvDownload extends HttpServlet {
 					.append(CommonConstants.CSV_SEPARATOR)
 					.append(CommonConstants.CSV_QUALIFIER + employee.getDepartmentId() + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getAuthorized() + CommonConstants.CSV_QUALIFIER)
-					.append(CommonConstants.CSV_SEPARATOR)
 					.append(CommonConstants.CSV_QUALIFIER + employee.getDeleteFlg() + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_DEMILITER);
 			}
@@ -145,8 +143,7 @@ public class Emp0002LstCsvDownload extends HttpServlet {
 						result.setJoinedYmd(resultSet.getString(8));
 						result.setRetireYmd(resultSet.getString(9));
 						result.setDepartmentId(resultSet.getString(10));
-						result.setAuthorized(resultSet.getString(11));
-						result.setDeleteFlg(resultSet.getString(12));
+						result.setDeleteFlg(resultSet.getString(11));
 
 						resultList.add(result);
 					}

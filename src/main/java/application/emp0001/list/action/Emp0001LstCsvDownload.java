@@ -22,13 +22,17 @@ import javax.sql.DataSource;
 import application.CommonConstants;
 import application.CommonUtil;
 import application.DateUtil;
+import application.MessageManager;
 import application.emp0001.Emp0001Constants;
 import application.emp0001.Emp0001DataBean;
 import application.emp0001.list.Emp0001LstConstants;
 import application.emp0001.list.Emp0001LstForm;
 import lib.common.Constants;
+import lib.util.StringUtils;
 
 public class Emp0001LstCsvDownload extends HttpServlet {
+
+	private MessageManager message = MessageManager.getInstance();
 
 	String DATE_FORMAT_YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
 
@@ -52,8 +56,8 @@ public class Emp0001LstCsvDownload extends HttpServlet {
 			// メッセージの設定
 			List<String> messages = new ArrayList<String>();
 
-			// TODO エラーメッセージ定数化
-			messages.add("出力対象にチェックを入れてください");
+			// エラーメッセージ:出力対象にチェックを入れてください。
+			messages.add(message.getMessage(Emp0001LstConstants.MESSAGE_ERRO_OUTPUT_TARGET_NOT_CHECK));
 			req.setAttribute(Constants.MESSAGE_TYPE_ERROR, messages);
 			CommonUtil.dispReturn(req, resp, Emp0001LstConstants.CONTENTS_PATH);
 			return;
@@ -68,29 +72,39 @@ public class Emp0001LstCsvDownload extends HttpServlet {
 
 			StringBuilder sb = new StringBuilder();
 			for(Emp0001DataBean employee :eployeeList) {
-				sb.append(CommonConstants.CSV_QUALIFIER + employee.getEmployeeId() + CommonConstants.CSV_QUALIFIER)
+				sb.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getEmployeeId())  + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getEmployeeName() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getEmployeeName()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getSex() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getSex()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getBirthYmd() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getBirthYmd()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getZipCode() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getZipCode()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getAddress() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getAddress()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getTel() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getTel()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getJoinedYmd() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getJoinedYmd()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getRetireYmd() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getRetireYmd()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getDepartmentId() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getDepartmentId()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getAuthorized() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getDeleteFlg()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getDeleteFlg() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getCreateModuleId()) + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getCreateUserId()) + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getCreateYmd()) + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getUpdateModuleId()) + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getUpdateUserId()) + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_SEPARATOR)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getUpdateYmd()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_DEMILITER);
 			}
 			pw.write(sb.toString());
@@ -145,9 +159,13 @@ public class Emp0001LstCsvDownload extends HttpServlet {
 						result.setJoinedYmd(resultSet.getString(8));
 						result.setRetireYmd(resultSet.getString(9));
 						result.setDepartmentId(resultSet.getString(10));
-						result.setAuthorized(resultSet.getString(11));
-						result.setDeleteFlg(resultSet.getString(12));
-
+						result.setDeleteFlg(resultSet.getString(11));
+						result.setCreateModuleId(resultSet.getString(12));
+						result.setCreateUserId(resultSet.getString(13));
+						result.setCreateYmd(resultSet.getString(14));
+						result.setUpdateModuleId(resultSet.getString(15));
+						result.setUpdateUserId(resultSet.getString(16));
+						result.setUpdateYmd(resultSet.getString(17));
 						resultList.add(result);
 					}
 				}

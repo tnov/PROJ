@@ -14,8 +14,8 @@ import application.proj.entity.MstEmployee;
 
 public class MstEmployeeDao {
 
-	public static final String SQL_SELECT_PK = "SELECT employee_id, employee_name, sex, birth_ymd, zip_code, address, tel, joined_ymd, retire_ymd, department_id, authorized, delete_flg, create_module_id, create_user_id, create_ymd, update_module_id, update_user_id, update_ymd FROM mst_employee WHERE employee_id = ?";
-	public static final String SQL_INSERT = "INSERT INTO mst_employee (employee_id, employee_name, sex, birth_ymd, zip_code, address, tel, joined_ymd, retire_ymd, department_id, authorized, delete_flg, create_module_id, create_user_id, create_ymd, update_module_id, update_user_id, update_ymd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?, ?, CURRENT_TIMESTAMP)";
+	public static final String SQL_SELECT_PK = "SELECT employee_id, employee_name, sex, birth_ymd, zip_code, address, tel, joined_ymd, retire_ymd, department_id, delete_flg, create_module_id, create_user_id, create_ymd, update_module_id, update_user_id, update_ymd FROM mst_employee WHERE employee_id = ?";
+	public static final String SQL_INSERT = "INSERT INTO mst_employee (employee_id, employee_name, sex, birth_ymd, zip_code, address, tel, joined_ymd, retire_ymd, department_id, delete_flg, create_module_id, create_user_id, create_ymd, update_module_id, update_user_id, update_ymd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?, ?, CURRENT_TIMESTAMP)";
 	public static final String SQL_UPDATE = "UPDATE mst_employee set employee_id = ? , employee_name = ? , birth_ymd = ? , sex = ? , zip_code = ? , address = ? , tel = ? , joined_ymd = ? , retire_ymd = ? , department_id = ? , update_module_id = ? , update_user_id = ? , update_ymd = CURRENT_TIMESTAMP WHERE employee_id = ?";
 	public static final String SQL_DELETE = "UPDATE mst_employee set delete_flg = '1' , update_module_id = ? , update_user_id = ? , update_ymd = CURRENT_TIMESTAMP WHERE employee_id = ?";
 
@@ -63,22 +63,20 @@ public class MstEmployeeDao {
 						result.setRetireYmd(resultSet.getString(9));
 						// department_id
 						result.setDepartmentId(resultSet.getString(10));
-						// authorized
-						result.setAuthorized(resultSet.getString(11));
 						// delete_flg
-						result.setDeleteFlg(resultSet.getString(12));
+						result.setDeleteFlg(resultSet.getString(11));
 						// create_module_id
-						result.setCreateModuleId(resultSet.getString(13));
+						result.setCreateModuleId(resultSet.getString(12));
 						// create_user_id
-						result.setCreateUserId(resultSet.getString(14));
+						result.setCreateUserId(resultSet.getString(13));
 						// create_ymd
-						result.setCreateYmd(resultSet.getString(15));
+						result.setCreateYmd(resultSet.getTimestamp(14));
 						// update_module_id
-						result.setUpdateModuleId(resultSet.getString(16));
+						result.setUpdateModuleId(resultSet.getString(15));
 						// update_user_id
-						result.setUpdateUserId(resultSet.getString(17));
+						result.setUpdateUserId(resultSet.getString(16));
 						// update_ymd
-						result.setUpdateYmd(resultSet.getString(18));
+						result.setUpdateYmd(resultSet.getTimestamp(17));
 					}
 				}
 			} catch (SQLException e) {
@@ -129,8 +127,6 @@ public class MstEmployeeDao {
 				statement.setString(i++, entity.getRetireYmd());
 		    	// department_id
 				statement.setString(i++, entity.getDepartmentId());
-		    	// authorized
-				statement.setString(i++, entity.getAuthorized());
 		    	// delete_flg
 				statement.setString(i++, CommonConstants.DELETE_FLG_OFF);
 		    	// create_module_id

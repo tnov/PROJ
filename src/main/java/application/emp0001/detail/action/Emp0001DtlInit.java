@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import application.CheckUtil;
 import application.CommonUtil;
+import application.DateUtil;
 import application.emp0001.Emp0001DataBean;
 import application.emp0001.detail.Emp0001DtlConstants;
 import application.emp0001.detail.Emp0001DtlForm;
@@ -50,8 +51,8 @@ public class Emp0001DtlInit extends HttpServlet {
 		form.setJoinedYmd("");
 		form.setRetireYmd("");
 		form.setDepartmentId("");
-		form.setAuthorized("");
-		form.setAuthorizedChk("");
+		form.setPassword("");
+		form.setPasswordChk("");
 		form.setDepartmentMap(CommonUtil.getDepartment());
 		form.setMode(Emp0001DtlConstants.MODE_CREATE);
 		return form;
@@ -65,13 +66,13 @@ public class Emp0001DtlInit extends HttpServlet {
 		form.setParamEmployeeId(result.getEmployeeId());
 		form.setEmployeeId(result.getEmployeeId());
 		form.setEmployeeName(result.getEmployeeName());
-		form.setBirthYmd(result.getBirthYmd());
+		form.setBirthYmd(DateUtil.formatDateString(result.getBirthYmd(), DateUtil.DATE_FORMAT_YYYYMMDD_HYPHEN));
 		form.setSex(result.getSex());
 		form.setZipCode(result.getZipCode());
 		form.setAddress(result.getAddress());
 		form.setTel(result.getTel());
-		form.setJoinedYmd(result.getJoinedYmd());
-		form.setRetireYmd(result.getRetireYmd());
+		form.setJoinedYmd(DateUtil.formatDateString(result.getJoinedYmd(), DateUtil.DATE_FORMAT_YYYYMMDD_HYPHEN));
+		form.setRetireYmd(DateUtil.formatDateString(result.getRetireYmd(), DateUtil.DATE_FORMAT_YYYYMMDD_HYPHEN));
 		form.setDepartmentId(result.getDepartmentId());
 		form.setDepartmentMap(CommonUtil.getDepartment());
 		form.setMode(Emp0001DtlConstants.MODE_UPDATE);

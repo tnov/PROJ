@@ -20,12 +20,17 @@ import javax.sql.DataSource;
 import application.CheckUtil;
 import application.CommonConstants;
 import application.CommonUtil;
+import application.DateUtil;
 import application.emp0001.Emp0001Constants;
 import application.emp0001.Emp0001DataBean;
+import application.emp0001.Emp0001Util;
 import application.emp0001.list.Emp0001LstConstants;
 import application.emp0001.list.Emp0001LstForm;
+import lib.common.Constants;
 
 public class Emp0001LstSearch extends HttpServlet {
+
+	private Emp0001Util util = new Emp0001Util();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -75,6 +80,16 @@ public class Emp0001LstSearch extends HttpServlet {
 			form.setPageSize(req.getParameter("pageSize"));
 		}
 		// チェック処理
+		List<String> messages = util.searchCheck(form);
+		if (CheckUtil.isNotEmpty(messages)) {
+			req.setAttribute("form", form);
+
+			// チェック処理エラー
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, messages,form);
+			// 元画面遷移
+			CommonUtil.dispReturn(req, resp, Emp0001LstConstants.CONTENTS_PATH);
+			return;
+		}
 		// 検索処理
 		List<Emp0001DataBean> resultList = search(form);
 
@@ -132,11 +147,11 @@ public class Emp0001LstSearch extends HttpServlet {
 				}
 				if (CheckUtil.isNotEmpty(form.getJoinedYmdFrom())) {
 					// パラメータ指定(入社年月日From)
-					statement.setString(i++, form.getJoinedYmdFrom().replace("-", ""));
+					statement.setString(i++, DateUtil.unformatDateString(form.getJoinedYmdFrom(), DateUtil.DATE_FORMAT_YYYYMMDD_HYPHEN));
 				}
 				if (CheckUtil.isNotEmpty(form.getJoinedYmdTo())) {
 					// パラメータ指定(入社年月日To)
-					statement.setString(i++, form.getJoinedYmdTo().replace("-", ""));
+					statement.setString(i++, DateUtil.unformatDateString(form.getJoinedYmdTo(), DateUtil.DATE_FORMAT_YYYYMMDD_HYPHEN));
 				}
 
 				// ログイン情報を検索
@@ -201,11 +216,11 @@ public class Emp0001LstSearch extends HttpServlet {
 				}
 				if (CheckUtil.isNotEmpty(form.getJoinedYmdFrom())) {
 					// パラメータ指定(入社年月日From)
-					statement.setString(i++, form.getJoinedYmdFrom().replace("-", ""));
+					statement.setString(i++, DateUtil.unformatDateString(form.getJoinedYmdFrom(), DateUtil.DATE_FORMAT_YYYYMMDD_HYPHEN));
 				}
 				if (CheckUtil.isNotEmpty(form.getJoinedYmdTo())) {
 					// パラメータ指定(入社年月日To)
-					statement.setString(i++, form.getJoinedYmdTo().replace("-", ""));
+					statement.setString(i++, DateUtil.unformatDateString(form.getJoinedYmdTo(), DateUtil.DATE_FORMAT_YYYYMMDD_HYPHEN));
 				}
 				if (CheckUtil.isNotEmpty(form.getLineSize())) {
 					// パラメータ指定(開始行、末尾行)
@@ -223,7 +238,7 @@ public class Emp0001LstSearch extends HttpServlet {
 						result.setEmployeeId(resultSet.getString(1));
 						result.setEmployeeName(resultSet.getString(2));
 						result.setSex(resultSet.getString(3));
-						result.setJoinedYmd(resultSet.getString(8));
+						result.setJoinedYmd(DateUtil.formatDateString(resultSet.getString(8), DateUtil.DATE_FORMAT_YYYYMMDD_SEPARATE));
 						resultList.add(result);
 					}
 				}
@@ -281,4 +296,15 @@ public class Emp0001LstSearch extends HttpServlet {
 
 	}
 
+	private void setMessage(HttpServletRequest req, HttpServletResponse resp, String type, String messages, Emp0001LstForm form) throws ServletException, IOException {
+		List<String> messagesList = new ArrayList<String>();
+		messagesList.add(messages);
+		setMessage(req,resp,type,messagesList,form);
+	}
+
+	private void setMessage(HttpServletRequest req, HttpServletResponse resp, String type,  List<String> messages, Emp0001LstForm form) throws ServletException, IOException {
+		// 画面項目セット
+		req.setAttribute("form", form);
+		req.setAttribute(type, messages);
+	}
 }

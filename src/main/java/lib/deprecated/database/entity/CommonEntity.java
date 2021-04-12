@@ -1,13 +1,15 @@
 package lib.deprecated.database.entity;
 
+import java.sql.Timestamp;
+
 abstract public class CommonEntity {
 	private String deleteFlg = null;
 	private String createModuleId = null;
 	private String createUserId = null;
-	private String createYmd = null;
+	private Timestamp createYmd = null;
 	private String updateModuleId = null;
 	private String updateUserId = null;
-	private String updateYmd = null;
+	private Timestamp updateYmd = null;
 
 	public String getDeleteFlg() {
 		return deleteFlg;
@@ -27,12 +29,6 @@ abstract public class CommonEntity {
 	public void setCreateUserId(String createUserId) {
 		this.createUserId = createUserId;
 	}
-	public String getCreateYmd() {
-		return createYmd;
-	}
-	public void setCreateYmd(String createYmd) {
-		this.createYmd = createYmd;
-	}
 	public String getUpdateModuleId() {
 		return updateModuleId;
 	}
@@ -45,10 +41,16 @@ abstract public class CommonEntity {
 	public void setUpdateUserId(String updateUserId) {
 		this.updateUserId = updateUserId;
 	}
-	public String getUpdateYmd() {
+	public Timestamp getCreateYmd() {
+		return createYmd;
+	}
+	public void setCreateYmd(Timestamp createYmd) {
+		this.createYmd = createYmd;
+	}
+	public Timestamp getUpdateYmd() {
 		return updateYmd;
 	}
-	public void setUpdateYmd(String updateYmd) {
+	public void setUpdateYmd(Timestamp updateYmd) {
 		this.updateYmd = updateYmd;
 	}
 }

@@ -2,6 +2,10 @@ package application;
 
 public class CommonForm {
 
+	private String loginUserId = null;
+
+	private String moduleId = null;
+
 	private String token = null;
 
 	private String movePath = null;
@@ -64,5 +68,21 @@ public class CommonForm {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public String getLoginUserId() {
+		return loginUserId;
+	}
+
+	public void setLoginUserId(String loginUserId) {
+		this.loginUserId = loginUserId;
+	}
+
+	public String getModuleId() {
+		return moduleId;
+	}
+
+	public void setModuleId(String moduleId) {
+		this.moduleId = moduleId;
 	}
 }

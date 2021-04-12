@@ -5,6 +5,8 @@ import java.util.UUID;
 
 public class StringUtils {
 
+	public static final String BLANK = "";
+
 	public static void main(String[] args) {
 
 	}
@@ -41,6 +43,20 @@ public class StringUtils {
 		}
 	}
 
+	public static String trimToNull(String str) {
+		if (str == null) {
+			return "";
+		} else {
+			String result = leftTrim(rightTrim(str));
+			if (result.length() == 0) {
+				return null;
+			} else {
+				return result;
+			}
+		}
+	}
+
+
 	public static int length(String str) {
 		if (str == null) {
 			return 0;
@@ -74,8 +90,8 @@ public class StringUtils {
 	}
 
 	public static String rightTrim(String str) {
-		if (str == null) {
-			return null;
+		if (str == null || str.length() == 0) {
+			return "";
 		} else {
 			int len = str.length();
 			char[] value = str.toCharArray();
@@ -87,8 +103,8 @@ public class StringUtils {
 	}
 
 	public static String leftTrim(String str) {
-		if (str == null) {
-			return null;
+		if (str == null || str.length() == 0) {
+			return "";
 		} else {
 			int len = str.length();
 			int cur = 0;

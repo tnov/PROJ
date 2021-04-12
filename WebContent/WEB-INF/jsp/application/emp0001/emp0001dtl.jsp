@@ -57,12 +57,14 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 	</tr>
 	<tr>
 		<td>
-			<label><%=Emp0001DtlConstants.BIRTH_YMD %></label>
+			<label><%=Emp0001DtlConstants.BIRTH_YMD %><%=CommonConstants.REQUIRED %></label>
 		</td>
 		<td>
-			<input class="inputDate" type="text" name="birthYmd" maxlength="8" value="<%= form.getBirthYmd() %>"  placeholder="" required />
+			<input class="inputDate" type="date" name="birthYmd" maxlength="8" value="<%= form.getBirthYmd() %>"  placeholder="" required />
+			<!--/*
 			&nbsp;
 			<%=CommonConstants.DISP_FORMAT_YYYYMMDD %>
+			*/-->
 		</td>
 	</tr>
 	<tr>
@@ -87,9 +89,11 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label><%=Emp0001DtlConstants.JOINED_YMD %></label>
 		</td>
 		<td>
-			<input class="inputDate" type="text" name="joinedYmd" maxlength="8" value="<%= form.getJoinedYmd() %>" placeholder="" required />
+			<input class="inputDate" type="date" name="joinedYmd" maxlength="8" value="<%= form.getJoinedYmd() %>" placeholder="" required />
+			<!--/*
 			&nbsp;
 			<%=CommonConstants.DISP_FORMAT_YYYYMMDD %>
+			*/-->
 		</td>
 	</tr>
 	<tr>
@@ -97,9 +101,11 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label><%=Emp0001DtlConstants.RETIRE_YMD %></label>
 		</td>
 		<td>
-			<input class="inputDate" type="text" name="retireYmd" maxlength="8" value="<%= form.getRetireYmd() %>" placeholder="" required />
+			<input class="inputDate" type="date" name="retireYmd" maxlength="8" value="<%= form.getRetireYmd() %>" placeholder="" required />
+			<!--/*
 			&nbsp;
 			<%=CommonConstants.DISP_FORMAT_YYYYMMDD %>
+			*/-->
 		</td>
 	</tr>
 	<tr>
@@ -123,16 +129,15 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label><%=Emp0001DtlConstants.TEL %></label>
 		</td>
 		<td>
-			<input class="inputTel" type="text" name="tel" maxlength="11" value="<%= form.getTel() %>" placeholder="" required />
+			<input class="inputTel" type="text" name="tel" maxlength="12" value="<%= form.getTel() %>"  placeholder="" required />
 		</td>
 	</tr>
-	<div></div>
 	<tr id="password">
 		<td>
 			<label><%=Emp0001DtlConstants.PASSWORD %><%=CommonConstants.REQUIRED %></label>
 		</td>
 		<td>
-			<input type="password" name="authorized" value="<%= form.getAuthorized() %>" placeholder="" required autocomplete="new-password"/>
+			<input type="password" name="password" value="<%= form.getPassword() %>" placeholder="" required autocomplete="new-password"/>
 		</td>
 	</tr>
 	<tr id="passwordChk">
@@ -140,7 +145,7 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 			<label><%=Emp0001DtlConstants.PASSWORD_CHK %><%=CommonConstants.REQUIRED %></label>
 		</td>
 		<td>
-			<input type="password" name="authorizedChk" value="<%= form.getAuthorizedChk() %>" placeholder="" required autocomplete="new-password"/>
+			<input type="password" name="passwordChk" value="<%= form.getPasswordChk() %>" placeholder="" required autocomplete="new-password"/>
 		</td>
 	</tr>
 	<tr>
@@ -150,9 +155,9 @@ Emp0001DtlForm form = (Emp0001DtlForm)request.getAttribute("form");
 		</td>
 	</tr>
 </table>
-<input type="hidden" name="paramEmployeeId" value="<%= form.getParamEmployeeId() %>" placeholder="" required />
-<input type="hidden" name="backMode" value="<%= form.getBackMode() %>" placeholder="" required />
-<input type="hidden" name="mode" id="mode" value="<%= form.getMode() %>" placeholder="" required />
+<input type="hidden" name="paramEmployeeId" value="<%= form.getParamEmployeeId() %>"/>
+<input type="hidden" name="backMode" value="<%= form.getBackMode() %>"/>
+<input type="hidden" name="mode" id="mode" value="<%= form.getMode() %>"/>
 </section>
 </form>
 <footer></footer>

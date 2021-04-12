@@ -27,6 +27,8 @@ public class Emp0001DtlSave extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		Emp0001DtlForm form = new Emp0001DtlForm();
+		form.setLoginUserId((String)req.getSession().getAttribute("userId"));
+		form.setModuleId(this.getClass().getSimpleName());
 		// プルダウン設定
 		form.setDepartmentMap(CommonUtil.getDepartment());
 		// リクエストの取得
@@ -41,16 +43,16 @@ public class Emp0001DtlSave extends HttpServlet {
 		form.setRetireYmd(req.getParameter("retireYmd"));
 		form.setTel(req.getParameter("tel"));
 		form.setDepartmentId(req.getParameter("departmentId"));
-		form.setAuthorized(req.getParameter("authorized"));
-		form.setAuthorizedChk(req.getParameter("authorizedChk"));
+		form.setPassword(req.getParameter("password"));
+		form.setPasswordChk(req.getParameter("passwordChk"));
 
 		form.setMode(req.getParameter("mode"));
 
 		// 入力チェック処理
 		List<String> messages = util.inputCheck(form);
 		if (CheckUtil.isNotEmpty(messages)) {
-			form.setAuthorized("");
-			form.setAuthorizedChk("");
+			form.setPassword("");
+			form.setPasswordChk("");
 			req.setAttribute("form", form);
 
 			// チェック処理エラー
@@ -61,12 +63,14 @@ public class Emp0001DtlSave extends HttpServlet {
 		}
 		// 保存処理
 		if (!util.save(form)) {
-			form.setAuthorized("");
+			form.setPassword("");
+			form.setPasswordChk("");
 			req.setAttribute("form", form);
 			// 保存処理エラー
 			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, message.getMessage(Emp0001DtlConstants.MESSAGE_ERROR_MST_EMPLOYEE_NOT_SAVE),form);
 			return;
 		}
+		form.setMode(Emp0001DtlConstants.MODE_UPDATE);
 		req.setAttribute("form", form);
 
 		setMessage(req, resp, Constants.MESSAGE_TYPE_INFO, message.getMessage(Emp0001DtlConstants.MESSAGE_INFO_MST_EMPLOYEE_SAVE),form);

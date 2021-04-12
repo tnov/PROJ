@@ -9,10 +9,14 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import lib.util.StringUtils;
 
 public class DateUtil {
 
@@ -26,6 +30,16 @@ public class DateUtil {
 	public static final String DATE_FORMAT_HHMMSSMILLS_SEPARATE = "HH:mm:ss.SSS";
 	public static final String DATE_FORMAT_HHMMSS = "HHmmss";
 	public static final String DATE_FORMAT_HHMMSS_SEPARATE = "HH:mm:ss";
+
+	public static final String  DATE_FORMAT_YYYYMMDD_HYPHEN = "yyyy-MM-dd";
+	private static final String  DATE_CONVERT_YYYYMMDD_HYPHEN = "%s-%s-%s";
+	private static final String  DATE_CONVERT_YYYYMMDD_SEPARATE = "%s/%s/%s";
+
+	private static Map<String,String> formatMap = new HashMap<>();
+	static {
+		formatMap.put(DATE_FORMAT_YYYYMMDD_HYPHEN, DATE_CONVERT_YYYYMMDD_HYPHEN);
+		formatMap.put(DATE_FORMAT_YYYYMMDD_SEPARATE, DATE_CONVERT_YYYYMMDD_SEPARATE);
+	}
 
 	public static Timestamp getCurrentTimestamp() {
 		Timestamp ts = null;
@@ -97,5 +111,41 @@ public class DateUtil {
 		calendar.setTimeInMillis(ts.getTime());
 		calendar.add(field, amount);
 		return new Timestamp(calendar.getTimeInMillis());
+	}
+
+	/**
+	 * 日付フォーマット変換
+	 * @param date(YYYYMMDD)
+	 * @param format FORMAT_DATE_YYYYMMDD_*
+	 * @return formatDate
+	 */
+	public static String formatDateString(String date,String format) {
+		if (StringUtils.isEmpty(date)) {
+			return null;
+		} else if (date.length() != 8) {
+			return null;
+		} else if (formatMap.containsKey(format)) {
+			return String.format(formatMap.get(format), date.substring(0,4),date.substring(4,6),date.substring(6,8));
+		}
+		return null;
+	}
+
+	/**
+	 * 日付フォーマット変換
+	 * @param formatDate
+	 * @param format FORMAT_DATE_YYYYMMDD_*
+	 * @return date(YYYYMMDD)
+	 */
+	public static String unformatDateString(String date,String format) {
+		if (StringUtils.isEmpty(date)) {
+			return null;
+		} else if (formatMap.containsKey(format)) {
+			String[] separetors = formatMap.get(format).split("%s");
+			for(String separetor : separetors) {
+				date = date.replaceAll(separetor,StringUtils.BLANK);
+			}
+			return date;
+		}
+		return null;
 	}
 }

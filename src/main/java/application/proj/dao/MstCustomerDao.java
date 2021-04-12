@@ -59,10 +59,10 @@ public class MstCustomerDao {
 						result.setDeleteFlg(resultSet.getString(14));
 						result.setCreateModuleId(resultSet.getString(15));
 						result.setCreateUserId(resultSet.getString(16));
-						result.setCreateYmd(resultSet.getString(17));
+						result.setCreateYmd(resultSet.getTimestamp(17));
 						result.setUpdateModuleId(resultSet.getString(18));
 						result.setUpdateUserId(resultSet.getString(19));
-						result.setUpdateYmd(resultSet.getString(20));
+						result.setUpdateYmd(resultSet.getTimestamp(20));
 					}
 				}
 			} catch (SQLException e) {

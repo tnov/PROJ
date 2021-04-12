@@ -43,7 +43,7 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 		,JOINED_YMD
 		,RETIRE_YMD
 		,DEPARTMENT_ID
-		,AUTHORIZED
+		,PASSWORD
 		,DELETE_FLG};
 
 		public Emp0001Util util = new Emp0001Util();
@@ -94,7 +94,7 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 					String joinedYmd = item[col.JOINED_YMD.ordinal()];
 					String retireYmd = item[col.RETIRE_YMD.ordinal()];
 					String departmentId = item[col.DEPARTMENT_ID.ordinal()];
-					String authorized = item[col.AUTHORIZED.ordinal()];
+					String password = item[col.PASSWORD.ordinal()];
 					String deleteFlg = item[col.DELETE_FLG.ordinal()];
 					Emp0001DtlForm dtlForm = new Emp0001DtlForm();
 					dtlForm.setEmployeeId(employeeId);
@@ -107,12 +107,8 @@ public class Emp0001UplCsvUpload extends HttpServlet {
 					dtlForm.setJoinedYmd(joinedYmd);
 					dtlForm.setRetireYmd(retireYmd);
 					dtlForm.setDepartmentId(departmentId);
-					dtlForm.setAuthorized(authorized);
+					dtlForm.setPassword(password);
 					dtlForm.setDeleteFlg(deleteFlg);
-					dtlForm.setCreate_module_id(className);
-					dtlForm.setCreate_user_id(userId);
-					dtlForm.setUpdate_module_id(className);
-					dtlForm.setUpdate_user_id(userId);
 					dtlForm.setMode(buttontype);
 
 					// チェック処理

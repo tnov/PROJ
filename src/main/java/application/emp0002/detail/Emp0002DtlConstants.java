@@ -17,14 +17,14 @@ public class Emp0002DtlConstants {
 	public static final String AGREE_STATUS = "契約状況";
 	public static final String MATTER_INFO = "案件情報";
 
-	public static final String MESSAGE_ERROR_CUSTOMER_ID_NOT_INPUT = "顧客ＩＤを入力してください。";
-	public static final String MESSAGE_ERROR_CUSTOMER_ID_NOT_HALF_ALPHANUMERIC = "社員ＩＤは半角英数字で入力してください。";
-	public static final String MESSAGE_ERROR_CUSTOMER_NAME_NOT_INPUT = "顧客名称を入力してください。";
-	public static final String MESSAGE_ERROR_ZIP_CODE_NOT_NUMBER = "郵便番号は半角数字で入力してください。";
-	public static final String MESSAGE_ERROR_TEL_NOT_NUMBER = "電話番号は半角数字で入力してください。";
+	public static final String MESSAGE_ERROR_CUSTOMER_ID_NOT_INPUT = "Emp0002DtlConstants.MESSAGE_ERROR_CUSTOMER_ID_NOT_INPUT";
+	public static final String MESSAGE_ERROR_CUSTOMER_ID_NOT_HALF_ALPHANUMERIC = "Emp0002DtlConstants.MESSAGE_ERROR_CUSTOMER_ID_NOT_HALF_ALPHANUMERIC";
+	public static final String MESSAGE_ERROR_CUSTOMER_NAME_NOT_INPUT = "Emp0002DtlConstants.MESSAGE_ERROR_CUSTOMER_NAME_NOT_INPUT";
+	public static final String MESSAGE_ERROR_ZIP_CODE_NOT_NUMBER = "Emp0002DtlConstants.MESSAGE_ERROR_ZIP_CODE_NOT_NUMBER";
+	public static final String MESSAGE_ERROR_TEL_NOT_NUMBER = "Emp0002DtlConstants.MESSAGE_ERROR_TEL_NOT_NUMBER";
 
-	public static final String MESSAGE_ERROR_MST_CUSTOMER_NOT_SAVE = "顧客情報の保存に失敗しました。";
-	public static final String MESSAGE_INFO_MST_CUSTOMER_SAVE = "顧客情報の保存に成功しました。";
+	public static final String MESSAGE_ERROR_MST_CUSTOMER_NOT_SAVE = "Emp0002DtlConstants.MESSAGE_ERROR_MST_CUSTOMER_NOT_SAVE";
+	public static final String MESSAGE_INFO_MST_CUSTOMER_SAVE = "Emp0002DtlConstants.MESSAGE_INFO_MST_CUSTOMER_SAVE";
 
 	public static final String MODE_CREATE = "0";
 	public static final String MODE_UPDATE = "1";

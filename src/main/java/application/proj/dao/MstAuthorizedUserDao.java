@@ -15,8 +15,8 @@ import application.proj.entity.MstAuthorizedUser;
 public class MstAuthorizedUserDao {
 
 	public static final String SQL_SELECT_PK = "SELECT user_id, user_password, last_update_ymd, last_update_password, delete_flg, create_module_id, create_user_id, create_ymd, update_module_id, update_user_id, update_ymd FROM authorized_user WHERE user_id = ? ORDER BY user_id";
-	public static final String SQL_INSERT = "INSERT INTO authorized_user(user_id, user_password, last_update_ymd, last_update_password, delete_flg, create_module_id, create_user_id, create_ymd, update_module_id, update_user_id, update_ymd) VALUES (? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )";
-	public static final String SQL_UPDATE = "UPDATE authorized_user SET user_password = ? , last_update_ymd = ? , last_update_password = ? , delete_flg = ? , create_module_id = ? , create_user_id = ? , create_ymd = ? , update_module_id = ? , update_user_id = ? , update_ymd = ? WHERE user_id = ?";
+	public static final String SQL_INSERT = "INSERT INTO authorized_user(user_id, user_password, last_update_ymd, last_update_password, delete_flg, create_module_id, create_user_id, create_ymd, update_module_id, update_user_id, update_ymd) VALUES (? , ? , ? , ? , ? , ? , ? , CURRENT_TIMESTAMP , ? , ? , CURRENT_TIMESTAMP )";
+	public static final String SQL_UPDATE = "UPDATE authorized_user SET user_password = ? , last_update_ymd = ? , last_update_password = ? , delete_flg = ? , update_module_id = ? , update_user_id = ? , update_ymd = CURRENT_TIMESTAMP WHERE user_id = ?";
 	public static final String SQL_DELETE = "DELETE FROM authorized_user WHERE user_id = ?";
 
 	public MstAuthorizedUser getMstAuthorizedUser(MstAuthorizedUser entity) {
@@ -58,13 +58,13 @@ public class MstAuthorizedUserDao {
 						// create_user_id
 						result.setCreateUserId(resultSet.getString(7));
 						// create_ymd
-						result.setCreateYmd(resultSet.getString(8));
+						result.setCreateYmd(resultSet.getTimestamp(8));
 						// update_module_id
 						result.setUpdateModuleId(resultSet.getString(9));
 						// update_user_id
 						result.setUpdateUserId(resultSet.getString(10));
 						// update_ymd
-						result.setUpdateYmd(resultSet.getString(11));
+						result.setUpdateYmd(resultSet.getTimestamp(11));
 					}
 				}
 			} catch (SQLException e) {
@@ -109,14 +109,10 @@ public class MstAuthorizedUserDao {
 				statement.setString(i++, entity.getCreateModuleId());
 		    	// create_user_id
 				statement.setString(i++, entity.getCreateUserId());
-		    	// create_ymd
-				statement.setString(i++, entity.getCreateYmd());
 		    	// update_module_id
 				statement.setString(i++, entity.getUpdateModuleId());
 		    	// update_user_id
 				statement.setString(i++, entity.getUpdateUserId());
-		    	// update_ymd
-				statement.setString(i++, entity.getUpdateYmd());
 				// SQL実行
 				result = statement.executeUpdate() == 1 ? true : false;
 			} catch (SQLException e) {
@@ -157,18 +153,10 @@ public class MstAuthorizedUserDao {
 				statement.setString(i++, entity.getLastUpdatePassword());
 		    	// delete_flg
 				statement.setString(i++, entity.getDeleteFlg());
-		    	// create_module_id
-				statement.setString(i++, entity.getCreateModuleId());
-		    	// create_user_id
-				statement.setString(i++, entity.getCreateUserId());
-		    	// create_ymd
-				statement.setString(i++, entity.getCreateYmd());
 		    	// update_module_id
 				statement.setString(i++, entity.getUpdateModuleId());
 		    	// update_user_id
 				statement.setString(i++, entity.getUpdateUserId());
-		    	// update_ymd
-				statement.setString(i++, entity.getUpdateYmd());
 		    	// employee_id
 				statement.setString(i++, key.getUserId());
 				// SQL実行
