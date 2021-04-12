@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import application.CheckUtil;
+import application.DateUtil;
 import application.database.dao.MstCustomerDao;
 import application.database.entity.MstCustomer;
 import application.emp0002.detail.Emp0002DtlConstants;
 import application.emp0002.detail.Emp0002DtlForm;
+import application.emp0002.list.Emp0002LstConstants;
+import application.emp0002.list.Emp0002LstForm;
 import lib.util.MessageManager;
 
 public class Emp0002Util {
@@ -19,6 +22,29 @@ public class Emp0002Util {
 	public boolean existsEmployeeId(String employeeId) {
 		return false;
 	}
+
+	// 入力チェック処理
+	public List<String> searchCheck(Emp0002LstForm form) {
+		List<String> messages = new ArrayList<>();
+
+		// 契約日 日付妥当性チェック
+		if(!CheckUtil.dateValidChk(form.getAgreeYmdFrom(), DateUtil.DATE_FORMAT_YYYYMMDD_HYPHEN)){
+			messages.add(message.getMessage(Emp0002LstConstants.MESSAGE_ERROR_AGREE_YMD_FROM_NOT_DATE));
+		}
+		if(!CheckUtil.dateValidChk(form.getAgreeYmdTo(), DateUtil.DATE_FORMAT_YYYYMMDD_HYPHEN)){
+			messages.add(message.getMessage(Emp0002LstConstants.MESSAGE_ERROR_AGREE_YMD_TO_NOT_DATE));
+		}
+		// 契約年月日の相関チェック
+		if (CheckUtil.isNotEmpty(form.getAgreeYmdFrom()) && CheckUtil.isNotEmpty(form.getAgreeYmdTo())) {
+			// 契約年月日from > 契約年月日to
+			if (form.getAgreeYmdFrom().compareTo(form.getAgreeYmdTo()) > 0) {
+				messages.add(message.getMessage(Emp0002LstConstants.MESSAGE_ERROR_AGREE_YMD_FROM_TO_ILLEEGAL_RELATIONAL));
+			}
+		}
+
+		return messages;
+	}
+
 	// 入力チェック処理
 	public List<String> inputCheck(Emp0002DtlForm form) {
 		List<String> messages = new ArrayList<>();

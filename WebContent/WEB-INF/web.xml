@@ -34,7 +34,7 @@
       <url-pattern>*.gif</url-pattern>
       <url-pattern>*.htm</url-pattern>
       <url-pattern>*.html</url-pattern>
-      <url-pattern>*.jsp</url-pattern>
+      <!-- <url-pattern>*.jsp</url-pattern> -->
   </filter-mapping>
   <filter-mapping>
       <filter-name>EncodingFilter</filter-name>
@@ -216,18 +216,26 @@
   </servlet-mapping>
   <error-page>
     <error-code>401</error-code>
-    <location>/WEB-INF/jsp/errorpages/ErrorPage401.jsp</location>
+    <location>/WEB-INF/jsp/errorpages/errorPage401.jsp</location>
   </error-page>
   <error-page>
     <error-code>403</error-code>
-    <location>/WEB-INF/jsp/errorpages/ErrorPage403.jsp</location>
+    <location>/WEB-INF/jsp/errorpages/errorPage403.jsp</location>
   </error-page>
   <error-page>
     <error-code>404</error-code>
-    <location>/WEB-INF/jsp/errorpages/ErrorPage404.jsp</location>
+    <location>/WEB-INF/jsp/errorpages/errorPage404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>405</error-code>
+    <location>/WEB-INF/jsp/errorpages/errorPage405.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>408</error-code>
+    <location>/WEB-INF/jsp/errorpages/errorPage408.jsp</location>
   </error-page>
   <error-page>
     <error-code>500</error-code>
-    <location>/WEB-INF/jsp/errorpages/ErrorPage500.jsp</location>
+    <location>/WEB-INF/jsp/errorpages/errorPage500.jsp</location>
   </error-page>
 </web-app>

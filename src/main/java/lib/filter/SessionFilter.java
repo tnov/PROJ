@@ -26,11 +26,7 @@ public class SessionFilter implements Filter {
 				 && !Constants.LOGIN_ACTION.equals(((HttpServletRequest)request).getRequestURI())) {
 			// ログインページ以外の場合
 			HttpSession session = ((HttpServletRequest)request).getSession(false);
-			if (session == null) {
-				// セッションタイムアウト
-				((HttpServletResponse)response).sendRedirect(REDIRECT_URL);
-				return;
-			} else {
+			if (session != null) {
 				// セッションに退避した情報と比較(リモートＩＰ、ユーザＩＤ、トークン)
 				String ip = request.getRemoteAddr();
 				String host = request.getRemoteHost();
@@ -42,7 +38,8 @@ public class SessionFilter implements Filter {
 				if (StringUtils.isEmpty(ip) || !ip.equals(sessionIp) || StringUtils.isEmpty(token) || !token.equals(sessionToken)) {
 					// セッション不一致(セッション破棄)
 					session.invalidate();
-					((HttpServletResponse)response).sendRedirect(REDIRECT_URL);
+//					((HttpServletResponse)response).sendRedirect(REDIRECT_URL);
+					((HttpServletResponse)response).sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 					return;
 				}
 			}

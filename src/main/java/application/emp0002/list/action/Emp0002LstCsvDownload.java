@@ -24,11 +24,15 @@ import application.CommonUtil;
 import application.DateUtil;
 import application.emp0001.Emp0001Constants;
 import application.emp0001.Emp0001DataBean;
-import application.emp0001.list.Emp0001LstConstants;
 import application.emp0001.list.Emp0001LstForm;
+import application.emp0002.list.Emp0002LstConstants;
 import lib.common.Constants;
+import lib.util.MessageManager;
+import lib.util.StringUtils;
 
 public class Emp0002LstCsvDownload extends HttpServlet {
+
+	private MessageManager message = MessageManager.getInstance();
 
 	String DATE_FORMAT_YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
 
@@ -52,10 +56,10 @@ public class Emp0002LstCsvDownload extends HttpServlet {
 			// メッセージの設定
 			List<String> messages = new ArrayList<String>();
 
-			// TODO エラーメッセージ定数化
-			messages.add("出力対象にチェックを入れてください");
+			// エラーメッセージ:出力対象にチェックを入れてください。
+			messages.add(message.getMessage(Emp0002LstConstants.MESSAGE_ERRO_OUTPUT_TARGET_NOT_CHECK));
 			req.setAttribute(Constants.MESSAGE_TYPE_ERROR, messages);
-			CommonUtil.dispReturn(req, resp, Emp0001LstConstants.CONTENTS_PATH);
+			CommonUtil.dispReturn(req, resp, Emp0002LstConstants.CONTENTS_PATH);
 			return;
 		}
 
@@ -68,27 +72,27 @@ public class Emp0002LstCsvDownload extends HttpServlet {
 
 			StringBuilder sb = new StringBuilder();
 			for(Emp0001DataBean employee :eployeeList) {
-				sb.append(CommonConstants.CSV_QUALIFIER + employee.getEmployeeId() + CommonConstants.CSV_QUALIFIER)
+				sb.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getEmployeeId()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getEmployeeName() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getEmployeeName()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getSex() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getSex()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getBirthYmd() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getBirthYmd()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getZipCode() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getZipCode()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getAddress() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getAddress()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getTel() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getTel()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getJoinedYmd() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getJoinedYmd()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getRetireYmd() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getRetireYmd()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getDepartmentId() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getDepartmentId()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_SEPARATOR)
-					.append(CommonConstants.CSV_QUALIFIER + employee.getDeleteFlg() + CommonConstants.CSV_QUALIFIER)
+					.append(CommonConstants.CSV_QUALIFIER + StringUtils.trim(employee.getDeleteFlg()) + CommonConstants.CSV_QUALIFIER)
 					.append(CommonConstants.CSV_DEMILITER);
 			}
 			pw.write(sb.toString());

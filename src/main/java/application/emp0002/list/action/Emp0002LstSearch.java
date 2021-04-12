@@ -22,10 +22,14 @@ import application.CommonConstants;
 import application.CommonUtil;
 import application.emp0002.Emp0002Constants;
 import application.emp0002.Emp0002DataBean;
+import application.emp0002.Emp0002Util;
 import application.emp0002.list.Emp0002LstConstants;
 import application.emp0002.list.Emp0002LstForm;
+import lib.common.Constants;
 
 public class Emp0002LstSearch extends HttpServlet {
+
+	private Emp0002Util util = new Emp0002Util();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -77,6 +81,16 @@ public class Emp0002LstSearch extends HttpServlet {
 			form.setPageSize(req.getParameter("pageSize"));
 		}
 		// チェック処理
+		List<String> messages = util.searchCheck(form);
+		if (CheckUtil.isNotEmpty(messages)) {
+			req.setAttribute("form", form);
+
+			// チェック処理エラー
+			setMessage(req, resp, Constants.MESSAGE_TYPE_ERROR, messages,form);
+			// 元画面遷移
+			CommonUtil.dispReturn(req, resp, Emp0002LstConstants.CONTENTS_PATH);
+			return;
+		}
 		// 検索処理
 		List<Emp0002DataBean> resultList = search(form);
 
@@ -307,4 +321,15 @@ public class Emp0002LstSearch extends HttpServlet {
 		return query;
 	}
 
+	private void setMessage(HttpServletRequest req, HttpServletResponse resp, String type, String messages, Emp0002LstForm form) throws ServletException, IOException {
+		List<String> messagesList = new ArrayList<String>();
+		messagesList.add(messages);
+		setMessage(req,resp,type,messagesList,form);
+	}
+
+	private void setMessage(HttpServletRequest req, HttpServletResponse resp, String type,  List<String> messages, Emp0002LstForm form) throws ServletException, IOException {
+		// 画面項目セット
+		req.setAttribute("form", form);
+		req.setAttribute(type, messages);
+	}
 }
